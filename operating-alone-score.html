@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Operating Alone Score | Thoughtly</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #4AAFA0;
+    --teal-light: #E8F5F3;
+    --teal-dark: #0F6E56;
+    --teal-deep: #085041;
+    --teal-border: #9FE1CB;
+    --blue: #185FA5;
+    --blue-light: #EBF3FB;
+    --blue-border: #B5D4F4;
+    --blue-dark: #0C447C;
+    --coral: #993C1D;
+    --coral-light: #FAF0EB;
+    --coral-border: #F5C4B3;
+    --coral-dark: #712B13;
+    --sand: #F5F2ED;
+    --sand-mid: #E8E4DC;
+    --ink: #1A1A18;
+    --ink-mid: #4A4A46;
+    --ink-light: #8A8A84;
+    --white: #FFFFFF;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--sand-mid);
+  }
+
+  .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 1rem;
+  }
+
+  .quiz-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-sub {
+    font-size: 16px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0 auto 1rem;
+  }
+
+  .quiz-meta {
+    font-size: 13px;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+  }
+
+  .legend {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .legend span {
+    font-size: 12px;
+    color: var(--ink-mid);
+    background: var(--white);
+    border-radius: 20px;
+    padding: 4px 12px;
+    border: 1px solid var(--sand-mid);
+  }
+
+  .ctx-block {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--sand-mid);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .ctx-header {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--sand-mid);
+  }
+
+  .ctx-header strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .sec-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--sand-mid);
+  }
+
+  .q-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--sand-mid);
+  }
+
+  .q-row:last-child { border-bottom: none; }
+
+  .q-text {
+    flex: 1;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.6;
+    padding-top: 2px;
+  }
+
+  .q-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .q-context-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .ctx-tag {
+    font-size: 10px;
+    color: var(--ink-light);
+    width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+
+  .q-btns {
+    display: flex;
+    gap: 4px;
+  }
+
+  .q-btns label { cursor: pointer; }
+  .q-btns input[type=radio] { display: none; }
+
+  .rb {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--sand-mid);
+    background: var(--sand);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.12s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .rb:hover { border-color: var(--ink-light); color: var(--ink); }
+
+  .rb-work:checked + .rb {
+    background: var(--blue);
+    color: var(--white);
+    border-color: var(--blue);
+    font-weight: 500;
+  }
+
+  .rb-home:checked + .rb {
+    background: var(--coral);
+    color: var(--white);
+    border-color: var(--coral);
+    font-weight: 500;
+  }
+
+  .sub-btn {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 16px;
+    background: var(--teal-dark);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .sub-btn:hover { background: var(--teal-deep); }
+
+  .err {
+    font-size: 13px;
+    color: #C0392B;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+  }
+
+  /* Results */
+  .res-header { margin-bottom: 2rem; }
+
+  .res-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .res-sub {
+    font-size: 16px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  .map-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--sand-mid);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .map-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .map-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--ink-mid);
+  }
+
+  .map-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .map-inner {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .axis-y {
+    font-size: 11px;
+    color: var(--ink-light);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+
+  .canvas-outer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sq {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+  }
+
+  .sq canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .axis-x {
+    font-size: 11px;
+    color: var(--ink-light);
+    text-align: center;
+    margin-top: 8px;
+    letter-spacing: 0.03em;
+  }
+
+  .zone-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 520px) {
+    .zone-cards { grid-template-columns: 1fr; }
+  }
+
+  .zc {
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    border: 1px solid transparent;
+  }
+
+  .zc-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .zc-context {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .zc-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+
+  .zc-body {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .zc-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 12px 0;
+  }
+
+  .zc-move-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .zc-move {
+    font-size: 13px;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .bridge {
+    background: var(--teal-light);
+    border-radius: var(--radius);
+    border: 2px solid var(--teal-border);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .bridge-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--teal-deep);
+    margin-bottom: 8px;
+  }
+
+  .bridge-body {
+    font-size: 14px;
+    color: var(--teal-dark);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .bridge-btn {
+    display: inline-block;
+    padding: 13px 24px;
+    background: var(--teal-dark);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .bridge-btn:hover { background: var(--teal-deep); }
+
+  .retake {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid var(--sand-mid);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .retake:hover { background: var(--sand); }
+
+  @media (max-width: 480px) {
+    .rb { width: 28px; height: 28px; font-size: 12px; }
+    .q-btns { gap: 3px; }
+    .ctx-tag { width: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- QUIZ -->
+  <div id="quiz">
+    <div class="header">
+      <p class="brand">Thoughtly</p>
+      <h1 class="quiz-title">The Operating Alone Score</h1>
+      <p class="quiz-sub">Most people show up differently at work than at home. Rate each statement for both contexts.</p>
+      <p class="quiz-meta">10 questions &nbsp;&nbsp;·&nbsp;&nbsp; two contexts &nbsp;&nbsp;·&nbsp;&nbsp; about 3 minutes</p>
+    </div>
+
+    <div class="legend">
+      <span>1 &nbsp;Never true</span>
+      <span>2 &nbsp;Rarely true</span>
+      <span>3 &nbsp;Sometimes true</span>
+      <span>4 &nbsp;Often true</span>
+      <span>5 &nbsp;Always true</span>
+    </div>
+
+    <div class="ctx-block">
+      <p class="ctx-header">How much you focus on <strong>what others want</strong> — their needs, comfort, and experience</p>
+      <p class="sec-label">Rate each at work and at home</p>
+      <div id="qs-y"></div>
+    </div>
+
+    <div class="ctx-block">
+      <p class="ctx-header">How much you focus on <strong>what you want</strong> — your own direction, standards, and outcomes</p>
+      <p class="sec-label">Rate each at work and at home</p>
+      <div id="qs-x"></div>
+    </div>
+
+    <button class="sub-btn" onclick="submitQ()">Find my dots</button>
+    <p class="err" id="err">Please answer all questions for both work and home before continuing.</p>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" style="display:none"></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const QY = [
+  {id:'y1', text:'I say yes before I have even checked whether I actually want to do it.'},
+  {id:'y2', text:'When something does not get done, I quietly pick it up rather than say something.'},
+  {id:'y3', text:'I hold back what I really think to keep things from getting uncomfortable.'},
+  {id:'y4', text:'I feel like it is my job to make sure everyone around me is okay.'},
+  {id:'y5', text:'I apologize even when I have not done anything wrong.'},
+];
+const QX = [
+  {id:'x1', text:'When something is not going the way I think it should, I step in and handle it.'},
+  {id:'x2', text:'I end up redoing things myself because it is faster than explaining what I need.'},
+  {id:'x3', text:'I have already decided the answer before I ask the team what they think.'},
+  {id:'x4', text:'I find it hard to watch something go sideways when I could just fix it.'},
+  {id:'x5', text:'I do not fully hand things off. I stay involved even when I said I would not.'},
+];
+
+function buildQs(qs, cid) {
+  const c = document.getElementById(cid);
+  qs.forEach(q => {
+    const d = document.createElement('div');
+    d.className = 'q-row';
+    d.innerHTML = `
+      <span class="q-text">${q.text}</span>
+      <div class="q-controls">
+        <div class="q-context-row">
+          <span class="ctx-tag">Work</span>
+          <div class="q-btns">${[1,2,3,4,5].map(n => `<label><input type="radio" class="rb-work" name="${q.id}_w" value="${n}" onchange="clearErr()"><span class="rb">${n}</span></label>`).join('')}</div>
+        </div>
+        <div class="q-context-row">
+          <span class="ctx-tag">Home</span>
+          <div class="q-btns">${[1,2,3,4,5].map(n => `<label><input type="radio" class="rb-home" name="${q.id}_h" value="${n}" onchange="clearErr()"><span class="rb">${n}</span></label>`).join('')}</div>
+        </div>
+      </div>`;
+    c.appendChild(d);
+  });
+}
+
+buildQs(QY, 'qs-y');
+buildQs(QX, 'qs-x');
+
+function clearErr() { document.getElementById('err').style.display = 'none'; }
+
+function submitQ() {
+  let ok = true, xW = 0, yW = 0, xH = 0, yH = 0;
+  [...QY, ...QX].forEach(q => {
+    const vw = document.querySelector(`input[name="${q.id}_w"]:checked`);
+    const vh = document.querySelector(`input[name="${q.id}_h"]:checked`);
+    if (!vw || !vh) { ok = false; return; }
+    const nw = parseInt(vw.value), nh = parseInt(vh.value);
+    if (QX.find(qq => qq.id === q.id)) { xW += nw; xH += nh; }
+    else { yW += nw; yH += nh; }
+  });
+  if (!ok) { document.getElementById('err').style.display = 'block'; return; }
+  showResults(xW, yW, xH, yH);
+}
+
+const BAND = 8;
+function getZone(x, y) {
+  const g = y - x;
+  if (Math.abs(g) <= BAND) return 'o2';
+  return g > BAND ? 'sac' : 'foc';
+}
+
+const COPY = {
+  sac: {
+    eyebrow: 'Self sacrificing zone',
+    bg: '#EBF3FB', border: '#B5D4F4',
+    eyebrowColor: '#185FA5', headlineColor: '#0C447C', bodyColor: '#185FA5',
+    headline: 'You are not doing too much because you are weak. You are doing it because you are good at it and because asking for what you want has always felt like the bigger risk.',
+    body: 'Somewhere along the way you learned that taking care of everyone else was the safer bet. So you kept showing up. You kept picking it up. You kept saying yes. And it worked until the quiet frustration set in. That frustration is not other people failing you. It is you not yet telling them what you need.',
+    moveLabel: 'Your one move',
+    move: 'In your next important conversation name one thing you actually want. Not what you are willing to settle for. What you want. Say it before you say yes to anything else.'
+  },
+  foc: {
+    eyebrow: 'Self focusing zone',
+    bg: '#FAF0EB', border: '#F5C4B3',
+    eyebrowColor: '#993C1D', headlineColor: '#712B13', bodyColor: '#993C1D',
+    headline: 'You are not controlling because you do not trust people. You are controlling because you have not yet seen enough evidence that they will care the way you do.',
+    body: 'You have been the one who cares most for a long time. That is not a flaw. It is a pattern that made sense once. But here is what it is costing you. Every time you step back in you take something away from the people around you. Their chance to figure it out. Their chance to show up. They have stopped trying to earn your trust because the window keeps closing before they get the chance.',
+    moveLabel: 'Your one move',
+    move: 'Before you step in on something today ask one question instead. What is your plan? Then wait. Fully. That pause is the whole thing.'
+  },
+  o2: {
+    eyebrow: 'O₂ zone',
+    bg: '#E8F5F0', border: '#9FE1CB',
+    eyebrowColor: '#0F6E56', headlineColor: '#085041', bodyColor: '#0F6E56',
+    headline: 'You are in the zone where everyone gets to breathe. That is rare. Most people spend their whole careers drifting past it without realizing it was there.',
+    body: 'You are holding both at the same time. What you want and what others want. That takes a kind of self awareness most people never build. But this zone is not a destination. It is a practice. Pressure will pull you out of it. The question is not whether you drift. It is whether you notice when you do.',
+    moveLabel: 'Your one move',
+    move: 'Notice which direction you get pulled when the stakes go up. That direction is your default. Knowing it is the whole advantage.'
+  }
+};
+
+function zoneCard(zKey, ctxLabel) {
+  const c = COPY[zKey];
+  return `
+    <div class="zc" style="background:${c.bg};border-color:${c.border}">
+      <p class="zc-eyebrow" style="color:${c.eyebrowColor}">${c.eyebrow}</p>
+      <p class="zc-context">${ctxLabel}</p>
+      <p class="zc-headline" style="color:${c.headlineColor}">${c.headline}</p>
+      <p class="zc-body" style="color:${c.bodyColor}">${c.body}</p>
+      <div class="zc-divider"></div>
+      <p class="zc-move-label" style="color:${c.eyebrowColor}">${c.moveLabel}</p>
+      <p class="zc-move" style="color:${c.headlineColor}">${c.move}</p>
+    </div>`;
+}
+
+function showResults(xWr, yWr, xHr, yHr) {
+  document.getElementById('quiz').style.display = 'none';
+  const r = document.getElementById('results');
+  r.style.display = 'block';
+
+  const xW = Math.round((xWr / 25) * 100);
+  const yW = Math.round((yWr / 25) * 100);
+  const xH = Math.round((xHr / 25) * 100);
+  const yH = Math.round((yHr / 25) * 100);
+
+  const wZ = getZone(xW, yW);
+  const hZ = getZone(xH, yH);
+  const same = wZ === hZ;
+
+  const headline = same
+    ? `You tend toward ${COPY[wZ].eyebrow} in both contexts.`
+    : `You show up differently at work than at home.`;
+  const subtext = same
+    ? `Same pattern in both contexts. That usually means it is not situational. It is structural. It is the default you reach for when things get hard. Which also means it is the highest leverage thing you could change.`
+    : `Most people assume their dots will land close together. Yours do not. That gap is useful. It means you already know how to operate differently depending on context. The question is whether you are doing it on purpose.`;
+
+  r.innerHTML = `
+    <div class="header">
+      <p class="brand">Thoughtly</p>
+      <h2 class="res-title">${headline}</h2>
+      <p class="res-sub">${subtext}</p>
+    </div>
+
+    <div class="map-wrap">
+      <p class="map-eyebrow">Your two dots</p>
+      <div class="map-legend">
+        <span class="map-legend-item"><span class="map-legend-dot" style="background:#185FA5"></span>Work</span>
+        <span class="map-legend-item"><span class="map-legend-dot" style="background:#993C1D"></span>Home</span>
+      </div>
+      <div class="map-inner">
+        <div class="axis-y">What others want</div>
+        <div class="canvas-outer">
+          <div class="sq">
+            <canvas id="mapChart" role="img" aria-label="Thoughtly model. Work zone: ${COPY[wZ].eyebrow}. Home zone: ${COPY[hZ].eyebrow}."></canvas>
+          </div>
+          <p class="axis-x">What I want</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-cards">
+      ${zoneCard(wZ, 'At work')}
+      ${zoneCard(hZ, 'At home')}
+    </div>
+
+    <div class="bridge">
+      <p class="bridge-title">This is your dot. Want to know what is driving it?</p>
+      <p class="bridge-body">The full ACE Assessment goes 138 questions deep. It maps exactly where you overfunction, where you underadvocate, and the specific traits keeping you out of the O₂ zone. You get a full breakdown on a 1:1 Zoom call.</p>
+      <a href="YOUR_ACE_ASSESSMENT_LINK_HERE" class="bridge-btn">Take the full ACE Assessment ↗</a>
+    </div>
+
+    <button class="retake" onclick="retake()">Retake the quiz</button>`;
+
+  setTimeout(() => drawMap(xW, yW, xH, yH), 80);
+}
+
+function drawMap(xW, yW, xH, yH) {
+  const gc = 'rgba(0,0,0,0.06)';
+  const lc = 'rgba(0,0,0,0.28)';
+  const tf = 'rgba(74,175,160,0.18)';
+  const cf = 'rgba(153,60,29,0.12)';
+  const bf = 'rgba(210,207,196,0.5)';
+
+  const zp = {
+    id: 'z',
+    beforeDatasetsDraw(chart) {
+      const { ctx, chartArea: { left, top, right, bottom, width, height } } = chart;
+      ctx.save();
+      const tx = v => left + (v / 100) * width;
+      const ty = v => bottom - ((v / 100) * height);
+      ctx.beginPath(); ctx.moveTo(left, ty(BAND)); ctx.lineTo(tx(100 - BAND), top); ctx.lineTo(left, top); ctx.closePath(); ctx.fillStyle = tf; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(tx(BAND), bottom); ctx.lineTo(right, ty(100 - BAND)); ctx.lineTo(right, bottom); ctx.closePath(); ctx.fillStyle = cf; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(left, ty(BAND)); ctx.lineTo(tx(100 - BAND), top); ctx.lineTo(right, top); ctx.lineTo(right, ty(100 - BAND)); ctx.lineTo(tx(BAND), bottom); ctx.lineTo(left, bottom); ctx.closePath(); ctx.fillStyle = bf; ctx.fill();
+      ctx.font = '500 11px DM Sans, sans-serif'; ctx.fillStyle = lc;
+      ctx.textAlign = 'left'; ctx.fillText('Self sacrificing', left + 8, top + 16);
+      ctx.textAlign = 'right'; ctx.fillText('Self focusing', right - 8, bottom - 8);
+      ctx.save(); ctx.translate(tx(56), ty(56)); ctx.rotate(-Math.atan(1)); ctx.textAlign = 'center'; ctx.fillText('O₂ zone · operating together', 0, 0); ctx.restore();
+      ctx.restore();
+    }
+  };
+
+  new Chart(document.getElementById('mapChart'), {
+    type: 'scatter',
+    plugins: [zp],
+    data: {
+      datasets: [
+        { label: 'Work', data: [{ x: xW, y: yW }], backgroundColor: '#185FA5', borderColor: '#fff', borderWidth: 2.5, pointRadius: 11, pointHoverRadius: 13 },
+        { label: 'Home', data: [{ x: xH, y: yH }], backgroundColor: '#993C1D', borderColor: '#fff', borderWidth: 2.5, pointRadius: 11, pointHoverRadius: 13 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 1,
+      animation: { duration: 900, easing: 'easeOutQuart' },
+      scales: {
+        x: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } },
+        y: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => `${c.dataset.label} · Advocacy: ${c.parsed.x}%  Consideration: ${c.parsed.y}%` } }
+      }
+    }
+  });
+}
+
+function retake() {
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('quiz').style.display = 'block';
+  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+  document.getElementById('err').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
