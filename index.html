@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Operating Alone Score | Thoughtly</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --coral:       #D85A30;
+  --coral-light: #FAECE7;
+  --coral-mid:   #F0997B;
+  --purple:      #534AB7;
+  --purple-light:#EEEDFE;
+  --teal:        #1D9E75;
+  --teal-light:  #E1F5EE;
+  --teal-mid:    #5DCAA5;
+  --ink:         #1A1917;
+  --ink-2:       #5F5E5A;
+  --ink-3:       #9E9C96;
+  --surface:     #F7F6F2;
+  --surface-2:   #EEEDE8;
+  --border:      rgba(26,25,23,0.10);
+  --white:       #FFFFFF;
+  --radius:      12px;
+  --radius-sm:   8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.5rem 1.25rem 5rem;
+}
+
+.container { width: 100%; max-width: 580px; }
+
+/* ── SCREENS ── */
+.screen { display: none; }
+.screen.active { display: block; animation: fadeUp 0.4s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── INTRO ── */
+.eyebrow {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 1rem;
+}
+
+.display-headline {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(30px, 7vw, 44px);
+  line-height: 1.12; color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.display-headline em { font-style: italic; color: var(--teal); }
+
+.intro-body {
+  font-size: 16px; line-height: 1.75;
+  color: var(--ink-2); margin-bottom: 2rem;
+}
+
+.meta-row { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.meta-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-3); }
+.meta-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); flex-shrink: 0; }
+
+.scale-info {
+  background: var(--white); border: 0.5px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 2rem;
+}
+.scale-info p { font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+.scale-info strong { color: var(--ink); font-weight: 600; }
+.scale-info .note { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 13px 26px;
+  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+  border-radius: var(--radius); border: none; cursor: pointer;
+  transition: transform 0.1s, background 0.15s;
+  width: 100%;
+}
+.btn:active { transform: scale(0.99); }
+
+.btn-dark { background: var(--ink); color: var(--white); }
+.btn-dark:hover { background: #2D2C2A; }
+.btn-dark:disabled { background: var(--surface-2); color: var(--ink-3); cursor: not-allowed; transform: none; }
+
+.btn-teal { background: var(--teal); color: var(--white); }
+.btn-teal:hover { background: #178560; }
+
+.btn-ghost {
+  background: none; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: var(--ink-3); cursor: pointer; text-decoration: underline;
+  padding: 0; display: inline-block;
+}
+.btn-ghost:hover { color: var(--ink-2); }
+
+/* ── PROGRESS ── */
+.progress-wrap { margin-bottom: 2rem; }
+.progress-top { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.progress-lbl { font-size: 12px; color: var(--ink-3); }
+.progress-bar { height: 3px; background: var(--surface-2); border-radius: 2px; }
+.progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width 0.3s; }
+
+/* ── CONTEXT BANNER ── */
+.ctx-banner {
+  border-radius: var(--radius); padding: 0.875rem 1.25rem; margin-bottom: 1.5rem;
+}
+.ctx-banner.work { background: var(--purple-light); border: 0.5px solid rgba(83,74,183,0.3); }
+.ctx-banner.home { background: var(--coral-light); border: 0.5px solid rgba(216,90,48,0.3); }
+.ctx-label { font-size: 13px; font-weight: 500; }
+.ctx-banner.work .ctx-label { color: var(--purple); }
+.ctx-banner.home .ctx-label { color: var(--coral); }
+.ctx-note { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+
+/* ── QUESTION CARDS ── */
+.q-card {
+  background: var(--white); border: 0.5px solid var(--border);
+  border-radius: var(--radius); padding: 1.125rem 1.375rem;
+  margin-bottom: 0.875rem; transition: border-color 0.2s;
+}
+.q-card.answered { border-color: var(--teal-mid); }
+
+.q-num { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 7px; }
+.q-text { font-size: 15px; line-height: 1.6; color: var(--ink); margin-bottom: 1.125rem; }
+
+.scale { display: flex; gap: 5px; }
+.scale-btn {
+  flex: 1; padding: 9px 0; text-align: center;
+  border: 0.5px solid var(--border); border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; background: var(--surface); color: var(--ink-3);
+  transition: all 0.1s;
+}
+.scale-btn:hover { background: var(--white); color: var(--ink); border-color: var(--ink-3); }
+.scale-btn.sel-adv { background: var(--purple-light) !important; color: var(--purple) !important; border-color: var(--purple) !important; }
+.scale-btn.sel-con { background: var(--coral-light) !important; color: var(--coral) !important; border-color: var(--coral) !important; }
+
+.scale-ends { display: flex; justify-content: space-between; margin-top: 5px; padding: 0 2px; }
+.scale-end { font-size: 11px; color: var(--ink-3); }
+
+/* ── RESULT ── */
+.result-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+.result-headline { font-family: 'DM Serif Display', serif; font-size: clamp(22px, 5vw, 30px); line-height: 1.2; margin-bottom: 2rem; }
+
+.chart-outer { display: flex; gap: 8px; align-items: stretch; margin-bottom: 4px; }
+.axis-y-label { font-size: 11px; color: var(--ink-3); writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; white-space: nowrap; flex-shrink: 0; }
+.chart-col { flex: 1; display: flex; flex-direction: column; }
+.chart-col canvas { width: 100% !important; background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); }
+.axis-x-label { font-size: 11px; color: var(--ink-3); text-align: center; margin-top: 5px; }
+
+.legend { display: flex; gap: 16px; margin-top: 0.75rem; margin-bottom: 1.5rem; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-3); }
+.legend-pip { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── ZONE CARDS ── */
+.zone-card { border-radius: var(--radius); padding: 1.625rem; margin-bottom: 1rem; }
+.zone-card.ss { background: var(--coral-light); border: 0.5px solid rgba(216,90,48,0.25); }
+.zone-card.sf { background: var(--purple-light); border: 0.5px solid rgba(83,74,183,0.25); }
+.zone-card.o2 { background: var(--teal-light); border: 0.5px solid rgba(29,158,117,0.25); }
+
+.zone-kicker { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+.zone-card.ss .zone-kicker { color: var(--coral); }
+.zone-card.sf .zone-kicker { color: var(--purple); }
+.zone-card.o2 .zone-kicker { color: var(--teal); }
+
+.zone-headline { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.3; color: var(--ink); margin-bottom: 1rem; }
+.zone-body { font-size: 15px; line-height: 1.8; color: var(--ink-2); }
+.zone-body p { margin-bottom: 0.875rem; }
+.zone-body p:last-child { margin-bottom: 0; }
+
+.move-box { margin-top: 1.375rem; padding: 1rem 1.25rem; border-radius: var(--radius-sm); }
+.zone-card.ss .move-box { background: rgba(216,90,48,0.09); }
+.zone-card.sf .move-box { background: rgba(83,74,183,0.09); }
+.zone-card.o2 .move-box { background: rgba(29,158,117,0.09); }
+
+.move-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+.zone-card.ss .move-label { color: var(--coral); }
+.zone-card.sf .move-label { color: var(--purple); }
+.zone-card.o2 .move-label { color: var(--teal); }
+
+.move-text { font-size: 15px; line-height: 1.7; color: var(--ink); font-weight: 500; }
+
+.ctx-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 8px; }
+.ctx-tag.work { background: var(--purple-light); color: var(--purple); }
+.ctx-tag.home { background: var(--coral-light); color: var(--coral); }
+
+/* ── GAP CARD ── */
+.gap-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+.gap-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+.gap-body { font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+
+/* ── ACE BOX ── */
+.ace-box { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.375rem 1.625rem; margin-bottom: 1rem; }
+.ace-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); margin-bottom: 7px; }
+.ace-body { font-size: 14px; line-height: 1.7; color: var(--ink-2); margin-bottom: 1.25rem; }
+
+/* ── DIVIDER ── */
+.divider { height: 0.5px; background: var(--border); margin: 0.25rem 0 1.25rem; }
+
+/* ── COACH ── */
+.coach-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.coach-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); }
+
+.chat-area {
+  height: 360px; overflow-y: auto;
+  border: 0.5px solid var(--border); border-radius: var(--radius);
+  padding: 1.25rem; margin-bottom: 1rem;
+  background: var(--surface); display: flex; flex-direction: column; gap: 14px;
+}
+
+.msg { display: flex; gap: 10px; align-items: flex-start; }
+.msg.user { flex-direction: row-reverse; }
+
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; flex-shrink: 0;
+}
+.avatar.ai { background: var(--teal-light); color: var(--teal); }
+.avatar.user { background: var(--purple-light); color: var(--purple); }
+
+.bubble {
+  max-width: 80%; padding: 11px 15px;
+  border-radius: var(--radius); font-size: 14px; line-height: 1.7;
+  background: var(--white); border: 0.5px solid var(--border); color: var(--ink);
+}
+.bubble.user { background: var(--purple-light); border-color: rgba(83,74,183,0.2); color: #26215C; }
+
+.chat-input-row { display: flex; gap: 8px; }
+.chat-input {
+  flex: 1; padding: 11px 15px;
+  border: 0.5px solid var(--border); border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  background: var(--white); color: var(--ink); outline: none;
+  transition: border-color 0.15s;
+}
+.chat-input:focus { border-color: var(--teal); }
+
+.chat-send {
+  padding: 11px 20px; border-radius: var(--radius);
+  border: none; background: var(--teal); color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.chat-send:hover { background: #178560; }
+.chat-send:disabled { background: var(--surface-2); color: var(--ink-3); cursor: not-allowed; }
+
+.typing-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ink-3); animation: pulse 1s infinite; display: inline-block; }
+.typing-dot:nth-child(2){animation-delay:.2s}
+.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-3px);opacity:1}}
+
+@media (max-width: 480px) {
+  body { padding: 1.5rem 1rem 4rem; }
+  .meta-row { gap: 0.75rem; }
+  .display-headline { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- INTRO -->
+<div id="s-intro" class="screen active">
+  <p class="eyebrow">Thoughtly</p>
+  <h1 class="display-headline">Where are you <em>operating alone</em> right now?</h1>
+  <p class="intro-body">This assessment shows you exactly where you are on the model &mdash; at work and at home. Not where you want to be. Where you actually are. Right now. That&rsquo;s where the work starts.</p>
+  <div class="meta-row">
+    <span class="meta-item"><span class="meta-pip"></span>4 minutes</span>
+    <span class="meta-item"><span class="meta-pip"></span>20 questions</span>
+    <span class="meta-item"><span class="meta-pip"></span>Two contexts</span>
+    <span class="meta-item"><span class="meta-pip"></span>Instant results</span>
+  </div>
+  <div class="scale-info">
+    <p><strong>1</strong> = Never &nbsp;&middot;&nbsp; <strong>4</strong> = Sometimes &nbsp;&middot;&nbsp; <strong>7</strong> = Always</p>
+    <p class="note">The O&#8322; Zone is narrow. Most people don&rsquo;t live there consistently. That&rsquo;s the point.</p>
+  </div>
+  <button class="btn btn-dark" onclick="startQuiz()">Start at work &rarr;</button>
+</div>
+
+<!-- WORK -->
+<div id="s-work" class="screen">
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-lbl">Part 1 of 2</span>
+      <span class="progress-lbl" id="prog-work-count">0 of 10</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-work" style="width:0%"></div></div>
+  </div>
+  <div class="ctx-banner work">
+    <div class="ctx-label">At work</div>
+    <div class="ctx-note">Think about your professional relationships and responsibilities</div>
+  </div>
+  <div id="q-work-wrap"></div>
+  <button class="btn btn-dark" id="btn-work" disabled onclick="goHome()">Next &mdash; At home &rarr;</button>
+</div>
+
+<!-- HOME -->
+<div id="s-home" class="screen">
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-lbl">Part 2 of 2</span>
+      <span class="progress-lbl" id="prog-home-count">0 of 10</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-home" style="width:0%"></div></div>
+  </div>
+  <div class="ctx-banner home">
+    <div class="ctx-label">At home</div>
+    <div class="ctx-note">Think about your personal relationships &mdash; partner, family, close friends</div>
+  </div>
+  <div id="q-home-wrap"></div>
+  <button class="btn btn-dark" id="btn-home" disabled onclick="calcResults()">See my results &rarr;</button>
+</div>
+
+<!-- RESULT -->
+<div id="s-result" class="screen">
+  <p class="result-eyebrow">Your result</p>
+  <h2 class="result-headline" id="result-hl">Your position on the model</h2>
+
+  <div class="chart-outer">
+    <div class="axis-y-label">Consideration</div>
+    <div class="chart-col">
+      <canvas id="mapChart" height="270" role="img" aria-label="Scatter plot showing your work and home scores on the Thoughtly model"></canvas>
+      <p class="axis-x-label">Self-advocacy</p>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-pip" style="background:#534AB7;"></span>At work</span>
+    <span class="legend-item"><span class="legend-pip" style="background:#D85A30;"></span>At home</span>
+  </div>
+
+  <div class="divider"></div>
+  <div id="gap-wrap"></div>
+  <div id="work-card-wrap"></div>
+  <div id="home-card-wrap"></div>
+
+  <div class="ace-box">
+    <h3 class="ace-title">Want the full picture?</h3>
+    <p class="ace-body">This shows you the zone. The ACE Assessment maps the specific traits driving you there &mdash; exactly where you overfunction, where you hold back, and what shifts first.</p>
+    <!-- REPLACE THIS HREF WITH YOUR ACE ASSESSMENT URL -->
+    <a href="https://www.bethoughtly.com/ace" target="_blank" style="text-decoration:none;display:block;margin-bottom:0.75rem;">
+      <button class="btn btn-teal" style="max-width:320px;">Take the full ACE Assessment &rarr;</button>
+    </a>
+    <button class="btn btn-dark" onclick="startCoach()" style="max-width:320px;">Talk to the Thoughtly AI &rarr;</button>
+  </div>
+
+  <div style="text-align:center;margin-top:1rem;">
+    <button class="btn-ghost" onclick="restart()">Retake the quiz</button>
+  </div>
+</div>
+
+<!-- COACH -->
+<div id="s-coach" class="screen">
+  <div class="coach-head">
+    <h2 class="coach-title">Thoughtly AI</h2>
+    <button class="btn-ghost" onclick="restart()">Start over</button>
+  </div>
+  <div style="margin-bottom:1rem;" id="zone-badge-wrap"></div>
+  <div class="chat-area" id="chat"></div>
+  <div class="chat-input-row">
+    <input type="text" class="chat-input" id="user-input" placeholder="Type your response..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendMsg()" />
+    <button class="chat-send" id="send-btn" onclick="sendMsg()">Send</button>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// ── QUESTIONS ──────────────────────────────────────────────────────────────
+// Grounded in: Rathus Assertiveness Schedule (1973, α=.82, r=.78),
+// Thomas-Kilmann Conflict Mode Instrument (1974), and
+// Empowering Leadership Questionnaire (Arnold et al., 2000, J. Org. Behavior)
+
+var Qs = [
+  // Self-advocacy axis (Q1–5)
+  { t: "Even when it might upset someone, I speak up about what I want or need.", y: 'adv' },
+  { t: "When someone on my team doesn\u2019t perform the way I would, I take the task back rather than letting them work through it.", y: 'adv' },
+  { t: "I ask others for their input, but when it conflicts with what I already believe is right, I follow my own judgment anyway.", y: 'adv' },
+  { t: "I have a hard time handing things off completely, because I\u2019m not confident it will be done to the standard it needs to be.", y: 'adv' },
+  { t: "When there\u2019s disagreement about the right direction, I push for my own view rather than deferring to what others want.", y: 'adv' },
+  // Consideration axis (Q6–10)
+  { t: "I agree to things I don\u2019t actually want to do, because saying no feels like letting someone down.", y: 'con' },
+  { t: "I handle things myself rather than asking for help, because I don\u2019t want to put that on someone else.", y: 'con' },
+  { t: "I feel resentful that I\u2019m carrying more than my share \u2014 but I keep doing it anyway and don\u2019t say anything.", y: 'con' },
+  { t: "I stay quiet about what I really want to avoid conflict \u2014 even when speaking up would probably help.", y: 'con' },
+  { t: "I struggle to let go of things I care about, because it\u2019s hard to trust that others will handle them the way they need to be handled.", y: 'con' }
+];
+
+// ── ZONE CONTENT ────────────────────────────────────────────────────────────
+var ZC = {
+  ss: {
+    cls: 'ss', kicker: 'Self-sacrificing',
+    headline: "You\u2019re not doing it because you\u2019re a pushover.",
+    body: "<p>You\u2019re doing it because somewhere along the way you learned that taking care of everyone else was safer than asking for what you want.</p><p>So you say yes when you mean no. You figure it out so you don\u2019t have to ask. You stay quiet so things don\u2019t get complicated. And you tell yourself it\u2019s fine.</p><p>It\u2019s not that you don\u2019t have needs. You just stopped believing they were worth the disruption.</p><p>The people around you never learn to step up because you keep doing it for them. You end up more alone the harder you try to hold it all together.</p><p>You didn\u2019t get here because you\u2019re weak. You got here because you\u2019re capable and you care. And somewhere along the way, those two things became a reason to disappear.</p>",
+    moveLabel: 'Your next move',
+    moveText: "Self-advocacy. Not loudly. Just clearly. Name one thing you actually want in your next important conversation \u2014 before you ask what anyone else needs."
+  },
+  sf: {
+    cls: 'sf', kicker: 'Self-focusing',
+    headline: "You\u2019re not a control freak.",
+    body: "<p>You just haven\u2019t seen enough evidence that other people will care as much as you do. So you stopped waiting and started doing it yourself.</p><p>You step in. You fix it. You make the call. And nine times out of ten, it works. So you do it again.</p><p>It\u2019s not about distrust. It\u2019s that you don\u2019t trust yourself to handle the discomfort if someone else drops the ball. So you eliminate the risk. You carry it.</p><p>The people around you have stopped trying to prove you wrong. They\u2019ve learned that you\u2019ll take it back. And now you\u2019re doing everything alone and calling it leadership.</p><p>You\u2019re not doing this because you\u2019re arrogant. You\u2019re doing it because you care deeply and you haven\u2019t found a way to let that care live in other people yet.</p>",
+    moveLabel: 'Your next move',
+    moveText: "Consideration. Before you act, ask what the other person needs here. Not as a formality. As a real question. One conversation where you wait for the answer before you move."
+  },
+  o2: {
+    cls: 'o2', kicker: 'O\u2082 Zone',
+    headline: "You\u2019re operating in partnership right now.",
+    body: "<p>People step up without being asked. You say what you want without guilt. Trust flows in both directions. Everyone is in it together.</p><p>This is rare. Most people pass through this zone without recognizing it. They\u2019re too busy managing, accommodating, or pushing through to notice that something is actually working.</p><p>The O\u2082 Zone isn\u2019t a destination you arrive at and stay. It\u2019s something you return to. Intentionally. Repeatedly. Especially when the stakes get high and every instinct tells you to either take over or back down.</p><p>You\u2019re here right now. That matters. The question worth asking: what makes it hard to stay?</p>",
+    moveLabel: 'Your next move',
+    moveText: "Notice what pulls you out. The moment you feel the urge to just handle it, or the moment you go quiet to keep the peace \u2014 that\u2019s your signal. That\u2019s where the work is."
+  }
+};
+
+// ── AI SYSTEM PROMPT ────────────────────────────────────────────────────────
+var SYS = "You are the Thoughtly AI, a coaching tool built on Allison's Thoughtly model. Guide people through the IDEA process (Identify, Define, Experiment, Adjust) toward all-in partnership.\n\nTHE MODEL:\nX axis = self-advocacy (what I want). Y axis = consideration (what others want).\nSELF-SACRIFICING: High consideration, low advocacy. Says yes when meaning no. Root: belief that being oneself is not enough — makes themselves useful, becomes low maintenance, disappears.\nSELF-FOCUSING: High advocacy, low consideration. Steps in, fixes, overrides. Root: cannot trust themselves to handle the discomfort if others do not come through. Tragedy: deep caring is experienced by others as not believing in them.\nO2 ZONE: Narrow diagonal band. Balanced advocacy and consideration held simultaneously. Rare and hard to sustain.\nKEY: Both zones feel completely justified in the moment. Not character flaws. Quiet accumulation into isolation.\n\nTwo contexts are measured: work and home. The gap between the two dots is often the most important insight.\n\nCOACHING STYLE: Warm, direct, and curious. One question at a time — never ask more than one. Reflect back what you hear before moving forward. Use the person's own words. Keep responses to 3-5 sentences. After the ADJUST step, offer to explore another situation or mention the ACE Assessment (138 questions, reviewed 1:1 on Zoom with Allison) as the full picture.";
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+var wA = new Array(10).fill(null);
+var hA = new Array(10).fill(null);
+var wR = null, hR = null;
+var chatH = [], loading = false, chartInst = null;
+
+// ── SCREEN NAV ───────────────────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── RENDER QUESTIONS ─────────────────────────────────────────────────────────
+function renderQs(ctx) {
+  var wrap = document.getElementById('q-' + ctx + '-wrap'), html = '';
+  for (var i = 0; i < Qs.length; i++) {
+    html += '<div class="q-card" id="qc-' + ctx + '-' + i + '">';
+    html += '<p class="q-num">Question ' + (i + 1) + ' of 10</p>';
+    html += '<p class="q-text">' + Qs[i].t + '</p>';
+    html += '<div class="scale">';
+    for (var v = 1; v <= 7; v++) {
+      html += '<button class="scale-btn" id="sb-' + ctx + '-' + i + '-' + v + '" onclick="pick(\'' + ctx + '\',' + i + ',' + v + ',\'' + Qs[i].y + '\')">' + v + '</button>';
+    }
+    html += '</div>';
+    html += '<div class="scale-ends"><span class="scale-end">Never</span><span class="scale-end">Always</span></div>';
+    html += '</div>';
+  }
+  wrap.innerHTML = html;
+}
+
+function startQuiz() { renderQs('work'); showScreen('s-work'); }
+function goHome()    { renderQs('home'); showScreen('s-home'); }
+
+// ── ANSWER SELECTION ─────────────────────────────────────────────────────────
+function pick(ctx, qi, val, type) {
+  var arr = ctx === 'work' ? wA : hA;
+  arr[qi] = val;
+  for (var v = 1; v <= 7; v++) {
+    var b = document.getElementById('sb-' + ctx + '-' + qi + '-' + v);
+    if (b) b.className = 'scale-btn';
+  }
+  var sel = document.getElementById('sb-' + ctx + '-' + qi + '-' + val);
+  if (sel) sel.classList.add('sel-' + type);
+  var card = document.getElementById('qc-' + ctx + '-' + qi);
+  if (card) card.classList.add('answered');
+  var n = arr.filter(function(a) { return a !== null; }).length;
+  document.getElementById('prog-' + ctx).style.width = (n / 10 * 100) + '%';
+  document.getElementById('prog-' + ctx + '-count').textContent = n + ' of 10';
+  document.getElementById('btn-' + ctx).disabled = (n < 10);
+}
+
+// ── SCORING ──────────────────────────────────────────────────────────────────
+function scoreArr(arr) {
+  var ax = 0, cy = 0;
+  for (var i = 0; i < 5; i++) ax += arr[i];
+  for (var i = 5; i < 10; i++) cy += arr[i];
+  var x = Math.round((ax / 35) * 100);
+  var y = Math.round((cy / 35) * 100);
+  var d = Math.abs(x - y);
+  var inO2 = d <= 12 && x >= 35 && x <= 70 && y >= 35 && y <= 70;
+  var zone = inO2 ? 'o2' : (y >= x ? 'self-sacrificing' : 'self-focusing');
+  return { x: x, y: y, zone: zone };
+}
+
+function getKey(z) {
+  return z === 'self-sacrificing' ? 'ss' : z === 'self-focusing' ? 'sf' : 'o2';
+}
+
+// ── BUILD CARDS ───────────────────────────────────────────────────────────────
+function buildZoneCard(r, ctx) {
+  var k = getKey(r.zone), c = ZC[k];
+  var lbl = ctx === 'work' ? 'At work' : 'At home';
+  return '<div class="zone-card ' + c.cls + '">' +
+    '<span class="ctx-tag ' + ctx + '">' + lbl + '</span>' +
+    '<p class="zone-kicker">' + c.kicker + '</p>' +
+    '<h3 class="zone-headline">' + c.headline + '</h3>' +
+    '<div class="zone-body">' + c.body + '</div>' +
+    '<div class="move-box">' +
+      '<p class="move-label">' + c.moveLabel + '</p>' +
+      '<p class="move-text">' + c.moveText + '</p>' +
+    '</div>' +
+  '</div>';
+}
+
+function buildGapCard(w, h) {
+  if (w.zone === h.zone) {
+    return '<div class="gap-card"><p class="gap-title">You show up consistently across both contexts.</p><p class="gap-body">Your work and home patterns match. The pattern runs deep \u2014 and work you do in one context tends to transfer to the other.</p></div>';
+  }
+  var wk = getKey(w.zone), hk = getKey(h.zone), txt = '';
+  if ((wk === 'sf' && hk === 'ss') || (wk === 'ss' && hk === 'sf')) {
+    txt = 'You flip completely between contexts. At work you ' + (wk === 'sf' ? 'take charge and drive' : 'hold back and carry the load quietly') + '. At home it reverses. The pattern usually points to where you feel safe asking for what you need \u2014 and where you\u2019ve given up trying.';
+  } else if (hk === 'o2' && wk !== 'o2') {
+    txt = 'You\u2019re closer to partnership at home than at work. That means you already know how \u2014 the O\u2082 Zone isn\u2019t theoretical for you. The question is what makes it feel less safe in your professional relationships.';
+  } else if (wk === 'o2' && hk !== 'o2') {
+    txt = 'You\u2019re closer to partnership at work than at home. Professional relationships often have clearer boundaries. At home the lines blur and older patterns take over.';
+  } else {
+    txt = 'Your two dots land in different zones. The context where you\u2019re further from the O\u2082 Zone is usually where the stakes feel higher \u2014 and where the pattern is most protected.';
+  }
+  return '<div class="gap-card"><p class="gap-title">The gap between your two dots.</p><p class="gap-body">' + txt + '</p></div>';
+}
+
+// ── RESULTS ───────────────────────────────────────────────────────────────────
+function calcResults() {
+  wR = scoreArr(wA);
+  hR = scoreArr(hA);
+  var wc = ZC[getKey(wR.zone)];
+  document.getElementById('result-hl').textContent = wc.headline;
+  document.getElementById('gap-wrap').innerHTML = buildGapCard(wR, hR);
+  document.getElementById('work-card-wrap').innerHTML = buildZoneCard(wR, 'work');
+  document.getElementById('home-card-wrap').innerHTML = buildZoneCard(hR, 'home');
+  showScreen('s-result');
+  setTimeout(drawMap, 180);
+}
+
+// ── CHART ─────────────────────────────────────────────────────────────────────
+function drawMap() {
+  var isDark = matchMedia('(prefers-color-scheme:dark)').matches;
+  var gc = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+  var lc = isDark ? 'rgba(255,255,255,0.38)' : 'rgba(0,0,0,0.35)';
+  var B = 12;
+
+  var zonePlugin = {
+    id: 'zones',
+    beforeDatasetsDraw: function(ch) {
+      var ca = ch.chartArea, ctx = ch.ctx;
+      var L = ca.left, T = ca.top, R = ca.right, Bo = ca.bottom, W = ca.width, H = ca.height;
+      var tx = function(v) { return L + (v / 100) * W; };
+      var ty = function(v) { return Bo - ((v / 100) * H); };
+      ctx.save();
+      // SS zone — upper left
+      ctx.beginPath(); ctx.moveTo(L, T); ctx.lineTo(tx(100 - B), T); ctx.lineTo(L, ty(B)); ctx.closePath();
+      ctx.fillStyle = isDark ? 'rgba(24,95,165,0.20)' : 'rgba(24,95,165,0.09)'; ctx.fill();
+      // SF zone — lower right
+      ctx.beginPath(); ctx.moveTo(R, Bo); ctx.lineTo(tx(B), Bo); ctx.lineTo(R, ty(100 - B)); ctx.closePath();
+      ctx.fillStyle = isDark ? 'rgba(153,60,29,0.20)' : 'rgba(216,90,48,0.09)'; ctx.fill();
+      // O2 diagonal band
+      ctx.beginPath(); ctx.moveTo(L, ty(B)); ctx.lineTo(tx(100 - B), T); ctx.lineTo(R, ty(100 - B)); ctx.lineTo(tx(B), Bo); ctx.closePath();
+      ctx.fillStyle = isDark ? 'rgba(29,158,117,0.20)' : 'rgba(29,158,117,0.12)'; ctx.fill();
+      // Zone labels
+      ctx.font = '500 10px DM Sans, sans-serif'; ctx.fillStyle = lc;
+      ctx.textAlign = 'left';  ctx.fillText('Self-sacrificing', L + 7, T + 14);
+      ctx.textAlign = 'right'; ctx.fillText('Self-focusing', R - 7, Bo - 7);
+      ctx.save();
+      ctx.translate(tx(53), ty(53)); ctx.rotate(-Math.PI / 4);
+      ctx.textAlign = 'center'; ctx.fillText('O\u2082 zone', 0, 0);
+      ctx.restore();
+      ctx.restore();
+    }
+  };
+
+  if (chartInst) { chartInst.destroy(); chartInst = null; }
+
+  chartInst = new Chart(document.getElementById('mapChart'), {
+    type: 'scatter',
+    plugins: [zonePlugin],
+    data: {
+      datasets: [
+        { label: 'Work', data: [{ x: wR.x, y: wR.y }], backgroundColor: '#534AB7', borderColor: '#fff', borderWidth: 2.5, pointRadius: 11, pointHoverRadius: 13 },
+        { label: 'Home', data: [{ x: hR.x, y: hR.y }], backgroundColor: '#D85A30', borderColor: '#fff', borderWidth: 2.5, pointRadius: 11, pointHoverRadius: 13 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      animation: { duration: 800, easing: 'easeOutQuart' },
+      layout: { padding: { top: 4, right: 4, bottom: 4, left: 4 } },
+      scales: {
+        x: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: function(v) { return v + '%'; }, maxTicksLimit: 5 }, border: { display: false } },
+        y: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: function(v) { return v + '%'; }, maxTicksLimit: 5 }, border: { display: false } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          title: function(c) { return c[0].dataset.label; },
+          label: function(c) { return 'Advocacy: ' + c.parsed.x + '%  \u00b7  Consideration: ' + c.parsed.y + '%'; }
+        }}
+      }
+    }
+  });
+}
+
+// ── COACH ─────────────────────────────────────────────────────────────────────
+function startCoach() {
+  showScreen('s-coach');
+  var wKey = getKey(wR.zone), hKey = getKey(hR.zone);
+  var wLabel = ZC[wKey].kicker, hLabel = ZC[hKey].kicker;
+  var badgeColors = { ss: { bg: '#FAECE7', color: '#993C1D' }, sf: { bg: '#EEEDFE', color: '#534AB7' }, o2: { bg: '#E1F5EE', color: '#0F6E56' } };
+  var wc = badgeColors[wKey], hc = badgeColors[hKey];
+  document.getElementById('zone-badge-wrap').innerHTML =
+    '<span style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:' + wc.bg + ';color:' + wc.color + ';margin-right:6px;">Work: ' + wLabel + '</span>' +
+    '<span style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:' + hc.bg + ';color:' + hc.color + ';">Home: ' + hLabel + '</span>';
+  var ctx = 'User completed the Operating Alone Score. Work: Advocacy ' + wR.x + '%, Consideration ' + wR.y + '%, Zone: ' + wR.zone + '. Home: Advocacy ' + hR.x + '%, Consideration ' + hR.y + '%, Zone: ' + hR.zone + '. Acknowledge both patterns briefly, note the gap between contexts if significant, then ask about one specific situation where this pattern is costing them something right now. Warm, direct, one question only.';
+  chatH = [{ role: 'user', content: ctx }];
+  callAPI();
+}
+
+function addMsg(role, text) {
+  var chat = document.getElementById('chat');
+  var m = document.createElement('div');
+  m.className = 'msg ' + role;
+  m.innerHTML = '<div class="avatar ' + role + '">' + (role === 'ai' ? 'T' : 'You') + '</div>' +
+                '<div class="bubble ' + role + '">' + text.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>') + '</div>';
+  chat.appendChild(m);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function showTyping() {
+  var chat = document.getElementById('chat');
+  var t = document.createElement('div');
+  t.id = 'typing'; t.className = 'msg';
+  t.innerHTML = '<div class="avatar ai">T</div><div class="bubble"><div style="display:flex;gap:4px;align-items:center;padding:2px 0"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>';
+  chat.appendChild(t);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+async function callAPI() {
+  loading = true;
+  var sb = document.getElementById('send-btn'); if (sb) sb.disabled = true;
+  showTyping();
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: SYS, messages: chatH })
+    });
+    var data = await res.json();
+    var tp = document.getElementById('typing'); if (tp) tp.remove();
+    var text = (data.content || []).filter(function(b) { return b.type === 'text'; }).map(function(b) { return b.text; }).join('') || 'Something went wrong. Please try again.';
+    chatH.push({ role: 'assistant', content: text });
+    addMsg('ai', text);
+  } catch(e) {
+    var tp = document.getElementById('typing'); if (tp) tp.remove();
+    addMsg('ai', 'Having trouble connecting. Please try again in a moment.');
+  }
+  loading = false;
+  var sb = document.getElementById('send-btn'); if (sb) sb.disabled = false;
+  var ui = document.getElementById('user-input'); if (ui) ui.focus();
+}
+
+function sendMsg() {
+  if (loading) return;
+  var inp = document.getElementById('user-input');
+  var text = inp.value.trim(); if (!text) return;
+  inp.value = '';
+  addMsg('user', text);
+  chatH.push({ role: 'user', content: text });
+  callAPI();
+}
+
+// ── RESTART ───────────────────────────────────────────────────────────────────
+function restart() {
+  wA = new Array(10).fill(null);
+  hA = new Array(10).fill(null);
+  wR = null; hR = null; chatH = []; loading = false;
+  if (chartInst) { chartInst.destroy(); chartInst = null; }
+  var chat = document.getElementById('chat'); if (chat) chat.innerHTML = '';
+  var ui = document.getElementById('user-input'); if (ui) ui.value = '';
+  showScreen('s-intro');
+}
+</script>
+</body>
+</html>
