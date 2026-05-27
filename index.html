@@ -4,155 +4,608 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Operating Alone Score | Thoughtly</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVUAAAFDCAYAAACKg52oAAAQgElEQVR4nO3dTaxc51kH8P9UFQ43H1Idp13g2g0SzU26cbFZEJSy6gerQlkhom5agUBCatk1ZVWExAK1wAJRsWvFCgErpKJKIBFUJIhJFyQxXhRismmauBJJTMyiZjEz3OPxHd+PeWfe95z395Ou5szc8ZnH95z5z/OejzmzO3fuBIAy3lO7AIApEaoABQlVgIKEKkBBQhWgIKEKUJBQBShIqELywCn/3Z1T/jxxjHmfP2VNVCZUIXl3cfvs4LFfOuR5D+XucDyta4fM44OL2/3F7WsbzJ+KZs6ognt8JMlLg/sfTfKvW37NWZLPJvnG4LGHk7y15delMJ0qJO9buf9Skp/IQWe67UDN4nVeXky/f3ErUEdIpwrz5uJHi+mHkry9mK295phVel0K0KnCQaAm80DddJvppu4k+cWKr88GdKpwt5beEDrWEdKpwoGWAjVprx6OQajC3FdqF7DGumA9s9MqODbDf3r2QJIrSf4x7XeFs8yPCng9d+9YozFCFdoP1CXbWEfA8J8eDY9LHUugJsnfDqbPVauC+9Kp0rNP5O6gGoNZkkeTvFm7EA4nVOnZWFd+mwEaZvhPr363dgFMk06VHv1Ukuu1i9jALMmPJfnf2oVwL6FKb5bn9o99xbcJoFGG//Tm7cy/yg+2QqdKj6aw0u8n+ffaRXAvoUqPprLS2wTQIMN/gIKEKkBBQhWgIKEKUJBQBShIqAIUJFQBChKqAAUJVYCChCo9ebh2AUyf01Tp0VRWeqepNminCuMkUBslVKnlzpqf4fXsS1/bfjn8F0hsjVBlU+uu6rm/5vFleK7z7uL3n05ye/HY+dOVdo+3Cs0H1rJNlW26kORikucX90+zss0y71hvH/XEY8xn+PpjXvF12g3TqVLa3sr0JoGazLvUTQP1sNf/QIF5wj10qmzDfpIHk1xd3N90JdtWZzbGlf9DSW5knLV3QaiyTZeTvFBgPh9M8lqB+Ry2GWFsbwBD/8YZ/rMtn0yZQE2S/0pytsB8SmxGqOnxzD9glgRsg4QqpQy3pf5Bkm8Vnv/NgvN6dDA9pmD6z8w/YJaHho2ty+6C4T+lXUry4hbmuxp+e0luFZx/62+EMYV/13SqHOWo41CHx5BeyXYC9TAlA3WWtkPrj2oXwPHpVNnE+dy9A2mbK9O2Q+99SX6Y9jrWZ5P8ee0iOL731i6A0RkOu4fbUbcdRh9P8u0tzv+Hi9vVkwRqarl7Zg2dKqcxPA71TOanlu7CtkPmqSQvL6ZrvzEE6kjZpsppXMs8UC9ld4G6Cy8PpmuF2k8vXvtnK70+GxKqnNYns7udUrv20OJ2luSzO3zdWQ7+pv+0w9elIKHKcQ23n3415Y9DbcUvJHl7Mf14km9m+13r8OiDp7b8WmyZbaqc1AuZn35aQ60h+XuS/Ggx/cXMP1RKsN10gnSqnMQ3Uy9Qaxp2Hl/L/Njd/Zw8FP8uB12pQJ0onSrHVbNDXRJENE+nynF8PfUDNSl/eZVNXTnGcx49+ilMiU6Vo7S0grTcqX4kyfeS/M99nvNwXNJl8nSqrLOXtgL1icF0ax1rkryUewP1wsp9gdoBnSqH2UvyTu0iVrTcpcL/06my6pm0F6hj9eO1C2D3dKok8yuevrqYbnWFWO1UL2R+rSZoik6VZB6oV9JuoCbJV1buC1SapFMlSR5L8nrtIo7BdlWap1Ptw7pv718aQ6DCKAjVPrwxmF4NWEMVKEio9mcZsM9EoEJxtqn26VySH9Qu4hRsU6V5OtX+jDVQh87WLgDWEarTNdx2OjxdcuyBmiQ3axcA6wjV6RrunLqR+bdM2dYDW2abah+mMORPbFNlBHSq03DUcahTCFQYBaE6DcOh/urXzRmKwA4J1elZnhPvOFSowDbVaWrx+1BLsE2V5ulUp2eqgQqjIFTHY+8Yz3kqAhWqEqrjcWtxu9zTf9jVTV/aUS3AGkJ1PJad6huZB+rVHFwAr/UvmIZu2FE1Ds8kef4+v+9lIdpRRfOE6vgMr810NsmbFWvZNaFK8wz/27e6g2oZqJfTV6DCKOhUx2E/ybXB/V4Pm9Kp0jyd6jgMA/WT6TNQYRR0quPT+wLTrdI0neq49B6oycFhZNAkoToeAhVGwPB/HCykA4b/NE2n2pYPr9z/+whUGBWdarssmMPpVGmaTrU9ZyJQYbSEalsuJXm3dhHA6Rn+t+OxJK/XLmIEDP9pmk51t/YH08MroP5hBCpMgk61juG5/L+V5I8r1jI2OlWaplPdreW39V9L8oXFtECFCdGp7s5eDi6JksyH/z+oVMuY6VRpmk51d4aB+lwEKkzSe2sX0CFDA5gwneru7EWgwuQJ1e06u7g9E18sDV0Qqpsbfr/n2cH0pSQ3kzwdZ0lBN+z9265LSV6sXcTE2PtP03Sq5Tw9mL60uBWo0BmdanlnktyOnVLbolOlaTrVspbbVwUqdEqlivN0kgdjpxR0zfC/nLNJ3qxdRAcM/2maTvV49o74/a9HoAIRqsd1a+X+MGTPJ/nTHdbSu1+pXQDcj+H/5vwBd++BzI+wgOboVDfzudoFdOrB2gXAOjrV0/tCkq/VLqJTdlbRLKF6ev5w9QhVmmX4D1CQUD2e1UOqnqtSBdA8w//T8Uery/CfZulUAQoSqgAFCVWAgoQqQEH/B/xs6BUPydDbAAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --coral: #D85A30; --coral-light: #FAECE7; --coral-mid: #F0997B;
-  --blue: #185FA5; --blue-light: #E6F1FB;
-  --purple: #534AB7; --purple-light: #EEEDFE;
-  --teal: #1D9E75; --teal-light: #E1F5EE; --teal-mid: #5DCAA5;
-  --ink: #1A1917; --ink-secondary: #5F5E5A; --ink-tertiary: #9E9C96;
-  --surface: #F7F6F2; --surface-2: #EEEDE8;
-  --border: rgba(26,25,23,0.10); --white: #FFFFFF;
-  --radius: 12px; --radius-sm: 8px;
+  --parchment:  #F8F7F4;
+  --forest:     #3D403C;
+  --slate:      #7485A4;
+  --sand:       #E9DAC1;
+  --sand-light: #F3EDE0;
+  --serif:      'Lora', Georgia, serif;
+  --sans:       'DM Sans', Calibri, system-ui, sans-serif;
+  --radius:     8px;
+  --radius-sm:  5px;
+  --border:     rgba(61,64,60,0.12);
 }
+
 html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--surface);
-  color: var(--ink);
+  font-family: var(--sans);
+  background: var(--parchment);
+  color: var(--forest);
+  -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 2rem 1rem 4rem;
+  flex-direction: column;
 }
-.container { width: 100%; max-width: 600px; }
+
+/* ── HEADER (matches booking page) ──────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--parchment);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  padding: 20px 24px;
+}
+.site-header.scrolled {
+  border-color: var(--sand);
+  box-shadow: 0 1px 16px rgba(61,64,60,0.06);
+}
+.header-inner { display: flex; justify-content: center; align-items: center; }
+.header-logo { display: block; text-decoration: none; line-height: 0; }
+.header-logo img { height: 48px; width: auto; display: block; }
+@media (max-width: 600px) { .header-logo img { height: 36px; } }
+
+/* ── MAIN ─────────────────────────────────────────────────────── */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 24px 72px;
+}
+
+.container { width: 100%; max-width: 580px; }
+
 .screen { display: none; }
 .screen.active { display: block; animation: fadeUp 0.4s ease; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* INTRO */
-.intro-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
-.intro-headline { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 6vw, 40px); line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
-.intro-headline em { font-style: italic; color: var(--teal); }
-.intro-body { font-size: 16px; line-height: 1.75; color: var(--ink-secondary); margin-bottom: 2rem; }
-.intro-meta { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
-.meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-tertiary); }
-.meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); flex-shrink: 0; }
-.scale-legend { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 2rem; }
-.scale-legend p { font-size: 13px; color: var(--ink-secondary); line-height: 1.7; }
-.scale-legend strong { color: var(--ink); font-weight: 600; }
-.scale-legend .note { font-size: 12px; color: var(--ink-tertiary); margin-top: 4px; }
+/* ── INTRO ─────────────────────────────────────────────────────── */
+.intro-eyebrow {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 18px;
+}
+.intro-headline {
+  font-family: var(--serif);
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 400;
+  line-height: 1.22;
+  color: var(--forest);
+  margin-bottom: 14px;
+}
+.intro-headline em { font-style: italic; color: var(--slate); }
+.intro-body {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--forest);
+  opacity: 0.72;
+  margin-bottom: 28px;
+}
+.intro-meta {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--forest);
+  opacity: 0.45;
+  font-weight: 400;
+}
+.meta-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--slate);
+  flex-shrink: 0;
+}
+.scale-legend {
+  background: var(--sand-light);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 28px;
+}
+.scale-legend p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--forest);
+  line-height: 1.65;
+  opacity: 0.8;
+}
+.scale-legend strong { font-weight: 500; opacity: 1; }
+.scale-legend .note {
+  font-size: 12px;
+  color: var(--forest);
+  opacity: 0.5;
+  margin-top: 5px;
+  font-style: italic;
+}
 
-/* BUTTONS */
-.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--ink); color: var(--white); border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.15s, transform 0.1s; width: 100%; justify-content: center; }
-.btn-primary:hover { background: #2D2C2A; transform: translateY(-1px); }
+/* ── BUTTONS ────────────────────────────────────────────────────── */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 28px;
+  background: var(--forest);
+  color: var(--parchment);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-primary:hover { background: #2a2d29; transform: translateY(-1px); }
 .btn-primary:active { transform: translateY(0); }
-.btn-primary:disabled { background: var(--surface-2); color: var(--ink-tertiary); cursor: not-allowed; transform: none; }
-.btn-secondary { background: none; border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink-tertiary); cursor: pointer; text-decoration: underline; padding: 0; }
-.btn-secondary:hover { color: var(--ink-secondary); }
-.btn-teal { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--teal); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
-.btn-teal:hover { background: #178560; }
+.btn-primary:disabled {
+  background: var(--sand);
+  color: rgba(61,64,60,0.4);
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-secondary {
+  background: none; border: none;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--forest);
+  opacity: 0.4;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: opacity 0.15s;
+}
+.btn-secondary:hover { opacity: 0.7; }
+.btn-slate {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: var(--slate);
+  color: var(--parchment);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.btn-slate:hover { background: #5f6f8f; }
 
-/* PROGRESS */
-.progress-wrap { margin-bottom: 2rem; }
-.progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.progress-label { font-size: 12px; color: var(--ink-tertiary); }
-.progress-bar { height: 3px; background: var(--surface-2); border-radius: 2px; }
-.progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width 0.3s ease; }
+/* ── PROGRESS ───────────────────────────────────────────────────── */
+.progress-wrap { margin-bottom: 28px; }
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.progress-label { font-size: 11px; font-weight: 300; color: var(--forest); opacity: 0.45; letter-spacing: 0.04em; }
+.progress-bar { height: 2px; background: var(--sand); border-radius: 2px; }
+.progress-fill { height: 100%; background: var(--slate); border-radius: 2px; transition: width 0.3s ease; }
 
-/* QUESTION CARDS */
-.q-card { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; transition: border-color 0.2s; }
-.q-card.answered { border-color: var(--teal-mid); }
-.q-num { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-tertiary); margin-bottom: 8px; }
-.q-text { font-size: 15px; line-height: 1.6; color: var(--ink); margin-bottom: 1.25rem; }
-.scale-row { display: flex; gap: 6px; }
-.scale-btn { flex: 1; padding: 9px 0; border: 0.5px solid var(--border); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; background: var(--surface); color: var(--ink-tertiary); transition: all 0.12s; text-align: center; }
-.scale-btn:hover { border-color: var(--ink-secondary); color: var(--ink); background: var(--white); }
-.scale-btn.sel-adv { background: var(--purple-light); color: var(--purple); border-color: var(--purple); }
-.scale-btn.sel-con { background: var(--coral-light); color: var(--coral); border-color: var(--coral); }
-.scale-ends { display: flex; justify-content: space-between; margin-top: 5px; padding: 0 2px; }
-.scale-end { font-size: 11px; color: var(--ink-tertiary); }
+/* ── QUESTION CARDS ─────────────────────────────────────────────── */
+.q-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.q-card.answered { border-color: var(--slate); }
+.q-num {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--forest);
+  opacity: 0.35;
+  margin-bottom: 8px;
+}
+.q-text {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--forest);
+  margin-bottom: 16px;
+}
+.scale-row { display: flex; gap: 5px; }
+.scale-btn {
+  flex: 1;
+  padding: 9px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  background: var(--parchment);
+  color: var(--forest);
+  opacity: 0.55;
+  transition: all 0.1s;
+  text-align: center;
+}
+.scale-btn:hover { border-color: var(--forest); opacity: 0.9; background: #fff; }
+.scale-btn.sel-adv {
+  background: var(--slate);
+  color: var(--parchment);
+  border-color: var(--slate);
+  opacity: 1;
+}
+.scale-btn.sel-con {
+  background: var(--forest);
+  color: var(--parchment);
+  border-color: var(--forest);
+  opacity: 1;
+}
+.scale-ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 0 2px;
+}
+.scale-end { font-size: 10px; color: var(--forest); opacity: 0.35; font-style: italic; }
 
-/* RESULT */
-.result-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-tertiary); margin-bottom: 0.5rem; }
-.result-headline { font-family: 'DM Serif Display', serif; font-size: clamp(22px, 5vw, 30px); line-height: 1.2; margin-bottom: 2rem; }
-.map-section { margin-bottom: 2rem; }
-.map-label { font-size: 12px; font-weight: 500; color: var(--ink-tertiary); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
-.map-inner { display: flex; align-items: stretch; gap: 8px; }
-.axis-y { font-size: 11px; color: var(--ink-tertiary); writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; white-space: nowrap; flex-shrink: 0; }
+/* ── RESULT ────────────────────────────────────────────────────── */
+.result-eyebrow {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 6px;
+}
+.result-headline {
+  font-family: var(--serif);
+  font-size: clamp(20px, 4vw, 27px);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 28px;
+  color: var(--forest);
+}
+
+/* MAP */
+.map-section { margin-bottom: 28px; }
+.map-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--forest);
+  opacity: 0.4;
+  margin-bottom: 10px;
+}
+.map-inner { display: flex; align-items: stretch; gap: 10px; }
+.axis-y {
+  font-size: 10px;
+  color: var(--forest);
+  opacity: 0.35;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-style: italic;
+}
 .canvas-col { flex: 1; display: flex; flex-direction: column; }
-.canvas-col canvas { width: 100% !important; background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); }
-.axis-x { font-size: 11px; color: var(--ink-tertiary); text-align: center; margin-top: 6px; }
+/* FIX: explicit height prevents infinite growth */
+.canvas-col canvas {
+  width: 100% !important;
+  height: 260px !important;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: block;
+}
+.axis-x {
+  font-size: 10px;
+  color: var(--forest);
+  opacity: 0.35;
+  text-align: center;
+  margin-top: 7px;
+  font-style: italic;
+}
 
-/* ZONE CARD */
-.zone-card { border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; border: 0.5px solid transparent; }
-.zone-card.ss { background: var(--coral-light); border-color: rgba(216,90,48,0.25); }
-.zone-card.sf { background: var(--purple-light); border-color: rgba(83,74,183,0.25); }
-.zone-card.o2 { background: var(--teal-light); border-color: rgba(29,158,117,0.25); }
-.zone-card.mixed { background: var(--surface-2); border-color: var(--border); }
-.zone-kicker { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-.zone-card.ss .zone-kicker { color: var(--coral); }
-.zone-card.sf .zone-kicker { color: var(--purple); }
-.zone-card.o2 .zone-kicker { color: var(--teal); }
-.zone-card.mixed .zone-kicker { color: var(--ink-secondary); }
-.zone-headline { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.3; color: var(--ink); margin-bottom: 1rem; }
-.zone-body { font-size: 15px; line-height: 1.8; color: var(--ink-secondary); }
-.zone-body p { margin-bottom: 0.85rem; }
+/* ZONE CARDS */
+.zone-card {
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-bottom: 16px;
+  border: 1px solid transparent;
+}
+.zone-card.ss { background: var(--sand-light); border-color: var(--sand); }
+.zone-card.sf { background: rgba(116,133,164,0.08); border-color: rgba(116,133,164,0.25); }
+.zone-card.o2 { background: rgba(61,64,60,0.04); border-color: var(--border); }
+.zone-card.mixed { background: #fff; border-color: var(--border); }
+
+.zone-kicker {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--slate);
+}
+.zone-card.ss .zone-kicker { color: var(--forest); opacity: 0.6; }
+
+.zone-headline {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--forest);
+  margin-bottom: 14px;
+}
+.zone-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--forest);
+  opacity: 0.78;
+}
+.zone-body p { margin-bottom: 10px; }
 .zone-body p:last-child { margin-bottom: 0; }
-.move-box { margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: var(--radius-sm); }
-.zone-card.ss .move-box { background: rgba(216,90,48,0.09); }
-.zone-card.sf .move-box { background: rgba(83,74,183,0.09); }
-.zone-card.o2 .move-box { background: rgba(29,158,117,0.09); }
-.zone-card.mixed .move-box { background: rgba(26,25,23,0.05); }
-.move-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
-.zone-card.ss .move-label { color: var(--coral); }
-.zone-card.sf .move-label { color: var(--purple); }
-.zone-card.o2 .move-label { color: var(--teal); }
-.zone-card.mixed .move-label { color: var(--ink-secondary); }
-.move-text { font-size: 15px; line-height: 1.7; color: var(--ink); font-weight: 500; }
+
+.move-box {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(61,64,60,0.05);
+  border-left: 2px solid var(--slate);
+}
+.move-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 6px;
+}
+.move-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--forest);
+  font-family: var(--serif);
+  font-style: italic;
+}
 
 /* ACE BOX */
-.ace-box { background: var(--white); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1rem; }
-.ace-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); margin-bottom: 8px; }
-.ace-body { font-size: 14px; line-height: 1.7; color: var(--ink-secondary); margin-bottom: 1.25rem; }
+.ace-box {
+  background: var(--forest);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-bottom: 14px;
+}
+.ace-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--parchment);
+  margin-bottom: 8px;
+}
+.ace-body {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--parchment);
+  opacity: 0.65;
+  margin-bottom: 18px;
+}
+.btn-ace {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: var(--sand);
+  color: var(--forest);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.btn-ace:hover { background: #ddd0b0; }
 
 /* COACH */
-.coach-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-.coach-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); }
-.zone-badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-bottom: 1rem; }
-.zone-badge.ss { background: var(--coral-light); color: var(--coral); }
-.zone-badge.sf { background: var(--purple-light); color: var(--purple); }
-.zone-badge.o2 { background: var(--teal-light); color: var(--teal); }
-.zone-badge.mixed { background: var(--surface-2); color: var(--ink-secondary); }
-.chat-area { min-height: 320px; max-height: 440px; overflow-y: auto; border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; background: var(--surface); display: flex; flex-direction: column; gap: 14px; }
+.coach-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.coach-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--forest);
+}
+.zone-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  background: var(--sand-light);
+  color: var(--forest);
+  opacity: 0.7;
+  border: 1px solid var(--sand);
+}
+.zone-badge.sf { background: rgba(116,133,164,0.1); color: var(--slate); border-color: rgba(116,133,164,0.3); opacity: 1; }
+.zone-badge.o2 { background: rgba(61,64,60,0.06); color: var(--forest); border-color: var(--border); opacity: 0.85; }
+
+.chat-area {
+  min-height: 300px;
+  max-height: 420px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 12px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 .msg { display: flex; gap: 10px; align-items: flex-start; }
 .msg.user { flex-direction: row-reverse; }
-.avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
-.avatar.ai { background: var(--teal-light); color: var(--teal); }
-.avatar.user { background: var(--purple-light); color: var(--purple); }
-.bubble { max-width: 80%; padding: 12px 16px; border-radius: var(--radius); font-size: 14px; line-height: 1.7; background: var(--white); border: 0.5px solid var(--border); color: var(--ink); }
-.bubble.user { background: var(--purple-light); border-color: rgba(83,74,183,0.2); color: #26215C; }
+.avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; flex-shrink: 0;
+}
+.avatar.ai { background: var(--sand); color: var(--forest); }
+.avatar.user { background: var(--slate); color: var(--parchment); }
+.bubble {
+  max-width: 80%;
+  padding: 12px 15px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.7;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  color: var(--forest);
+  font-weight: 300;
+}
+.bubble.user {
+  background: var(--slate);
+  border-color: transparent;
+  color: var(--parchment);
+}
 .input-row { display: flex; gap: 8px; }
-.chat-input { flex: 1; padding: 12px 16px; border: 0.5px solid var(--border); border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--white); color: var(--ink); outline: none; transition: border-color 0.15s; }
-.chat-input:focus { border-color: var(--teal); }
-.chat-send { padding: 12px 20px; border-radius: var(--radius); border: none; background: var(--teal); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
-.chat-send:hover { background: #178560; }
-.chat-send:disabled { background: var(--surface-2); color: var(--ink-tertiary); cursor: not-allowed; }
-.typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-tertiary); animation: pulse 1s infinite; display: inline-block; }
-.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
-@keyframes pulse{0%,60%,100%{transform:translateY(0);opacity:0.5}30%{transform:translateY(-4px);opacity:1}}
+.chat-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--sans);
+  font-size: 14px;
+  background: #fff;
+  color: var(--forest);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.chat-input:focus { border-color: var(--slate); }
+.chat-send {
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--forest);
+  color: var(--parchment);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.chat-send:hover { background: #2a2d29; }
+.chat-send:disabled { background: var(--sand); color: rgba(61,64,60,0.4); cursor: not-allowed; }
+
+.typing-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--forest);
+  opacity: 0.35;
+  animation: pulse 1s infinite;
+  display: inline-block;
+}
+.typing-dot:nth-child(2){ animation-delay:.2s }
+.typing-dot:nth-child(3){ animation-delay:.4s }
+@keyframes pulse { 0%,60%,100%{ transform:translateY(0); opacity:0.35 } 30%{ transform:translateY(-4px); opacity:0.8 } }
+
+/* ── FOOTER ──────────────────────────────────────────────────────── */
+.site-footer { background: var(--forest); padding: 28px 40px; }
+.footer-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-logo { display: flex; align-items: center; text-decoration: none; }
+.footer-logo img { width: 26px; height: auto; }
+.footer-socials { display: flex; align-items: center; gap: 18px; }
+.footer-socials a {
+  color: var(--parchment);
+  opacity: 0.55;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  display: flex; align-items: center;
+}
+.footer-socials a:hover { opacity: 1; }
+.footer-socials svg { width: 17px; height: 17px; fill: currentColor; }
+.footer-socials .yt-play { fill: var(--forest); }
+.footer-copy {
+  font-size: 11px;
+  color: var(--parchment);
+  opacity: 0.3;
+  letter-spacing: 0.04em;
+  width: 100%;
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(248,247,244,0.08);
+  margin-top: 8px;
+}
 
 @media (max-width: 480px) {
-  body { padding: 1.25rem 1rem 3rem; }
-  .intro-meta { flex-direction: column; gap: 0.5rem; }
+  main { padding: 32px 16px 56px; }
+  .intro-meta { flex-direction: column; gap: 8px; }
+  .site-footer { padding: 24px 20px; }
+  .footer-inner { justify-content: center; }
 }
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a class="header-logo" href="https://www.bethoughtly.com">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANoAAACgCAYAAABD9gREAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpSIVBzuIOGSoThZERRy1CkWoEGqFVh1MLv2CJg1Jiouj4Fpw8GOx6uDirKuDqyAIfoA4OTopukhJ/ytpihgPjvvx7t7j7h0g1EtMNTsmgKqZRiqeELK5VcH3CgHDCKIXAxIzdU4SU/AcX/fw8f0uxlne5/4c3UreZIBPJJ5lhmkRbxBPb1o6533iCCtJKfE58ZhBFyR+5Lrs8hvnossBzoyYmfQ8cYRYKLax3MasZKjEU8RRRdUo35+xrOC8xVktV1lzT/7CcF5bWeY6rSHEsYglSBChoooyNqAQpVUjxUSK9hMe/kHHL5JLJlcZjBwLqECF5PjB/+B3t2ZhYtxNiiSA9hfb/hgGfLtAo2bb38e23TgBvM/Ald32VxrAzCfptbYWOQL6toGL67am7AGXu8DgkyEZkiP5aQqFAvB+Rt+UA/pvgdCa21tzH6cPQIa6St4AB4fASJGy133e3d3e279njf5+AFTpcpDsrFaaAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH6AUQEiMxT+UM+QAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAgdEVYdFNvZnR3YXJlAEdJTVAgMi4xMCAoV2luZG93cykgWZGJGQAAAyBJREFUeNrt3TGKI0EQRcG14P6X3gusIVDzphPB+AqZ8RNqegEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMAAP//Zw8EBwAAAABJRU5ErkJggg==" alt="Thoughtly" style="height:48px;width:auto;display:block;">
+      <!-- Inline SVG wordmark as fallback styling -->
+    </a>
+  </div>
+</header>
+
+<main>
 <div class="container">
 
   <!-- INTRO -->
@@ -166,10 +619,10 @@ body {
       <span class="meta-item"><span class="meta-dot"></span>Instant results</span>
     </div>
     <div class="scale-legend">
-      <p><strong>1</strong> = Never true &nbsp;&middot;&nbsp; <strong>4</strong> = Sometimes &nbsp;&middot;&nbsp; <strong>7</strong> = Always true</p>
-      <p class="note">The O&#8322; Zone is narrow. Most people don't live there consistently. That's the point.</p>
+      <p><strong>1</strong> = Never true &nbsp;·&nbsp; <strong>4</strong> = Sometimes &nbsp;·&nbsp; <strong>7</strong> = Always true</p>
+      <p class="note">The O₂ Zone is narrow. Most people don't live there consistently. That's the point.</p>
     </div>
-    <button class="btn-primary" onclick="showScreen('s-quiz')">Start the assessment &rarr;</button>
+    <button class="btn-primary" onclick="showScreen('s-quiz')">Start the assessment →</button>
   </div>
 
   <!-- QUIZ -->
@@ -182,36 +635,39 @@ body {
       <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
     </div>
     <div id="questions-wrap"></div>
-    <button class="btn-primary" id="submit-btn" onclick="calcResults()" disabled>See where I land &rarr;</button>
+    <button class="btn-primary" id="submit-btn" onclick="calcResults()" disabled>See where I land →</button>
   </div>
 
   <!-- RESULT -->
   <div id="s-result" class="screen">
     <p class="result-eyebrow">Your result</p>
-    <h2 class="result-headline" id="result-headline">Your position on the model</h2>
+    <h2 class="result-headline" id="result-headline"></h2>
+
     <div class="map-section">
       <p class="map-label">Your position on the model</p>
       <div class="map-inner">
         <div class="axis-y">What others want (consideration)</div>
         <div class="canvas-col">
-          <canvas id="mapChart" height="280"></canvas>
+          <canvas id="mapChart"></canvas>
           <p class="axis-x">What I want (self-advocacy)</p>
         </div>
       </div>
     </div>
+
     <div id="zone-card-wrap"></div>
+
     <div class="ace-box">
       <h3 class="ace-title">Want the full picture?</h3>
-      <p class="ace-body">This shows you the zone. The ACE Assessment maps the specific traits driving you there. Exactly where you overfunction. Where you hold back. And what shifts first.</p>
-      <!-- REPLACE THE HREF BELOW WITH YOUR ACE ASSESSMENT URL -->
+      <p class="ace-body">This shows you the zone. The ACE Assessment maps the specific traits driving you there — exactly where you overfunction, where you hold back, and what shifts first.</p>
       <a href="https://www.bethoughtly.com/ace" target="_blank" style="text-decoration:none;">
-        <button class="btn-teal">Take the full ACE Assessment &rarr;</button>
+        <button class="btn-ace">Take the full ACE Assessment →</button>
       </a>
     </div>
-    <div style="margin-top:1rem;">
-      <button class="btn-primary" onclick="startCoach()">Talk to the Thoughtly AI &rarr;</button>
+
+    <div style="margin-top:12px;">
+      <button class="btn-primary" onclick="startCoach()">Talk to the Thoughtly AI →</button>
     </div>
-    <div style="text-align:center;margin-top:1rem;">
+    <div style="text-align:center;margin-top:14px;">
       <button class="btn-secondary" onclick="restart()">Retake the quiz</button>
     </div>
   </div>
@@ -225,52 +681,81 @@ body {
     <div id="zone-indicator"></div>
     <div class="chat-area" id="chat"></div>
     <div class="input-row">
-      <input type="text" class="chat-input" id="user-input" placeholder="Type your response..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendMsg()" />
+      <input type="text" class="chat-input" id="user-input" placeholder="Type your response…" onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendMsg()">
       <button class="chat-send" id="send-btn" onclick="sendMsg()">Send</button>
     </div>
   </div>
 
 </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="footer-logo" href="https://www.bethoughtly.com" aria-label="Thoughtly home">
+      <img src="data:image/png;base64,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" alt="Thoughtly icon">
+    </a>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/share/1CwT12dG3w/" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/allisonwgarner" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@thoughtly" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" class="yt-play"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/allison-garner-92bb393" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@t.houghtly" aria-label="TikTok" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+      </a>
+    </div>
+    <p class="footer-copy">© 2026 Thoughtly · bethoughtly.com</p>
+  </div>
+</footer>
+
 <script>
 const Qs = [
-  { text: "I clearly express what I want \u2014 even when it\u2019s uncomfortable or might disappoint someone.", type:'adv' },
-  { text: "When something isn\u2019t being done the right way, I step in and fix it myself.", type:'adv' },
-  { text: "I\u2019ve asked for input, but when it doesn\u2019t match what I already know is right, I go with my own judgment.", type:'adv' },
-  { text: "If I don\u2019t stay on top of it, it won\u2019t get done right. I can\u2019t just hand it off.", type:'adv' },
+  { text: "I clearly express what I want — even when it's uncomfortable or might disappoint someone.", type:'adv' },
+  { text: "When something isn't being done the right way, I step in and fix it myself.", type:'adv' },
+  { text: "I've asked for input, but when it doesn't match what I already know is right, I go with my own judgment.", type:'adv' },
+  { text: "If I don't stay on top of it, it won't get done right. I can't just hand it off.", type:'adv' },
   { text: "I make decisions that affect others without asking what they want first.", type:'adv' },
-  { text: "I say yes to things I don\u2019t actually want to do because I don\u2019t want to let anyone down.", type:'con' },
-  { text: "I take things on myself because it\u2019s easier than asking \u2014 I don\u2019t want to be a burden.", type:'con' },
-  { text: "I feel frustrated that others don\u2019t step up, but I handle it anyway and tell myself it\u2019s fine.", type:'con' },
-  { text: "I hold back what I really want to keep things smooth \u2014 it\u2019s not worth the confrontation.", type:'con' },
-  { text: "I invite others to take ownership of things, even when they\u2019d do it differently than I would.", type:'con' },
+  { text: "I say yes to things I don't actually want to do because I don't want to let anyone down.", type:'con' },
+  { text: "I take things on myself because it's easier than asking — I don't want to be a burden.", type:'con' },
+  { text: "I feel frustrated that others don't step up, but I handle it anyway and tell myself it's fine.", type:'con' },
+  { text: "I hold back what I really want to keep things smooth — it's not worth the confrontation.", type:'con' },
+  { text: "I invite others to take ownership of things, even when they'd do it differently than I would.", type:'con' },
 ];
 
 const ZONE_CONTENT = {
   ss: {
     cls:'ss', kicker:'Self-sacrificing',
-    headline:"You\u2019re not doing it because you\u2019re a pushover.",
-    body:`<p>You\u2019re doing it because somewhere along the way you learned that taking care of everyone else was safer than asking for what you want.</p><p>So you say yes when you mean no. You figure it out so you don\u2019t have to ask. You stay quiet so things don\u2019t get complicated. And you tell yourself it\u2019s fine.</p><p>It\u2019s not that you don\u2019t have needs. You just stopped believing they were worth the disruption.</p><p>Here\u2019s what that costs you. Not just your energy. The people around you never learn to step up because you keep doing it for them. You end up more alone the harder you try to hold it all together.</p><p>You didn\u2019t get here because you\u2019re weak. You got here because you\u2019re capable and you care. And somewhere along the way, those two things became a reason to disappear.</p>`,
+    headline:"You're not doing it because you're a pushover.",
+    body:`<p>You're doing it because somewhere along the way you learned that taking care of everyone else was safer than asking for what you want.</p><p>So you say yes when you mean no. You figure it out so you don't have to ask. You stay quiet so things don't get complicated. And you tell yourself it's fine.</p><p>It's not that you don't have needs. You just stopped believing they were worth the disruption.</p><p>Here's what that costs you. Not just your energy. The people around you never learn to step up because you keep doing it for them. You end up more alone the harder you try to hold it all together.</p><p>You didn't get here because you're weak. You got here because you're capable and you care. And somewhere along the way, those two things became a reason to disappear.</p>`,
     moveLabel:'Your next move',
-    moveText:'Self-advocacy. Not loudly. Just clearly. Name one thing you actually want in your next important conversation \u2014 before you ask what anyone else needs.'
+    moveText:'Self-advocacy. Not loudly. Just clearly. Name one thing you actually want in your next important conversation — before you ask what anyone else needs.'
   },
   sf: {
     cls:'sf', kicker:'Self-focusing',
-    headline:"You\u2019re not a control freak.",
-    body:`<p>You just haven\u2019t seen enough evidence that other people will care as much as you do. So you stopped waiting and started doing it yourself.</p><p>You step in. You fix it. You make the call. And nine times out of ten, it works. So you do it again.</p><p>It\u2019s not about distrust. It\u2019s that you don\u2019t trust yourself to handle the discomfort if someone else drops the ball. So you eliminate the risk. You carry it.</p><p>Here\u2019s what that costs you. The people around you have stopped trying to prove you wrong. They\u2019ve learned that you\u2019ll take it back. So they let you. And now you\u2019re doing everything alone and calling it leadership.</p><p>You\u2019re not doing this because you\u2019re arrogant. You\u2019re doing it because you care deeply and you haven\u2019t found a way to let that care live in other people yet.</p>`,
+    headline:"You're not a control freak.",
+    body:`<p>You just haven't seen enough evidence that other people will care as much as you do. So you stopped waiting and started doing it yourself.</p><p>You step in. You fix it. You make the call. And nine times out of ten, it works. So you do it again.</p><p>It's not about distrust. It's that you don't trust yourself to handle the discomfort if someone else drops the ball. So you eliminate the risk. You carry it.</p><p>Here's what that costs you. The people around you have stopped trying to prove you wrong. They've learned that you'll take it back. So they let you. And now you're doing everything alone and calling it leadership.</p><p>You're not doing this because you're arrogant. You're doing it because you care deeply and you haven't found a way to let that care live in other people yet.</p>`,
     moveLabel:'Your next move',
     moveText:'Consideration. Before you act, ask what the other person needs here. Not as a formality. As a real question. One conversation where you wait for the answer before you move.'
   },
   o2: {
-    cls:'o2', kicker:'O\u2082 Zone',
-    headline:"You\u2019re operating in partnership right now.",
-    body:`<p>People step up without being asked. You say what you want without guilt. Trust flows in both directions. Everyone is in it together.</p><p>This is rare. Most people pass through this zone without recognizing it. They\u2019re too busy managing, accommodating, or pushing through to notice that something is actually working.</p><p>The O\u2082 Zone isn\u2019t a destination you arrive at and stay. It\u2019s something you return to. Intentionally. Repeatedly. Especially when the stakes get high and every instinct tells you to either take over or back down.</p><p>You\u2019re here right now. That matters. The question worth asking: what makes it hard to stay?</p>`,
+    cls:'o2', kicker:'O₂ Zone',
+    headline:"You're operating in partnership right now.",
+    body:`<p>People step up without being asked. You say what you want without guilt. Trust flows in both directions. Everyone is in it together.</p><p>This is rare. Most people pass through this zone without recognizing it. They're too busy managing, accommodating, or pushing through to notice that something is actually working.</p><p>The O₂ Zone isn't a destination you arrive at and stay. It's something you return to. Intentionally. Repeatedly. Especially when the stakes get high and every instinct tells you to either take over or back down.</p><p>You're here right now. That matters. The question worth asking: what makes it hard to stay?</p>`,
     moveLabel:'Your next move',
-    moveText:'Notice what pulls you out. The moment you feel the urge to just handle it, or the moment you go quiet to keep the peace \u2014 that\u2019s your signal. That\u2019s where the work is.'
+    moveText:'Notice what pulls you out. The moment you feel the urge to just handle it, or the moment you go quiet to keep the peace — that's your signal. That's where the work is.'
   },
   mixed: {
     cls:'mixed', kicker:'Mixed pattern',
     headline:"You shift zones depending on the situation.",
-    body:`<p>That\u2019s the most common pattern. You\u2019re not consistently self-focused or self-sacrificing. You move between them depending on who\u2019s in the room, what\u2019s at stake, and how much sleep you got.</p><p>The middle isn\u2019t neutral. It means the pattern is contextual. Which means there are specific relationships, specific moments, specific topics where you reliably go it alone \u2014 you just haven\u2019t named them yet.</p><p>Think about the last time something felt really hard or really off. Did you take it on alone so no one had to deal with it? Or did you take control so no one could get it wrong? That\u2019s your real pattern.</p>`,
+    body:`<p>That's the most common pattern. You're not consistently self-focused or self-sacrificing. You move between them depending on who's in the room, what's at stake, and how much sleep you got.</p><p>The middle isn't neutral. It means the pattern is contextual. Which means there are specific relationships, specific moments, specific topics where you reliably go it alone — you just haven't named them yet.</p><p>Think about the last time something felt really hard or really off. Did you take it on alone so no one had to deal with it? Or did you take control so no one could get it wrong? That's your real pattern.</p>`,
     moveLabel:'Your next move',
     moveText:'Pick one situation that keeps showing up for you. Not in general. A specific one. And ask yourself: in that moment, am I disappearing or am I taking over? That answer tells you everything.'
   }
@@ -279,136 +764,203 @@ const ZONE_CONTENT = {
 const SYSTEM_PROMPT = `You are the Thoughtly AI, a coaching tool built on Allison's Thoughtly model. Guide people through the IDEA process (Identify, Define, Experiment, Adjust) toward all-in partnership.\n\nTHE MODEL:\nX axis = self-advocacy (what I want). Y axis = consideration (what others want).\nSELF-SACRIFICING: High consideration, low advocacy. Says yes when meaning no. Does not want to burden others. Root: belief that being oneself is not enough. Makes themselves useful, becomes low maintenance, disappears.\nSELF-FOCUSING: High advocacy, low consideration. Steps in, fixes, overrides. Root: cannot trust themselves to handle the discomfort if others do not come through. Tragedy: deep caring is experienced as not believing in people.\nO2 ZONE: Narrow diagonal band. Balanced advocacy and consideration. Rare and hard to sustain.\nKEY: Both zones feel completely justified. Not character flaws. Quiet accumulation into isolation.\n\nCOACHING STYLE: Warm, direct, precise. One question at a time. 3 to 5 sentences max. Use their words. After ADJUST, mention the ACE Assessment (138 questions, reviewed 1:1 on Zoom with Allison) as the full picture.`;
 
 let answers = new Array(10).fill(null);
-let zone=null, xPct=0, yPct=0, chatHistory=[], isLoading=false, chartInstance=null;
+let zone = null, xPct = 0, yPct = 0, chatHistory = [], isLoading = false, chartInstance = null;
 
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+// Sticky header
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(id==='s-quiz') renderQuestions();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 's-quiz') renderQuestions();
 }
 
-function renderQuestions(){
-  document.getElementById('questions-wrap').innerHTML=Qs.map((q,i)=>`
+function renderQuestions() {
+  document.getElementById('questions-wrap').innerHTML = Qs.map((q, i) => `
     <div class="q-card" id="qc-${i}">
-      <p class="q-num">Question ${i+1} of 10</p>
+      <p class="q-num">Question ${i + 1} of 10</p>
       <p class="q-text">${q.text}</p>
-      <div class="scale-row">${[1,2,3,4,5,6,7].map(v=>`<button class="scale-btn" onclick="selectAnswer(${i},${v},'${q.type}')" id="sb-${i}-${v}">${v}</button>`).join('')}</div>
+      <div class="scale-row">${[1,2,3,4,5,6,7].map(v =>
+        `<button class="scale-btn" onclick="selectAnswer(${i},${v},'${q.type}')" id="sb-${i}-${v}">${v}</button>`
+      ).join('')}</div>
       <div class="scale-ends"><span class="scale-end">Never</span><span class="scale-end">Always</span></div>
     </div>`).join('');
 }
 
-function selectAnswer(qi,val,type){
-  answers[qi]=val;
-  for(let v=1;v<=7;v++){const b=document.getElementById(`sb-${qi}-${v}`);b.className='scale-btn';if(v===val)b.classList.add(`sel-${type}`);}
+function selectAnswer(qi, val, type) {
+  answers[qi] = val;
+  for (let v = 1; v <= 7; v++) {
+    const b = document.getElementById(`sb-${qi}-${v}`);
+    b.className = 'scale-btn';
+    if (v === val) b.classList.add(`sel-${type}`);
+  }
   document.getElementById(`qc-${qi}`)?.classList.add('answered');
-  const n=answers.filter(a=>a!==null).length;
-  document.getElementById('prog').style.width=(n/10*100)+'%';
-  document.getElementById('prog-count').textContent=`${n} of 10`;
-  document.getElementById('submit-btn').disabled=n<10;
+  const n = answers.filter(a => a !== null).length;
+  document.getElementById('prog').style.width = (n / 10 * 100) + '%';
+  document.getElementById('prog-count').textContent = `${n} of 10`;
+  document.getElementById('submit-btn').disabled = n < 10;
 }
 
-function calcResults(){
-  const advRaw=answers.slice(0,5).reduce((a,b)=>a+b,0);
-  const conRaw=answers.slice(5,10).reduce((a,b)=>a+b,0);
-  xPct=Math.round((advRaw/35)*100);
-  yPct=Math.round((conRaw/35)*100);
-  const diff=Math.abs(xPct-yPct);
-  const inO2=diff<=12&&xPct>=35&&xPct<=70&&yPct>=35&&yPct<=70;
-  const isSS=yPct>xPct+12;
-  const isSF=xPct>yPct+12;
-  if(inO2)zone='o2';else if(isSS)zone='self-sacrificing';else if(isSF)zone='self-focusing';else zone='mixed';
-  const key=zone==='self-sacrificing'?'ss':zone==='self-focusing'?'sf':zone==='o2'?'o2':'mixed';
-  const c=ZONE_CONTENT[key];
-  const dotColor=key==='ss'?'#185FA5':key==='sf'?'#993C1D':key==='o2'?'#1D9E75':'#534AB7';
-  document.getElementById('result-headline').textContent=c.headline;
-  document.getElementById('zone-card-wrap').innerHTML=`<div class="zone-card ${c.cls}"><p class="zone-kicker">${c.kicker}</p><h3 class="zone-headline">${c.headline}</h3><div class="zone-body">${c.body}</div><div class="move-box"><p class="move-label">${c.moveLabel}</p><p class="move-text">${c.moveText}</p></div></div>`;
+function calcResults() {
+  const advRaw = answers.slice(0, 5).reduce((a, b) => a + b, 0);
+  const conRaw = answers.slice(5, 10).reduce((a, b) => a + b, 0);
+  xPct = Math.round((advRaw / 35) * 100);
+  yPct = Math.round((conRaw / 35) * 100);
+  const diff = Math.abs(xPct - yPct);
+  const inO2 = diff <= 12 && xPct >= 35 && xPct <= 70 && yPct >= 35 && yPct <= 70;
+  const isSS = yPct > xPct + 12;
+  const isSF = xPct > yPct + 12;
+  if (inO2) zone = 'o2';
+  else if (isSS) zone = 'self-sacrificing';
+  else if (isSF) zone = 'self-focusing';
+  else zone = 'mixed';
+
+  const key = zone === 'self-sacrificing' ? 'ss' : zone === 'self-focusing' ? 'sf' : zone === 'o2' ? 'o2' : 'mixed';
+  const c = ZONE_CONTENT[key];
+
+  document.getElementById('result-headline').textContent = c.headline;
+  document.getElementById('zone-card-wrap').innerHTML = `
+    <div class="zone-card ${c.cls}">
+      <p class="zone-kicker">${c.kicker}</p>
+      <h3 class="zone-headline">${c.headline}</h3>
+      <div class="zone-body">${c.body}</div>
+      <div class="move-box">
+        <p class="move-label">${c.moveLabel}</p>
+        <p class="move-text">${c.moveText}</p>
+      </div>
+    </div>`;
+
   showScreen('s-result');
-  setTimeout(()=>drawMap(xPct,yPct,dotColor),150);
+  setTimeout(() => drawMap(xPct, yPct, key), 150);
 }
 
-function drawMap(x,y,dotColor){
-  const gridColor='rgba(26,25,23,0.06)';
-  const labelColor='rgba(26,25,23,0.38)';
-  const ssFill='rgba(24,95,165,0.10)';
-  const sfFill='rgba(216,90,48,0.10)';
-  const o2Fill='rgba(29,158,117,0.13)';
-  const BAND=12;
-  const zonePlugin={id:'zones',beforeDatasetsDraw(chart){
-    const{ctx,chartArea:{left,top,right,bottom,width,height}}=chart;
-    const toX=v=>left+(v/100)*width;
-    const toY=v=>bottom-((v/100)*height);
-    ctx.save();
-    ctx.beginPath();ctx.moveTo(left,top);ctx.lineTo(toX(100-BAND),top);ctx.lineTo(left,toY(BAND));ctx.closePath();ctx.fillStyle=ssFill;ctx.fill();
-    ctx.beginPath();ctx.moveTo(right,bottom);ctx.lineTo(toX(BAND),bottom);ctx.lineTo(right,toY(100-BAND));ctx.closePath();ctx.fillStyle=sfFill;ctx.fill();
-    ctx.beginPath();ctx.moveTo(left,toY(BAND));ctx.lineTo(toX(100-BAND),top);ctx.lineTo(right,toY(100-BAND));ctx.lineTo(toX(BAND),bottom);ctx.closePath();ctx.fillStyle=o2Fill;ctx.fill();
-    ctx.font='500 11px DM Sans, sans-serif';ctx.fillStyle=labelColor;
-    ctx.textAlign='left';ctx.fillText('Self-sacrificing',left+8,top+16);
-    ctx.textAlign='right';ctx.fillText('Self-focusing',right-8,bottom-8);
-    ctx.save();ctx.translate(toX(54),toY(54));ctx.rotate(-Math.PI/4);ctx.textAlign='center';ctx.fillText('O\u2082 zone \u00b7 operating together',0,0);ctx.restore();
-    ctx.restore();
-  }};
-  if(chartInstance){chartInstance.destroy();chartInstance=null;}
-  chartInstance=new Chart(document.getElementById('mapChart'),{
-    type:'scatter',plugins:[zonePlugin],
-    data:{datasets:[{data:[{x,y}],backgroundColor:dotColor,borderColor:'#fff',borderWidth:2.5,pointRadius:11,pointHoverRadius:13}]},
-    options:{responsive:true,maintainAspectRatio:false,animation:{duration:900,easing:'easeOutQuart'},
-      scales:{
-        x:{min:0,max:100,grid:{color:gridColor},ticks:{color:labelColor,callback:v=>v+'%',maxTicksLimit:6},border:{display:false}},
-        y:{min:0,max:100,grid:{color:gridColor},ticks:{color:labelColor,callback:v=>v+'%',maxTicksLimit:6},border:{display:false}}
+function drawMap(x, y, key) {
+  // dot color per zone using brand palette
+  const dotColor = key === 'ss' ? '#3D403C' : key === 'sf' ? '#7485A4' : key === 'o2' ? '#3D403C' : '#7485A4';
+  const gridColor = 'rgba(61,64,60,0.07)';
+  const labelColor = 'rgba(61,64,60,0.35)';
+  const ssFill   = 'rgba(233,218,193,0.35)';  // sand — self-sacrificing
+  const sfFill   = 'rgba(116,133,164,0.12)';  // slate — self-focusing
+  const o2Fill   = 'rgba(61,64,60,0.06)';     // forest tint — O2
+  const BAND = 12;
+
+  const zonePlugin = {
+    id: 'zones',
+    beforeDatasetsDraw(chart) {
+      const { ctx, chartArea: { left, top, right, bottom, width, height } } = chart;
+      const toX = v => left + (v / 100) * width;
+      const toY = v => bottom - (v / 100) * height;
+      ctx.save();
+      // SS region (top-left)
+      ctx.beginPath(); ctx.moveTo(left, top); ctx.lineTo(toX(100 - BAND), top); ctx.lineTo(left, toY(BAND)); ctx.closePath();
+      ctx.fillStyle = ssFill; ctx.fill();
+      // SF region (bottom-right)
+      ctx.beginPath(); ctx.moveTo(right, bottom); ctx.lineTo(toX(BAND), bottom); ctx.lineTo(right, toY(100 - BAND)); ctx.closePath();
+      ctx.fillStyle = sfFill; ctx.fill();
+      // O2 band (diagonal)
+      ctx.beginPath(); ctx.moveTo(left, toY(BAND)); ctx.lineTo(toX(100 - BAND), top); ctx.lineTo(right, toY(100 - BAND)); ctx.lineTo(toX(BAND), bottom); ctx.closePath();
+      ctx.fillStyle = o2Fill; ctx.fill();
+      // labels
+      ctx.font = '300 10px DM Sans, sans-serif';
+      ctx.fillStyle = labelColor;
+      ctx.textAlign = 'left'; ctx.fillText('Self-sacrificing', left + 7, top + 14);
+      ctx.textAlign = 'right'; ctx.fillText('Self-focusing', right - 7, bottom - 7);
+      ctx.save(); ctx.translate(toX(54), toY(54)); ctx.rotate(-Math.PI / 4);
+      ctx.textAlign = 'center'; ctx.fillText('O₂ zone · operating together', 0, 0); ctx.restore();
+      ctx.restore();
+    }
+  };
+
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+  chartInstance = new Chart(document.getElementById('mapChart'), {
+    type: 'scatter',
+    plugins: [zonePlugin],
+    data: {
+      datasets: [{
+        data: [{ x, y }],
+        backgroundColor: dotColor,
+        borderColor: 'var(--parchment)',
+        borderWidth: 2.5,
+        pointRadius: 10,
+        pointHoverRadius: 12
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 800, easing: 'easeOutQuart' },
+      scales: {
+        x: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: labelColor, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } },
+        y: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: labelColor, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } }
       },
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`Self-advocacy: ${ctx.parsed.x}%  \u00b7  Consideration: ${ctx.parsed.y}%`}}}
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `Self-advocacy: ${ctx.parsed.x}%  ·  Consideration: ${ctx.parsed.y}%` } }
+      }
     }
   });
 }
 
-function startCoach(){
+function startCoach() {
   showScreen('s-coach');
-  const key=zone==='self-sacrificing'?'ss':zone==='self-focusing'?'sf':zone==='o2'?'o2':'mixed';
-  document.getElementById('zone-indicator').innerHTML=`<span class="zone-badge ${key}">${ZONE_CONTENT[key].kicker}</span>`;
-  const ctx=`User completed the Operating Alone Score. Self-advocacy (X): ${xPct}%, Consideration (Y): ${yPct}%. Zone: ${zone}. They just read their result. Start the coaching conversation by briefly acknowledging their pattern and asking about one specific situation where this is showing up for them right now. Warm, direct, one question only.`;
-  chatHistory=[{role:'user',content:ctx}];
+  const key = zone === 'self-sacrificing' ? 'ss' : zone === 'self-focusing' ? 'sf' : zone === 'o2' ? 'o2' : 'mixed';
+  document.getElementById('zone-indicator').innerHTML = `<span class="zone-badge ${key}">${ZONE_CONTENT[key].kicker}</span>`;
+  const ctx = `User completed the Operating Alone Score. Self-advocacy (X): ${xPct}%, Consideration (Y): ${yPct}%. Zone: ${zone}. They just read their result. Start the coaching conversation by briefly acknowledging their pattern and asking about one specific situation where this is showing up for them right now. Warm, direct, one question only.`;
+  chatHistory = [{ role: 'user', content: ctx }];
   callAPI();
 }
 
-function addMsg(role,text){
-  const chat=document.getElementById('chat');
-  const msg=document.createElement('div');msg.className=`msg ${role}`;
-  msg.innerHTML=`<div class="avatar ${role}">${role==='ai'?'T':'You'}</div><div class="bubble ${role}">${text.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`;
-  chat.appendChild(msg);chat.scrollTop=chat.scrollHeight;
+function addMsg(role, text) {
+  const chat = document.getElementById('chat');
+  const msg = document.createElement('div'); msg.className = `msg ${role}`;
+  msg.innerHTML = `<div class="avatar ${role}">${role === 'ai' ? 'T' : 'You'}</div><div class="bubble ${role}">${text.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>')}</div>`;
+  chat.appendChild(msg); chat.scrollTop = chat.scrollHeight;
 }
 
-function showTyping(){
-  const chat=document.getElementById('chat');
-  const t=document.createElement('div');t.id='typing';t.className='msg';
-  t.innerHTML=`<div class="avatar ai">T</div><div class="bubble"><div style="display:flex;gap:5px;align-items:center;padding:2px 0"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
-  chat.appendChild(t);chat.scrollTop=chat.scrollHeight;
+function showTyping() {
+  const chat = document.getElementById('chat');
+  const t = document.createElement('div'); t.id = 'typing'; t.className = 'msg';
+  t.innerHTML = `<div class="avatar ai">T</div><div class="bubble"><div style="display:flex;gap:5px;align-items:center;padding:2px 0"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+  chat.appendChild(t); chat.scrollTop = chat.scrollHeight;
 }
 
-async function callAPI(){
-  isLoading=true;document.getElementById('send-btn').disabled=true;showTyping();
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM_PROMPT,messages:chatHistory})});
-    const data=await res.json();
+async function callAPI() {
+  isLoading = true; document.getElementById('send-btn').disabled = true; showTyping();
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: SYSTEM_PROMPT, messages: chatHistory })
+    });
+    const data = await res.json();
     document.getElementById('typing')?.remove();
-    const text=data.content?.filter(b=>b.type==='text').map(b=>b.text).join('')||'Something went wrong. Please try again.';
-    chatHistory.push({role:'assistant',content:text});addMsg('ai',text);
-  }catch(e){document.getElementById('typing')?.remove();addMsg('ai','Having trouble connecting. Please try again in a moment.');}
-  isLoading=false;document.getElementById('send-btn').disabled=false;document.getElementById('user-input').focus();
+    const text = data.content?.filter(b => b.type === 'text').map(b => b.text).join('') || 'Something went wrong. Please try again.';
+    chatHistory.push({ role: 'assistant', content: text }); addMsg('ai', text);
+  } catch (e) {
+    document.getElementById('typing')?.remove();
+    addMsg('ai', 'Having trouble connecting. Please try again in a moment.');
+  }
+  isLoading = false; document.getElementById('send-btn').disabled = false;
+  document.getElementById('user-input').focus();
 }
 
-function sendMsg(){
-  if(isLoading)return;
-  const input=document.getElementById('user-input');
-  const text=input.value.trim();if(!text)return;
-  input.value='';addMsg('user',text);chatHistory.push({role:'user',content:text});callAPI();
+function sendMsg() {
+  if (isLoading) return;
+  const input = document.getElementById('user-input');
+  const text = input.value.trim(); if (!text) return;
+  input.value = ''; addMsg('user', text); chatHistory.push({ role: 'user', content: text }); callAPI();
 }
 
-function restart(){
-  answers=new Array(10).fill(null);zone=null;xPct=0;yPct=0;chatHistory=[];isLoading=false;
-  if(chartInstance){chartInstance.destroy();chartInstance=null;}
-  document.getElementById('chat').innerHTML='';
-  document.getElementById('user-input').value='';
+function restart() {
+  answers = new Array(10).fill(null); zone = null; xPct = 0; yPct = 0; chatHistory = []; isLoading = false;
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+  document.getElementById('chat').innerHTML = '';
+  document.getElementById('user-input').value = '';
   showScreen('s-intro');
 }
 </script>
