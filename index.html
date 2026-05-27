@@ -43,14 +43,11 @@ body {
   top: 0;
   z-index: 200;
   background: var(--parchment);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  border-bottom: 1px solid var(--sand);
+  box-shadow: 0 1px 16px rgba(61,64,60,0.06);
   padding: 20px 24px;
 }
-.site-header.scrolled {
-  border-color: var(--sand);
-  box-shadow: 0 1px 16px rgba(61,64,60,0.06);
-}
+
 .header-inner { display: flex; justify-content: center; align-items: center; }
 .header-logo { display: block; text-decoration: none; line-height: 0; }
 .header-logo img { height: 48px; width: auto; display: block; }
@@ -763,12 +760,6 @@ const SYSTEM_PROMPT = `You are the Thoughtly AI, a coaching tool built on Alliso
 
 let answers = new Array(10).fill(null);
 let zone = null, xPct = 0, yPct = 0, chatHistory = [], isLoading = false, chartInstance = null;
-
-// Sticky header
-const header = document.getElementById('site-header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 10);
-}, { passive: true });
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
