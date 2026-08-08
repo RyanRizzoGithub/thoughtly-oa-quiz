@@ -3,797 +3,387 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Operating Alone Score — Thoughtly</title>
-<link rel="icon" type="image/png" href="data:image/png;base64,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">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<title>The Operating Alone Score | Thoughtly</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --coral:       #D85A30;
-  --coral-light: #FAECE7;
-  --coral-mid:   #F0997B;
-  --purple:      #534AB7;
-  --purple-light:#EEEDFE;
-  --teal:        #1D9E75;
-  --teal-light:  #E1F5EE;
-  --teal-mid:    #5DCAA5;
-  --ink:         #1A1917;
-  --ink-2:       #5F5E5A;
-  --ink-3:       #9E9C96;
-  --surface:     #F7F6F2;
-  --surface-2:   #EEEDE8;
-  --border:      rgba(26,25,23,0.10);
-  --white:       #FFFFFF;
-  --radius:      12px;
-  --radius-sm:   8px;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', Calibri, system-ui, sans-serif;
-  background: var(--surface);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ── HEADER ── */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  background: var(--surface);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  padding: 20px 24px;
-}
-.site-header.scrolled {
-  border-color: var(--surface-2);
-  box-shadow: 0 1px 16px rgba(26,25,23,0.06);
-}
-.header-inner { display: flex; justify-content: center; align-items: center; }
-.header-logo { display: block; text-decoration: none; line-height: 0; }
-.header-logo img { height: 48px; width: auto; display: block; }
-@media (max-width: 600px) { .header-logo img { height: 36px; } }
-
-/* ── MAIN ── */
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 48px 24px 72px;
-}
-
-.container { width: 100%; max-width: 580px; }
-
-.screen { display: none; }
-.screen.active { display: block; animation: fadeUp 0.4s ease both; }
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── INTRO ── */
-.intro-eyebrow {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--teal); margin-bottom: 1rem;
-}
-.intro-headline {
-  font-family: 'Lora', Georgia, serif;
-  font-size: clamp(30px, 7vw, 44px);
-  font-weight: 400;
-  line-height: 1.12;
-  color: var(--ink);
-  margin-bottom: 1rem;
-}
-.intro-headline em { font-style: italic; color: var(--teal); }
-.intro-body {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--ink-2);
-  margin-bottom: 2rem;
-}
-.intro-meta {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-.meta-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-3); }
-.meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); flex-shrink: 0; }
-.scale-legend {
-  background: var(--white);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  margin-bottom: 2rem;
-}
-.scale-legend p { font-size: 13px; color: var(--ink-2); line-height: 1.7; }
-.scale-legend strong { color: var(--ink); font-weight: 600; }
-.scale-legend .note { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
-
-/* ── BUTTONS ── */
-.btn-primary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 13px 26px;
-  background: var(--ink);
-  color: var(--white);
-  border: none;
-  border-radius: var(--radius);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  width: 100%;
-  transition: background 0.15s, transform 0.1s;
-}
-.btn-primary:hover { background: #2D2C2A; transform: translateY(-1px); }
-.btn-primary:active { transform: translateY(0); }
-.btn-primary:disabled {
-  background: var(--surface-2);
-  color: var(--ink-3);
-  cursor: not-allowed;
-  transform: none;
-}
-.btn-secondary {
-  background: none;
-  border: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: var(--ink-3);
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
-  display: inline-block;
-  transition: color 0.15s;
-}
-.btn-secondary:hover { color: var(--ink-2); }
-.btn-slate {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  background: var(--teal);
-  color: var(--white);
-  border: none;
-  border-radius: var(--radius);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s;
-  text-decoration: none;
-}
-.btn-slate:hover { background: #178560; }
-
-/* ── PROGRESS ── */
-.progress-wrap { margin-bottom: 2rem; }
-.progress-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-.progress-label { font-size: 12px; color: var(--ink-3); }
-.progress-bar { height: 3px; background: var(--surface-2); border-radius: 2px; }
-.progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width 0.3s; }
-
-/* ── QUESTION CARDS ── */
-.q-card {
-  background: var(--white);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.125rem 1.375rem;
-  margin-bottom: 0.875rem;
-  transition: border-color 0.2s;
-}
-.q-card.answered { border-color: var(--teal-mid); }
-.q-num {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.07em;
-  text-transform: uppercase; color: var(--ink-3); margin-bottom: 7px;
-}
-.q-text {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--ink);
-  margin-bottom: 1.125rem;
-}
-.scale-row { display: flex; gap: 5px; }
-.scale-btn {
-  flex: 1; padding: 9px 0; text-align: center;
-  border: 0.5px solid var(--border); border-radius: var(--radius-sm);
-  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-  cursor: pointer; background: var(--surface); color: var(--ink-3);
-  transition: all 0.1s;
-}
-.scale-btn:hover { background: var(--white); color: var(--ink); border-color: var(--ink-3); }
-.scale-btn.sel-adv { background: var(--purple-light) !important; color: var(--purple) !important; border-color: var(--purple) !important; }
-.scale-btn.sel-con { background: var(--coral-light) !important; color: var(--coral) !important; border-color: var(--coral) !important; }
-.scale-ends { display: flex; justify-content: space-between; margin-top: 5px; padding: 0 2px; }
-.scale-end { font-size: 11px; color: var(--ink-3); }
-
-/* ── RESULT ── */
-.result-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem;
-}
-.result-headline {
-  font-family: 'Lora', Georgia, serif;
-  font-size: clamp(22px, 5vw, 30px);
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 2rem;
-  color: var(--ink);
-}
-
-/* MAP */
-.map-section { margin-bottom: 1.75rem; }
-.map-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px;
-}
-.map-inner { display: flex; align-items: stretch; gap: 8px; }
-.axis-y {
-  font-size: 11px; color: var(--ink-3);
-  writing-mode: vertical-rl; transform: rotate(180deg);
-  text-align: center; white-space: nowrap; flex-shrink: 0;
-}
-.canvas-col { flex: 1; display: flex; flex-direction: column; }
-/* explicit height prevents infinite growth on re-render */
-.canvas-col canvas {
-  width: 100% !important;
-  height: 260px !important;
-  background: var(--white);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius);
-  display: block;
-}
-.axis-x {
-  font-size: 11px; color: var(--ink-3);
-  text-align: center; margin-top: 5px;
-}
-
-/* ── ZONE CARDS ── */
-.zone-card {
-  border-radius: var(--radius);
-  padding: 1.625rem;
-  margin-bottom: 1rem;
-  border: 0.5px solid transparent;
-}
-.zone-card.ss { background: var(--coral-light); border-color: rgba(216,90,48,0.25); }
-.zone-card.sf { background: var(--purple-light); border-color: rgba(83,74,183,0.25); }
-.zone-card.o2 { background: var(--teal-light); border-color: rgba(29,158,117,0.25); }
-.zone-card.mixed { background: var(--surface-2); border-color: var(--border); }
-
-.zone-kicker {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; margin-bottom: 10px; color: var(--ink-3);
-}
-.zone-card.ss .zone-kicker { color: var(--coral); }
-.zone-card.sf .zone-kicker { color: var(--purple); }
-.zone-card.o2 .zone-kicker { color: var(--teal); }
-.zone-card.mixed .zone-kicker { color: var(--ink-3); }
-
-.zone-headline {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 22px; font-weight: 400; line-height: 1.3;
-  color: var(--ink); margin-bottom: 1rem;
-}
-.zone-body { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--ink-2); }
-.zone-body p { margin-bottom: 0.875rem; }
-.zone-body p:last-child { margin-bottom: 0; }
-
-.move-box { margin-top: 1.375rem; padding: 1rem 1.25rem; border-radius: var(--radius-sm); }
-.zone-card.ss .move-box { background: rgba(216,90,48,0.09); }
-.zone-card.sf .move-box { background: rgba(83,74,183,0.09); }
-.zone-card.o2 .move-box { background: rgba(29,158,117,0.09); }
-.zone-card.mixed .move-box { background: rgba(26,25,23,0.05); }
-
-.move-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; margin-bottom: 5px; color: var(--ink-3);
-}
-.zone-card.ss .move-label { color: var(--coral); }
-.zone-card.sf .move-label { color: var(--purple); }
-.zone-card.o2 .move-label { color: var(--teal); }
-.move-text { font-size: 15px; line-height: 1.7; color: var(--ink); font-weight: 500; }
-
-/* ── ACE BOX ── */
-.ace-box {
-  background: var(--ink);
-  border-radius: var(--radius);
-  padding: 1.375rem 1.625rem;
-  margin-bottom: 1rem;
-}
-.ace-title {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 20px; font-weight: 400; color: var(--white); margin-bottom: 7px;
-}
-.ace-body {
-  font-size: 14px; font-weight: 300; line-height: 1.7;
-  color: rgba(255,255,255,0.65); margin-bottom: 1.25rem;
-}
-.btn-ace {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 22px; background: var(--teal); color: var(--white);
-  border: none; border-radius: var(--radius);
-  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-  cursor: pointer; transition: background 0.15s; text-decoration: none;
-}
-.btn-ace:hover { background: #178560; }
-
-/* ── COACH ── */
-.coach-header {
-  display: flex; justify-content: space-between;
-  align-items: center; margin-bottom: 6px;
-}
-.coach-title {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 22px; font-weight: 400; color: var(--ink);
-}
-.zone-badge {
-  display: inline-block; font-size: 11px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 100px; margin-bottom: 1rem;
-  background: var(--surface-2); color: var(--ink-3);
-  border: 0.5px solid var(--border);
-}
-.zone-badge.ss { background: var(--coral-light); color: var(--coral); border-color: rgba(216,90,48,0.3); }
-.zone-badge.sf { background: var(--purple-light); color: var(--purple); border-color: rgba(83,74,183,0.3); }
-.zone-badge.o2 { background: var(--teal-light); color: var(--teal); border-color: rgba(29,158,117,0.3); }
-
-.chat-area {
-  min-height: 300px; max-height: 420px; overflow-y: auto;
-  border: 0.5px solid var(--border); border-radius: var(--radius);
-  padding: 1.25rem; margin-bottom: 1rem;
-  background: var(--surface); display: flex; flex-direction: column; gap: 14px;
-}
-.msg { display: flex; gap: 10px; align-items: flex-start; }
-.msg.user { flex-direction: row-reverse; }
-.avatar {
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 600; flex-shrink: 0;
-}
-.avatar.ai { background: var(--teal-light); color: var(--teal); }
-.avatar.user { background: var(--purple-light); color: var(--purple); }
-.bubble {
-  max-width: 80%; padding: 11px 15px;
-  border-radius: var(--radius); font-size: 14px; line-height: 1.7;
-  background: var(--white); border: 0.5px solid var(--border); color: var(--ink);
-}
-.bubble.user { background: var(--purple-light); border-color: rgba(83,74,183,0.2); color: #26215C; }
-
-.input-row { display: flex; gap: 8px; }
-.chat-input {
-  flex: 1; padding: 11px 15px;
-  border: 0.5px solid var(--border); border-radius: var(--radius);
-  font-family: 'DM Sans', sans-serif; font-size: 14px;
-  background: var(--white); color: var(--ink); outline: none;
-  transition: border-color 0.15s;
-}
-.chat-input:focus { border-color: var(--teal); }
-.chat-send {
-  padding: 11px 20px; border-radius: var(--radius);
-  border: none; background: var(--teal); color: var(--white);
-  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
-  cursor: pointer; white-space: nowrap; transition: background 0.15s;
-}
-.chat-send:hover { background: #178560; }
-.chat-send:disabled { background: var(--surface-2); color: var(--ink-3); cursor: not-allowed; }
-
-.typing-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--ink-3); animation: pulse 1s infinite; display: inline-block;
-}
-.typing-dot:nth-child(2){ animation-delay:.2s }
-.typing-dot:nth-child(3){ animation-delay:.4s }
-@keyframes pulse { 0%,60%,100%{ transform:translateY(0); opacity:.5 } 30%{ transform:translateY(-3px); opacity:1 } }
-
-/* ── FOOTER ── */
-.site-footer { background: var(--ink); padding: 28px 40px; }
-.footer-inner {
-  max-width: 1260px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 20px; flex-wrap: wrap;
-}
-.footer-logo { display: flex; align-items: center; text-decoration: none; }
-.footer-logo img { width: 26px; height: auto; }
-.footer-socials { display: flex; align-items: center; gap: 18px; }
-.footer-socials a {
-  color: var(--white); opacity: 0.55;
-  text-decoration: none; transition: opacity 0.2s;
-  display: flex; align-items: center;
-}
-.footer-socials a:hover { opacity: 1; }
-.footer-socials svg { width: 17px; height: 17px; fill: currentColor; }
-.footer-socials .yt-play { fill: var(--ink); }
-.footer-copy {
-  font-size: 11px; color: var(--white); opacity: 0.3;
-  letter-spacing: 0.04em; width: 100%; text-align: center;
-  padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 8px;
-}
-
-@media (max-width: 480px) {
-  main { padding: 32px 16px 56px; }
-  .intro-meta { flex-direction: column; gap: 8px; }
-  .site-footer { padding: 24px 20px; }
-  .footer-inner { justify-content: center; }
-}
+  :root {
+    --teal-light: #E8F5F3;
+    --teal-dark: #0F6E56;
+    --teal-deep: #085041;
+    --teal-border: #9FE1CB;
+    --blue: #185FA5;
+    --blue-light: #EBF3FB;
+    --blue-border: #B5D4F4;
+    --blue-dark: #0C447C;
+    --coral: #993C1D;
+    --coral-light: #FAF0EB;
+    --coral-border: #F5C4B3;
+    --coral-dark: #712B13;
+    --sand: #F5F2ED;
+    --sand-mid: #E8E4DC;
+    --ink: #1A1A18;
+    --ink-mid: #4A4A46;
+    --ink-light: #8A8A84;
+    --white: #FFFFFF;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--ink); -webkit-font-smoothing: antialiased; min-height: 100vh; padding: 0; }
+  .site-header { position: sticky; top: 0; z-index: 200; background: var(--sand); border-bottom: 1px solid var(--sand-mid); box-shadow: 0 1px 16px rgba(26,25,23,0.06); padding: 20px 24px; }
+  .header-inner { display: flex; justify-content: center; align-items: center; gap: 12px; }
+  .header-logo { display: block; text-decoration: none; line-height: 0; }
+  .header-logo img { height: 48px; width: auto; display: block; }
+  @media (max-width: 600px) { .header-logo img { height: 36px; } }
+  .page { max-width: 680px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+  .header { text-align: center; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--sand-mid); }
+  .brand { font-family: 'DM Serif Display', serif; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 1rem; }
+  .beta-badge { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral-dark); background: var(--coral-light); border: 1px solid var(--coral-border); border-radius: 999px; padding: 3px 9px; line-height: 1; }
+  .beta-note { font-size: 12px; color: var(--ink-light); margin-top: 0.75rem; font-style: italic; }
+  .quiz-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 5vw, 40px); font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 0.75rem; }
+  .quiz-sub { font-size: 16px; color: var(--ink-mid); line-height: 1.65; max-width: 480px; margin: 0 auto 1rem; }
+  .quiz-meta { font-size: 13px; color: var(--ink-light); letter-spacing: 0.04em; }
+  .situation-box { background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .situation-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 10px; }
+  .situation-text { font-size: 15px; color: var(--ink); line-height: 1.7; }
+  .scale-bar { display: flex; align-items: center; justify-content: center; margin: 1.75rem 0 2rem; background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1rem 1.25rem; gap: 0; }
+  .scale-end { font-size: 12px; color: var(--ink-mid); white-space: nowrap; flex-shrink: 0; }
+  .scale-end span { display: block; font-size: 11px; color: var(--ink-light); margin-top: 2px; }
+  .scale-nums { display: flex; gap: 6px; margin: 0 12px; }
+  .scale-num { width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--sand); border: 1px solid var(--sand-mid); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--ink-light); }
+  .ctx-block { background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1.5rem; margin-bottom: 1.25rem; }
+  .ctx-header { font-size: 14px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--sand-mid); }
+  .ctx-header strong { color: var(--ink); font-weight: 500; }
+  .sec-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.75rem; padding-bottom: 6px; border-bottom: 1px solid var(--sand-mid); }
+  .q-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--sand-mid); }
+  .q-row:last-child { border-bottom: none; }
+  .q-text { flex: 1; font-size: 14px; color: var(--ink); line-height: 1.6; padding-top: 4px; }
+  .q-btns { display: flex; gap: 5px; flex-shrink: 0; }
+  .q-btns label { cursor: pointer; }
+  .q-btns input[type=radio] { display: none; }
+  .rb { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--sand-mid); background: var(--sand); font-size: 13px; font-weight: 400; color: var(--ink-light); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.12s ease; font-family: 'DM Sans', sans-serif; }
+  .rb:hover { border-color: var(--ink-light); color: var(--ink); }
+  input:checked + .rb { background: var(--teal-dark); color: var(--white); border-color: var(--teal-dark); font-weight: 500; }
+  .sub-btn { width: 100%; margin-top: 2rem; padding: 16px; background: var(--teal-dark); color: var(--white); border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; cursor: pointer; transition: background 0.15s ease; letter-spacing: 0.02em; }
+  .sub-btn:hover { background: var(--teal-deep); }
+  .err { font-size: 13px; color: #C0392B; margin-top: 10px; text-align: center; display: none; }
+  .res-header { margin-bottom: 2rem; }
+  .res-title { font-family: 'DM Serif Display', serif; font-size: clamp(24px, 4vw, 34px); font-weight: 400; color: var(--ink); line-height: 1.25; margin-bottom: 0.75rem; }
+  .res-sub { font-size: 16px; color: var(--ink-mid); line-height: 1.7; }
+  .map-wrap { background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .map-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1rem; }
+  .map-inner { display: flex; gap: 10px; align-items: center; }
+  .axis-y { font-size: 11px; color: var(--ink-light); writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); white-space: nowrap; flex-shrink: 0; letter-spacing: 0.03em; }
+  .canvas-outer { flex: 1; display: flex; flex-direction: column; align-items: stretch; }
+  .sq { position: relative; width: 100%; padding-bottom: 100%; }
+  .sq canvas { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+  .axis-x { font-size: 11px; color: var(--ink-light); text-align: center; margin-top: 8px; letter-spacing: 0.03em; }
+  .zc { border-radius: var(--radius); padding: 1.5rem; border: 1px solid transparent; margin-bottom: 1.25rem; }
+  .zc-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+  .zc-headline { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; line-height: 1.4; margin-bottom: 14px; }
+  .zc-body p { font-size: 14px; line-height: 1.8; margin-bottom: 12px; }
+  .zc-body p:last-child { margin-bottom: 0; }
+  .zc-body ul { margin: 8px 0 12px 0; padding: 0; list-style: none; }
+  .zc-body ul li { font-size: 14px; line-height: 1.7; padding: 4px 0 4px 18px; position: relative; }
+  .zc-body ul li::before { content: ""; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.4; }
+  .zc-divider { height: 1px; background: rgba(0,0,0,0.08); margin: 16px 0; }
+  .zc-move-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .zc-move { font-size: 14px; line-height: 1.65; font-style: italic; }
+  .bridge { background: var(--teal-light); border-radius: var(--radius); border: 2px solid var(--teal-border); padding: 1.5rem; margin-bottom: 1.25rem; }
+  .bridge-title { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; color: var(--teal-deep); margin-bottom: 8px; }
+  .bridge-body { font-size: 14px; color: var(--teal-dark); line-height: 1.7; margin-bottom: 1.25rem; }
+  .bridge-btn { display: inline-block; padding: 13px 24px; background: var(--teal-dark); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.15s ease; }
+  .bridge-btn:hover { background: var(--teal-deep); }
+  .retake { display: block; width: 100%; padding: 13px; text-align: center; background: var(--white); border: 1px solid var(--sand-mid); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: background 0.15s ease; }
+  .retake:hover { background: var(--sand); }
+  @media (max-width: 480px) { .rb { width: 27px; height: 27px; font-size: 11px; } .q-btns { gap: 3px; } .scale-nums { gap: 3px; } .scale-num { width: 24px; height: 24px; } }
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
+<header class="site-header">
   <div class="header-inner">
     <a class="header-logo" href="https://www.bethoughtly.com">
-      <img src="https://github.com/RyanRizzoGithub/thoughtly-assets/blob/main/images/graphics/logo.png?raw=true" alt="Thoughtly">
+      <img src="https://github.com/RyanRizzoGithub/thoughtly-assets/blob/main/images/graphics/logo.png?raw=true" alt="Thoughtly" style="height:48px;width:auto;display:block;">
     </a>
+    <span class="beta-badge">Beta</span>
   </div>
 </header>
-
-<main>
-<div class="container">
-
-  <!-- INTRO -->
-  <div id="s-intro" class="screen active">
-    <h1 class="intro-headline">Where are you operating alone right now?</h1>
-    <p class="intro-body">This assessment shows you exactly where you are on the model. Not where you want to be. Where you actually are. Right now. That's where the work starts.</p>
-    <div class="intro-meta">
-      <span class="meta-item"><span class="meta-dot"></span>2 minutes</span>
-      <span class="meta-item"><span class="meta-dot"></span>10 questions</span>
-      <span class="meta-item"><span class="meta-dot"></span>Instant results</span>
+<div class="page">
+  <div id="quiz">
+    <div class="header">
+      <h1 class="quiz-title">The Operating Alone Score</h1>
+      <p class="quiz-sub">Think of one situation in your life that is not going the way you want it to. Hold that situation in mind as you answer these ten questions.</p>
+      <p class="quiz-meta">10 questions &nbsp;&nbsp;·&nbsp;&nbsp; about 2 minutes &nbsp;&nbsp;·&nbsp;&nbsp; instant results</p>
+      <p class="beta-note">This is a beta version we're testing. Your feedback helps us make it better.</p>
     </div>
-    <div class="scale-legend">
-      <p><strong>1</strong> = Never true &nbsp;·&nbsp; <strong>4</strong> = Sometimes &nbsp;·&nbsp; <strong>7</strong> = Always true</p>
-      <p class="note">The O₂ Zone is narrow. Most people don't live there consistently. That's the point.</p>
+    <div class="situation-box">
+      <p class="situation-eyebrow">Before you begin</p>
+      <p class="situation-text">Bring to mind one situation that is not going the way you want it to. A relationship. A team. A project. A conversation you keep avoiding. A person who keeps letting you down. Hold that situation in mind as you answer. There are no right answers. Just honest ones.</p>
     </div>
-    <button type="button" class="btn-primary" onclick="showScreen('s-quiz')">Start the assessment →</button>
-  </div>
-
-  <!-- QUIZ -->
-  <div id="s-quiz" class="screen">
-    <div class="progress-wrap">
-      <div class="progress-top">
-        <span class="progress-label">Your answers</span>
-        <span class="progress-label" id="prog-count">0 of 10</span>
+    <div class="scale-bar">
+      <div class="scale-end">1<span>Never true</span></div>
+      <div class="scale-nums">
+        <div class="scale-num">1</div><div class="scale-num">2</div><div class="scale-num">3</div>
+        <div class="scale-num">4</div><div class="scale-num">5</div><div class="scale-num">6</div>
+        <div class="scale-num">7</div>
       </div>
-      <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+      <div class="scale-end" style="text-align:right">7<span>Always true</span></div>
     </div>
-    <div id="questions-wrap"></div>
-    <button type="button" class="btn-primary" id="submit-btn" onclick="calcResults()" disabled>See where I land →</button>
+    <div class="ctx-block">
+      <p class="ctx-header">Thinking about this situation, rate how true each statement is for you right now</p>
+      <p class="sec-label">What others want</p>
+      <div id="qs-y"></div>
+    </div>
+    <div class="ctx-block">
+      <p class="ctx-header">Still thinking about this situation, rate how true each statement is for you right now</p>
+      <p class="sec-label">What I want</p>
+      <div id="qs-x"></div>
+    </div>
+    <button class="sub-btn" onclick="submitQ()">Find my dot</button>
+    <p class="err" id="err">Please answer all questions before continuing.</p>
   </div>
-
-  <!-- RESULT -->
-  <div id="s-result" class="screen">
-    <p class="result-eyebrow">Your result</p>
-    <h2 class="result-headline" id="result-headline"></h2>
-
-    <div class="map-section">
-      <p class="map-label">Your position on the model</p>
+  <div id="results" style="display:none"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const QY = [
+  {id:'y1', text:'I am more focused on how others are feeling than on what I actually want.'},
+  {id:'y2', text:'I am letting things slide that probably should not slide.'},
+  {id:'y3', text:'I am staying quiet or holding back information because I do not want to upset anyone.'},
+  {id:'y4', text:'I have said yes to something because I did not want to disappoint anyone.'},
+  {id:'y5', text:'When someone is upset I find myself doing things to make them feel better even when it is not my place.'},
+];
+const QX = [
+  {id:'x1', text:'I already know what needs to happen and I am moving on it.'},
+  {id:'x2', text:'I am trusting myself more than I am trusting others.'},
+  {id:'x3', text:'I know what the right thing to do is and I will do it.'},
+  {id:'x4', text:'I am handling it myself rather than explaining what I need or want from someone else.'},
+  {id:'x5', text:'I want it done a certain way so I will do it myself.'},
+];
+function buildQs(qs, cid) {
+  const c = document.getElementById(cid);
+  qs.forEach(q => {
+    const d = document.createElement('div');
+    d.className = 'q-row';
+    d.innerHTML = `<span class="q-text">${q.text}</span>
+      <div class="q-btns">${[1,2,3,4,5,6,7].map(n =>
+        `<label><input type="radio" name="${q.id}" value="${n}" onchange="clearErr()"><span class="rb">${n}</span></label>`
+      ).join('')}</div>`;
+    c.appendChild(d);
+  });
+}
+buildQs(QY, 'qs-y');
+buildQs(QX, 'qs-x');
+function clearErr() { document.getElementById('err').style.display = 'none'; }
+function submitQ() {
+  let ok = true, xSum = 0, ySum = 0;
+  [...QY, ...QX].forEach(q => {
+    const v = document.querySelector(`input[name="${q.id}"]:checked`);
+    if (!v) { ok = false; return; }
+    const n = parseInt(v.value);
+    if (QX.find(qq => qq.id === q.id)) xSum += n;
+    else ySum += n;
+  });
+  if (!ok) { document.getElementById('err').style.display = 'block'; return; }
+  showResults(xSum, ySum);
+}
+const MAX = 35;
+const THRESHOLD = 57;
+const BAND = 8;
+function getZone(x, y) {
+  const gap = y - x;
+  if (x >= THRESHOLD && y >= THRESHOLD && Math.abs(gap) <= BAND) return 'o2';
+  if (gap > BAND) return 'sac';
+  if (gap < -BAND) return 'foc';
+  return y >= x ? 'sac' : 'foc';
+}
+const COPY = {
+  sac: {
+    eyebrow: 'Self sacrificing zone',
+    bg: '#EBF3FB', border: '#B5D4F4',
+    eyebrowColor: '#185FA5', headlineColor: '#0C447C', bodyColor: '#185FA5',
+    headline: 'You do this because you care. That part is true and it is real and it matters.',
+    body: `
+      <p>And here is what the research confirms. It works. Self sacrifice reduces conflict immediately. It keeps people connected. It makes you indispensable. Studies show it produces genuine positive outcomes in the short term. People feel supported. Things get done. You show up when others do not. You carry more. You volunteer. You help out. And you tell yourself, correctly, that this is the right thing to do.</p>
+      <p>The problem is not the strategy. The problem is the long game.</p>
+      <p>Research from the Journal of Occupational and Organizational Psychology shows that self sacrifice produces both positive and negative outcomes simultaneously. What starts as showing up for others gradually becomes tolerating dynamics that others would walk away from. Over time a predictable pattern emerges:</p>
+      <ul>
+        <li>You accommodate more than you should</li>
+        <li>You tolerate dynamics others would walk away from</li>
+        <li>Your own needs keep getting moved to the back of the line</li>
+        <li>A quiet resentment builds, not because people are ungrateful, but because you stopped asking for what you need</li>
+      </ul>
+      <p>And the research is clear on where this ends. High levels of altruistic motivation combined with a diminished ability to say no is one of the strongest predictors of burnout.</p>
+      <p>You end up doing it alone. Not because you failed. Because the strategy worked exactly as it was designed to.</p>
+    `,
+    moveLabel: 'Your one move',
+    move: 'Next time someone makes a request, ask for time to think about it before saying yes. Allow yourself the space to think about what you want, what you have the capacity for, and how both your wants and their wants can be met.'
+  },
+  foc: {
+    eyebrow: 'Self focusing zone',
+    bg: '#FAF0EB', border: '#F5C4B3',
+    eyebrowColor: '#993C1D', headlineColor: '#712B13', bodyColor: '#993C1D',
+    headline: 'You know what good looks like. You always have. And that is a genuine asset.',
+    body: `
+      <p>And here is what the research confirms. It works. High standards drive results. In high stakes situations, taking control, making the call, and driving toward the outcome is exactly the right strategy. Research confirms that leaders with high standards and strong conviction are more likely to be diligent, more ethical, and more engaged in their work. These are real strengths.</p>
+      <p>The problem is not the standard. The problem is the long game.</p>
+      <p>Research shows that over time self focusing creates a predictable pattern:</p>
+      <ul>
+        <li>Others stop bringing their best because they know it will be reworked</li>
+        <li>Initiative drops because the window to act keeps closing before they get the chance</li>
+        <li>The leader becomes the bottleneck, doing more as the team does less</li>
+        <li>Self focusing is consistently cited as one of the top three reasons employees resign</li>
+      </ul>
+      <p>Research on perfectionism in leadership adds one more finding worth sitting with. When leaders impose their standards on others rather than creating conditions for others to rise to them, it reduces psychological safety, stifles creativity, and ultimately leads to the leader's own burnout.</p>
+      <p>You end up doing it alone. Not because your standards are wrong. Because the strategy of doing it yourself does not scale.</p>
+    `,
+    moveLabel: 'Your one move',
+    move: 'The next time you feel the urge to step in, ask one question instead. What do you think? Then allow the other person some space to connect their own dots.'
+  },
+  o2: {
+    eyebrow: 'O₂ zone',
+    bg: '#E8F5F0', border: '#9FE1CB',
+    eyebrowColor: '#0F6E56', headlineColor: '#085041', bodyColor: '#0F6E56',
+    headline: 'You have been here before. You may not have had a name for it but you have felt it.',
+    body: `
+      <p>That moment when something clicks. When everyone is in it together. When the work feels less like work and more like momentum.</p>
+      <p>And here is what the research confirms. That feeling is real and it is measurable.</p>
+      <p>The conditions for this state are specific. Research from the National Institutes of Health identifies them as:</p>
+      <ul>
+        <li>Trust between people who are genuinely in it together</li>
+        <li>A shared vision that everyone is walking toward</li>
+        <li>Psychological safety where all wants can be on the table</li>
+        <li>Mutual accountability where nobody is carrying it alone</li>
+      </ul>
+      <p>This is the O₂ zone. Not a negotiation where everyone gives a little. An expansion where everyone gets more than they came in with.</p>
+      <p>The only reason people do not live here more is that it requires something most of us were never taught. To hold what you want and what others want at the same time. Without collapsing into one or the other.</p>
+      <p>You know what it feels like now. Not just for you. For everyone in the room. That is the whole point. It was never just about you getting what you want or them getting what they want. It is about what becomes possible when nobody has to go it alone.</p>
+    `,
+    moveLabel: 'Your one move',
+    move: 'Notice which direction you get pulled when the stakes go up. That direction is your default. Knowing it is an advantage.'
+  }
+};
+function zoneCard(zKey) {
+  const c = COPY[zKey];
+  return `<div class="zc" style="background:${c.bg};border-color:${c.border}">
+    <p class="zc-eyebrow" style="color:${c.eyebrowColor}">${c.eyebrow}</p>
+    <p class="zc-headline" style="color:${c.headlineColor}">${c.headline}</p>
+    <div class="zc-body" style="color:${c.bodyColor}">${c.body}</div>
+    <div class="zc-divider"></div>
+    <p class="zc-move-label" style="color:${c.eyebrowColor}">${c.moveLabel}</p>
+    <p class="zc-move" style="color:${c.headlineColor}">${c.move}</p>
+  </div>`;
+}
+function showResults(xRaw, yRaw) {
+  document.getElementById('quiz').style.display = 'none';
+  const r = document.getElementById('results');
+  r.style.display = 'block';
+  const xPct = Math.round((xRaw / MAX) * 100);
+  const yPct = Math.round((yRaw / MAX) * 100);
+  const zone = getZone(xPct, yPct);
+  const headlines = {
+    sac: 'In this situation you are carrying more than your share.',
+    foc: 'In this situation you are taking control to ensure the outcome.',
+    o2:  'In this situation you are in all-in partnership.'
+  };
+  const subtexts = {
+    sac: 'Your focus on others is ahead of your focus on yourself. That gap is where the operating alone lives.',
+    foc: 'Your focus on yourself is ahead of your focus on others. That gap is where the operating alone lives.',
+    o2:  'Both wants are on the table. That is rare. And it is exactly as hard to stay here as it looks.'
+  };
+  r.innerHTML = `
+    <div class="res-header">
+      <h2 class="res-title">${headlines[zone]}</h2>
+      <p class="res-sub">${subtexts[zone]}</p>
+    </div>
+    <div class="map-wrap">
+      <p class="map-eyebrow">Your dot on the model</p>
       <div class="map-inner">
-        <div class="axis-y">What others want (consideration)</div>
-        <div class="canvas-col">
-          <canvas id="mapChart"></canvas>
-          <p class="axis-x">What I want (self-advocacy)</p>
+        <div class="axis-y">What others want</div>
+        <div class="canvas-outer">
+          <div class="sq"><canvas id="mapChart" role="img" aria-label="Thoughtly model. Zone: ${COPY[zone].eyebrow}."></canvas></div>
+          <p class="axis-x">What I want</p>
         </div>
       </div>
     </div>
-
-    <div id="zone-card-wrap"></div>
-
-    <div class="ace-box">
-      <h3 class="ace-title">Want the full picture?</h3>
-      <p class="ace-body">This shows you the zone. The ACE Assessment maps the specific traits driving you there — exactly where you overfunction, where you hold back, and what shifts first.</p>
-      <a href="https://ace.bethoughtly.com/" target="_blank" style="text-decoration:none;">
-        <button type="button" class="btn-ace">Take the full ACE Assessment →</button>
-      </a>
+    ${zoneCard(zone)}
+    <div class="bridge">
+      <p class="bridge-title">This is your dot. Want to know what is driving it?</p>
+      <p class="bridge-body">The full ACE Assessment goes 138 questions deep. It maps exactly where you overfunction, where you underadvocate, and the specific traits keeping you out of the O₂ zone. You get a full breakdown on a 1:1 Zoom call.</p>
+      <a href="https://ace.bethoughtly.com/" class="bridge-btn">Take the full ACE Assessment ↗</a>
     </div>
-
-    <div style="text-align:center;margin-top:14px;">
-      <button type="button" class="btn-secondary" onclick="restart()">Retake the quiz</button>
-    </div>
-  </div>
-
-  <!-- COACH -->
-  <div id="s-coach" class="screen">
-    <div class="coach-header">
-      <h2 class="coach-title">Thoughtly AI</h2>
-      <button type="button" class="btn-secondary" onclick="restart()">Start over</button>
-    </div>
-    <div id="zone-indicator"></div>
-    <div class="chat-area" id="chat"></div>
-    <div class="input-row">
-      <input type="text" class="chat-input" id="user-input" placeholder="Type your response…" onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendMsg()">
-      <button type="button" class="chat-send" id="send-btn" onclick="sendMsg()">Send</button>
-    </div>
-  </div>
-
-</div>
-</main>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <a class="footer-logo" href="https://www.bethoughtly.com" aria-label="Thoughtly home">
-      <img src="data:image/png;base64,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" alt="Thoughtly icon">
-    </a>
-    <div class="footer-socials">
-      <a href="https://www.facebook.com/share/1CwT12dG3w/" aria-label="Facebook" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/allisonwgarner" aria-label="Instagram" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg>
-      </a>
-      <a href="https://www.youtube.com/@thoughtly" aria-label="YouTube" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" class="yt-play"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/allison-garner-92bb393" aria-label="LinkedIn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a href="https://www.tiktok.com/@t.houghtly" aria-label="TikTok" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
-      </a>
-    </div>
-    <p class="footer-copy">© 2026 Thoughtly · bethoughtly.com</p>
-  </div>
-</footer>
-
-<script>
-document.addEventListener('scroll', () => {
-  document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
-});
-
-const Qs = [
-  { text: "I clearly express what I want — even when it's uncomfortable or might disappoint someone.", type:'adv' },
-  { text: "When something isn't being done the right way, I step in and fix it myself.", type:'adv' },
-  { text: "I've asked for input, but when it doesn't match what I already know is right, I go with my own judgment.", type:'adv' },
-  { text: "If I don't stay on top of it, it won't get done right. I can't just hand it off.", type:'adv' },
-  { text: "I make decisions that affect others without asking what they want first.", type:'adv' },
-  { text: "I say yes to things I don't actually want to do because I don't want to let anyone down.", type:'con' },
-  { text: "I take things on myself because it's easier than asking — I don't want to be a burden.", type:'con' },
-  { text: "I feel frustrated that others don't step up, but I handle it anyway and tell myself it's fine.", type:'con' },
-  { text: "I hold back what I really want to keep things smooth — it's not worth the confrontation.", type:'con' },
-  { text: "I invite others to take ownership of things, even when they'd do it differently than I would.", type:'con' },
-];
-
-const ZONE_CONTENT = {
-  ss: {
-    cls:'ss', kicker:'Self-sacrificing',
-    headline:"You're not doing it because you're a pushover.",
-    body:`<p>You're doing it because somewhere along the way you learned that taking care of everyone else was safer than asking for what you want.</p><p>So you say yes when you mean no. You figure it out so you don't have to ask. You stay quiet so things don't get complicated. And you tell yourself it's fine.</p><p>It's not that you don't have needs. You just stopped believing they were worth the disruption.</p><p>Here's what that costs you. Not just your energy. The people around you never learn to step up because you keep doing it for them. You end up more alone the harder you try to hold it all together.</p><p>You didn't get here because you're weak. You got here because you're capable and you care. And somewhere along the way, those two things became a reason to disappear.</p>`,
-    moveLabel:'Your next move',
-    moveText:'Self-advocacy. Not loudly. Just clearly. Name one thing you actually want in your next important conversation — before you ask what anyone else needs.'
-  },
-  sf: {
-    cls:'sf', kicker:'Self-focusing',
-    headline:"You're not a control freak.",
-    body:`<p>You just haven't seen enough evidence that other people will care as much as you do. So you stopped waiting and started doing it yourself.</p><p>You step in. You fix it. You make the call. And nine times out of ten, it works. So you do it again.</p><p>It's not about distrust. It's that you don't trust yourself to handle the discomfort if someone else drops the ball. So you eliminate the risk. You carry it.</p><p>Here's what that costs you. The people around you have stopped trying to prove you wrong. They've learned that you'll take it back. So they let you. And now you're doing everything alone and calling it leadership.</p><p>You're not doing this because you're arrogant. You're doing it because you care deeply and you haven't found a way to let that care live in other people yet.</p>`,
-    moveLabel:'Your next move',
-    moveText:'Consideration. Before you act, ask what the other person needs here. Not as a formality. As a real question. One conversation where you wait for the answer before you move.'
-  },
-  o2: {
-    cls:'o2', kicker:'O₂ Zone',
-    headline:"You're operating in partnership right now.",
-    body:`<p>People step up without being asked. You say what you want without guilt. Trust flows in both directions. Everyone is in it together.</p><p>This is rare. Most people pass through this zone without recognizing it. They're too busy managing, accommodating, or pushing through to notice that something is actually working.</p><p>The O₂ Zone isn't a destination you arrive at and stay. It's something you return to. Intentionally. Repeatedly. Especially when the stakes get high and every instinct tells you to either take over or back down.</p><p>You're here right now. That matters. The question worth asking: what makes it hard to stay?</p>`,
-    moveLabel:'Your next move',
-    moveText:"Notice what pulls you out. The moment you feel the urge to just handle it, or the moment you go quiet to keep the peace — that's your signal. That's where the work is."
-  },
-  mixed: {
-    cls:'mixed', kicker:'Mixed pattern',
-    headline:"You shift zones depending on the situation.",
-    body:`<p>That's the most common pattern. You're not consistently self-focused or self-sacrificing. You move between them depending on who's in the room, what's at stake, and how much sleep you got.</p><p>The middle isn't neutral. It means the pattern is contextual. Which means there are specific relationships, specific moments, specific topics where you reliably go it alone — you just haven't named them yet.</p><p>Think about the last time something felt really hard or really off. Did you take it on alone so no one had to deal with it? Or did you take control so no one could get it wrong? That's your real pattern.</p>`,
-    moveLabel:'Your next move',
-    moveText:'Pick one situation that keeps showing up for you. Not in general. A specific one. And ask yourself: in that moment, am I disappearing or am I taking over? That answer tells you everything.'
-  }
-};
-
-const SYSTEM_PROMPT = `You are the Thoughtly AI, a coaching tool built on Allison's Thoughtly model. Guide people through the IDEA process (Identify, Define, Experiment, Adjust) toward all-in partnership.\n\nTHE MODEL:\nX axis = self-advocacy (what I want). Y axis = consideration (what others want).\nSELF-SACRIFICING: High consideration, low advocacy. Says yes when meaning no. Does not want to burden others. Root: belief that being oneself is not enough. Makes themselves useful, becomes low maintenance, disappears.\nSELF-FOCUSING: High advocacy, low consideration. Steps in, fixes, overrides. Root: cannot trust themselves to handle the discomfort if others do not come through. Tragedy: deep caring is experienced as not believing in people.\nO2 ZONE: Narrow diagonal band. Balanced advocacy and consideration. Rare and hard to sustain.\nKEY: Both zones feel completely justified. Not character flaws. Quiet accumulation into isolation.\n\nCOACHING STYLE: Warm, direct, precise. One question at a time. 3 to 5 sentences max. Use their words. After ADJUST, mention the ACE Assessment (138 questions, reviewed 1:1 on Zoom with Allison) as the full picture.`;
-
-let answers = new Array(10).fill(null);
-let zone = null, xPct = 0, yPct = 0, chatHistory = [], isLoading = false, chartInstance = null;
-
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (id === 's-quiz') renderQuestions();
+    <button class="retake" onclick="retake()">Retake the quiz</button>`;
+  setTimeout(() => drawMap(xPct, yPct, zone), 80);
 }
-
-function renderQuestions() {
-  document.getElementById('questions-wrap').innerHTML = Qs.map((q, i) => `
-    <div class="q-card" id="qc-${i}">
-      <p class="q-num">Question ${i + 1} of 10</p>
-      <p class="q-text">${q.text}</p>
-      <div class="scale-row">${[1,2,3,4,5,6,7].map(v =>
-        `<button type="button" class="scale-btn" onclick="selectAnswer(${i},${v},'${q.type}')" id="sb-${i}-${v}">${v}</button>`
-      ).join('')}</div>
-      <div class="scale-ends"><span class="scale-end">Never</span><span class="scale-end">Always</span></div>
-    </div>`).join('');
-}
-
-function selectAnswer(qi, val, type) {
-  answers[qi] = val;
-  for (let v = 1; v <= 7; v++) {
-    const b = document.getElementById(`sb-${qi}-${v}`);
-    b.className = 'scale-btn';
-    if (v === val) b.classList.add(`sel-${type}`);
-  }
-  document.getElementById(`qc-${qi}`)?.classList.add('answered');
-  const n = answers.filter(a => a !== null).length;
-  document.getElementById('prog').style.width = (n / 10 * 100) + '%';
-  document.getElementById('prog-count').textContent = `${n} of 10`;
-  document.getElementById('submit-btn').disabled = n < 10;
-}
-
-function calcResults() {
-  const advRaw = answers.slice(0, 5).reduce((a, b) => a + b, 0);
-  const conRaw = answers.slice(5, 10).reduce((a, b) => a + b, 0);
-  xPct = Math.round((advRaw / 35) * 100);
-  yPct = Math.round((conRaw / 35) * 100);
-  const diff = Math.abs(xPct - yPct);
-  const inO2 = diff <= 12 && xPct >= 35 && xPct <= 70 && yPct >= 35 && yPct <= 70;
-  const isSS = yPct > xPct + 12;
-  const isSF = xPct > yPct + 12;
-  if (inO2) zone = 'o2';
-  else if (isSS) zone = 'self-sacrificing';
-  else if (isSF) zone = 'self-focusing';
-  else zone = 'mixed';
-
-  const key = zone === 'self-sacrificing' ? 'ss' : zone === 'self-focusing' ? 'sf' : zone === 'o2' ? 'o2' : 'mixed';
-  const c = ZONE_CONTENT[key];
-
-  document.getElementById('result-headline').textContent = c.headline;
-  document.getElementById('zone-card-wrap').innerHTML = `
-    <div class="zone-card ${c.cls}">
-      <p class="zone-kicker">${c.kicker}</p>
-      <h3 class="zone-headline">${c.headline}</h3>
-      <div class="zone-body">${c.body}</div>
-      <div class="move-box">
-        <p class="move-label">${c.moveLabel}</p>
-        <p class="move-text">${c.moveText}</p>
-      </div>
-    </div>`;
-
-  showScreen('s-result');
-  setTimeout(() => drawMap(xPct, yPct, key), 150);
-}
-
-function drawMap(x, y, key) {
-  const dotColor = key === 'ss' ? '#D85A30' : key === 'sf' ? '#534AB7' : key === 'o2' ? '#1D9E75' : '#1A1917';
-  const gridColor = 'rgba(26,25,23,0.06)';
-  const labelColor = 'rgba(26,25,23,0.35)';
-  const ssFill = 'rgba(216,90,48,0.09)';
-  const sfFill = 'rgba(83,74,183,0.09)';
-  const o2Fill = 'rgba(29,158,117,0.12)';
-  const BAND = 12;
-
-  const zonePlugin = {
-    id: 'zones',
+function drawMap(xPct, yPct, zone) {
+  const dotColors = { sac: '#185FA5', foc: '#993C1D', o2: '#0F6E56' };
+  const gc = 'rgba(0,0,0,0.06)';
+  const lc = 'rgba(0,0,0,0.28)';
+  const sacF = 'rgba(24,95,165,0.10)';   // self-sacrificing (blue, matches its card + dot)
+  const focF = 'rgba(153,60,29,0.10)';   // self-focusing (coral, matches its card + dot)
+  const o2F  = 'rgba(15,110,86,0.16)';   // O2 zone (teal, matches its card + dot)
+  const o2Stroke = 'rgba(15,110,86,0.5)';
+  const T = THRESHOLD;
+  const B = BAND;
+  const zp = {
+    id: 'z',
     beforeDatasetsDraw(chart) {
       const { ctx, chartArea: { left, top, right, bottom, width, height } } = chart;
-      const toX = v => left + (v / 100) * width;
-      const toY = v => bottom - (v / 100) * height;
       ctx.save();
-      ctx.beginPath(); ctx.moveTo(left, top); ctx.lineTo(toX(100 - BAND), top); ctx.lineTo(left, toY(BAND)); ctx.closePath();
-      ctx.fillStyle = ssFill; ctx.fill();
-      ctx.beginPath(); ctx.moveTo(right, bottom); ctx.lineTo(toX(BAND), bottom); ctx.lineTo(right, toY(100 - BAND)); ctx.closePath();
-      ctx.fillStyle = sfFill; ctx.fill();
-      ctx.beginPath(); ctx.moveTo(left, toY(BAND)); ctx.lineTo(toX(100 - BAND), top); ctx.lineTo(right, toY(100 - BAND)); ctx.lineTo(toX(BAND), bottom); ctx.closePath();
-      ctx.fillStyle = o2Fill; ctx.fill();
-      ctx.font = '500 10px DM Sans, sans-serif';
-      ctx.fillStyle = labelColor;
-      ctx.textAlign = 'left'; ctx.fillText('Self-sacrificing', left + 7, top + 14);
-      ctx.textAlign = 'right'; ctx.fillText('Self-focusing', right - 7, bottom - 7);
-      ctx.save(); ctx.translate(toX(54), toY(54)); ctx.rotate(-Math.PI / 4);
-      ctx.textAlign = 'center'; ctx.fillText('O₂ zone · operating together', 0, 0); ctx.restore();
+      const tx = v => left + (v / 100) * width;
+      const ty = v => bottom - ((v / 100) * height);
+      // Base split matches getZone: above the y = x diagonal is self-sacrificing,
+      // below it is self-focusing. There is no tolerance band off the O2 threshold.
+      ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(left, top); ctx.lineTo(right, top); ctx.closePath(); ctx.fillStyle = sacF; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(right, bottom); ctx.lineTo(right, top); ctx.closePath(); ctx.fillStyle = focF; ctx.fill();
+      // O2 zone: only where getZone returns 'o2' — both axes >= THRESHOLD and gap within BAND.
+      ctx.beginPath();
+      ctx.moveTo(tx(T), ty(T));
+      ctx.lineTo(tx(T + B), ty(T));
+      ctx.lineTo(tx(100), ty(100 - B));
+      ctx.lineTo(tx(100), ty(100));
+      ctx.lineTo(tx(100 - B), ty(100));
+      ctx.lineTo(tx(T), ty(T + B));
+      ctx.closePath();
+      ctx.fillStyle = o2F; ctx.fill();
+      ctx.strokeStyle = o2Stroke; ctx.lineWidth = 1.25; ctx.stroke();
+      // y = x divider between the two zones
+      ctx.setLineDash([3, 4]);
+      ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(right, top); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.font = '500 11px DM Sans, sans-serif'; ctx.fillStyle = lc;
+      ctx.textAlign = 'left'; ctx.fillText('Self sacrificing', left + 8, top + 16);
+      ctx.textAlign = 'right'; ctx.fillText('Self focusing', right - 8, bottom - 8);
+      ctx.save();
+      ctx.translate(tx(80), ty(80)); ctx.rotate(-Math.atan(1));
+      ctx.fillStyle = o2Stroke; ctx.textAlign = 'center'; ctx.fillText('O₂ zone', 0, 0);
+      ctx.restore();
       ctx.restore();
     }
   };
-
-  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-
-  chartInstance = new Chart(document.getElementById('mapChart'), {
-    type: 'scatter',
-    plugins: [zonePlugin],
-    data: {
-      datasets: [{
-        data: [{ x, y }],
-        backgroundColor: dotColor,
-        borderColor: '#FFFFFF',
-        borderWidth: 2.5,
-        pointRadius: 10,
-        pointHoverRadius: 12
-      }]
-    },
+  new Chart(document.getElementById('mapChart'), {
+    type: 'scatter', plugins: [zp],
+    data: { datasets: [{ data: [{ x: xPct, y: yPct }], backgroundColor: dotColors[zone], borderColor: '#fff', borderWidth: 2.5, pointRadius: 12, pointHoverRadius: 14 }] },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: { duration: 800, easing: 'easeOutQuart' },
+      responsive: true, maintainAspectRatio: true, aspectRatio: 1,
+      animation: { duration: 900, easing: 'easeOutQuart' },
       scales: {
-        x: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: labelColor, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } },
-        y: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: labelColor, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } }
+        x: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } },
+        y: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } }
       },
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => `Self-advocacy: ${ctx.parsed.x}%  ·  Consideration: ${ctx.parsed.y}%` } }
-      }
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `Advocacy: ${c.parsed.x}%  ·  Consideration: ${c.parsed.y}%` } } }
     }
   });
 }
-
-function startCoach() {
-  showScreen('s-coach');
-  const key = zone === 'self-sacrificing' ? 'ss' : zone === 'self-focusing' ? 'sf' : zone === 'o2' ? 'o2' : 'mixed';
-  document.getElementById('zone-indicator').innerHTML = `<span class="zone-badge ${key}">${ZONE_CONTENT[key].kicker}</span>`;
-  const ctx = `User completed the Operating Alone Score. Self-advocacy (X): ${xPct}%, Consideration (Y): ${yPct}%. Zone: ${zone}. They just read their result. Start the coaching conversation by briefly acknowledging their pattern and asking about one specific situation where this is showing up for them right now. Warm, direct, one question only.`;
-  chatHistory = [{ role: 'user', content: ctx }];
-  callAPI();
-}
-
-function addMsg(role, text) {
-  const chat = document.getElementById('chat');
-  const msg = document.createElement('div'); msg.className = `msg ${role}`;
-  msg.innerHTML = `<div class="avatar ${role}">${role === 'ai' ? 'T' : 'You'}</div><div class="bubble ${role}">${text.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>')}</div>`;
-  chat.appendChild(msg); chat.scrollTop = chat.scrollHeight;
-}
-
-function showTyping() {
-  const chat = document.getElementById('chat');
-  const t = document.createElement('div'); t.id = 'typing'; t.className = 'msg';
-  t.innerHTML = `<div class="avatar ai">T</div><div class="bubble"><div style="display:flex;gap:5px;align-items:center;padding:2px 0"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
-  chat.appendChild(t); chat.scrollTop = chat.scrollHeight;
-}
-
-async function callAPI() {
-  isLoading = true; document.getElementById('send-btn').disabled = true; showTyping();
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: SYSTEM_PROMPT, messages: chatHistory })
-    });
-    const data = await res.json();
-    document.getElementById('typing')?.remove();
-    const text = data.content?.filter(b => b.type === 'text').map(b => b.text).join('') || 'Something went wrong. Please try again.';
-    chatHistory.push({ role: 'assistant', content: text }); addMsg('ai', text);
-  } catch (e) {
-    document.getElementById('typing')?.remove();
-    addMsg('ai', 'Having trouble connecting. Please try again in a moment.');
-  }
-  isLoading = false; document.getElementById('send-btn').disabled = false;
-  document.getElementById('user-input').focus();
-}
-
-function sendMsg() {
-  if (isLoading) return;
-  const input = document.getElementById('user-input');
-  const text = input.value.trim(); if (!text) return;
-  input.value = ''; addMsg('user', text); chatHistory.push({ role: 'user', content: text }); callAPI();
-}
-
-function restart() {
-  answers = new Array(10).fill(null); zone = null; xPct = 0; yPct = 0; chatHistory = []; isLoading = false;
-  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-  document.getElementById('chat').innerHTML = '';
-  document.getElementById('user-input').value = '';
-  showScreen('s-intro');
+function retake() {
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('quiz').style.display = 'block';
+  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+  document.getElementById('err').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>
