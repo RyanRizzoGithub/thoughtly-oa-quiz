@@ -112,8 +112,8 @@
   <div id="quiz">
     <div class="header">
       <h1 class="quiz-title">The Operating Alone Score</h1>
-      <p class="quiz-sub">Think of one situation in your life that is not going the way you want it to. Hold that situation in mind as you answer these ten questions.</p>
-      <p class="quiz-meta">10 questions &nbsp;&nbsp;·&nbsp;&nbsp; about 2 minutes &nbsp;&nbsp;·&nbsp;&nbsp; instant results</p>
+      <p class="quiz-sub">Think of one situation in your life that is not going the way you want it to. Hold that situation in mind as you answer these 14 questions.</p>
+      <p class="quiz-meta">14 questions &nbsp;&nbsp;·&nbsp;&nbsp; about 2 minutes &nbsp;&nbsp;·&nbsp;&nbsp; instant results</p>
       <p class="beta-note">This is a beta version we're testing. Your feedback helps us make it better.</p>
     </div>
     <div class="situation-box">
@@ -148,17 +148,21 @@
 <script>
 const QY = [
   {id:'y1', text:'I am more focused on how others are feeling than on what I actually want.'},
-  {id:'y2', text:'I am letting things slide that probably should not slide.'},
+  {id:'y2', text:'I am giving more in this situation than I am getting back, and I don\'t think anyone has noticed.'},
   {id:'y3', text:'I am staying quiet or holding back information because I do not want to upset anyone.'},
-  {id:'y4', text:'I have said yes to something because I did not want to disappoint anyone.'},
+  {id:'y4', text:'I am saying yes to things I do not want to do, because I do not want to disappoint anyone.'},
   {id:'y5', text:'When someone is upset I find myself doing things to make them feel better even when it is not my place.'},
+  {id:'y6', text:'I am anticipating what this person needs before they\'ve even asked for it.'},
+  {id:'y7', text:'I am avoiding a conversation I know I need to have.'},
 ];
 const QX = [
   {id:'x1', text:'I already know what needs to happen and I am moving on it.'},
   {id:'x2', text:'I am trusting myself more than I am trusting others.'},
-  {id:'x3', text:'I know what the right thing to do is and I will do it.'},
-  {id:'x4', text:'I am handling it myself rather than explaining what I need or want from someone else.'},
-  {id:'x5', text:'I want it done a certain way so I will do it myself.'},
+  {id:'x3', text:'I am moving forward because I believe it\'s the right call, even if it\'s not what they wanted to hear.'},
+  {id:'x4', text:'Getting this right matters more right now than making sure everyone\'s on board with how we get there.'},
+  {id:'x5', text:'I am willing to do the harder thing myself so we get the result that matters.'},
+  {id:'x6', text:'I have already decided how this will go, regardless of what anyone else says.'},
+  {id:'x7', text:'I am protecting my plan more than I am listening to theirs.'},
 ];
 function buildQs(qs, cid) {
   const c = document.getElementById(cid);
@@ -187,7 +191,7 @@ function submitQ() {
   if (!ok) { document.getElementById('err').style.display = 'block'; return; }
   showResults(xSum, ySum);
 }
-const MAX = 35;
+const MAX = 49;
 const THRESHOLD = 57;
 const BAND = 8;
 function getZone(x, y) {
