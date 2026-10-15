@@ -1,105 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Operating Alone Score | Thoughtly</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The Operating Alone Score</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --teal-light: #E8F5F3;
-    --teal-dark: #0F6E56;
-    --teal-deep: #085041;
-    --teal-border: #9FE1CB;
-    --blue: #185FA5;
-    --blue-light: #EBF3FB;
-    --blue-border: #B5D4F4;
-    --blue-dark: #0C447C;
-    --coral: #993C1D;
-    --coral-light: #FAF0EB;
-    --coral-border: #F5C4B3;
-    --coral-dark: #712B13;
-    --sand: #F5F2ED;
-    --sand-mid: #E8E4DC;
-    --ink: #1A1A18;
-    --ink-mid: #4A4A46;
-    --ink-light: #8A8A84;
-    --white: #FFFFFF;
-    --radius: 12px;
-    --radius-sm: 8px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--ink); -webkit-font-smoothing: antialiased; min-height: 100vh; padding: 0; }
-  .site-header { position: sticky; top: 0; z-index: 200; background: var(--sand); border-bottom: 1px solid var(--sand-mid); box-shadow: 0 1px 16px rgba(26,25,23,0.06); padding: 20px 24px; }
-  .header-inner { display: flex; justify-content: center; align-items: center; gap: 12px; }
-  .header-logo { display: block; text-decoration: none; line-height: 0; }
-  .header-logo img { height: 48px; width: auto; display: block; }
-  @media (max-width: 600px) { .header-logo img { height: 36px; } }
-  .page { max-width: 680px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
-  .header { text-align: center; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--sand-mid); }
-  .brand { font-family: 'DM Serif Display', serif; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 1rem; }
-  .beta-badge { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral-dark); background: var(--coral-light); border: 1px solid var(--coral-border); border-radius: 999px; padding: 3px 9px; line-height: 1; }
-  .beta-note { font-size: 12px; color: var(--ink-light); margin-top: 0.75rem; font-style: italic; }
-  .quiz-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 5vw, 40px); font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 0.75rem; }
-  .quiz-sub { font-size: 16px; color: var(--ink-mid); line-height: 1.65; max-width: 480px; margin: 0 auto 1rem; }
-  .quiz-meta { font-size: 13px; color: var(--ink-light); letter-spacing: 0.04em; }
-  .situation-box { background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1.5rem; margin-bottom: 1.5rem; }
-  .situation-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 10px; }
-  .situation-text { font-size: 15px; color: var(--ink); line-height: 1.7; }
-  .scale-bar { display: flex; align-items: center; justify-content: center; margin: 1.75rem 0 2rem; background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1rem 1.25rem; gap: 0; }
-  .scale-end { font-size: 12px; color: var(--ink-mid); white-space: nowrap; flex-shrink: 0; }
-  .scale-end span { display: block; font-size: 11px; color: var(--ink-light); margin-top: 2px; }
-  .scale-nums { display: flex; gap: 6px; margin: 0 12px; }
-  .scale-num { width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--sand); border: 1px solid var(--sand-mid); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--ink-light); }
-  .ctx-block { background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1.5rem; margin-bottom: 1.25rem; }
-  .ctx-header { font-size: 14px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--sand-mid); }
-  .ctx-header strong { color: var(--ink); font-weight: 500; }
-  .sec-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.75rem; padding-bottom: 6px; border-bottom: 1px solid var(--sand-mid); }
-  .q-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--sand-mid); }
-  .q-row:last-child { border-bottom: none; }
-  .q-text { flex: 1; font-size: 14px; color: var(--ink); line-height: 1.6; padding-top: 4px; }
-  .q-btns { display: flex; gap: 5px; flex-shrink: 0; }
-  .q-btns label { cursor: pointer; }
-  .q-btns input[type=radio] { display: none; }
-  .rb { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--sand-mid); background: var(--sand); font-size: 13px; font-weight: 400; color: var(--ink-light); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.12s ease; font-family: 'DM Sans', sans-serif; }
-  .rb:hover { border-color: var(--ink-light); color: var(--ink); }
-  input:checked + .rb { background: var(--teal-dark); color: var(--white); border-color: var(--teal-dark); font-weight: 500; }
-  .sub-btn { width: 100%; margin-top: 2rem; padding: 16px; background: var(--teal-dark); color: var(--white); border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; cursor: pointer; transition: background 0.15s ease; letter-spacing: 0.02em; }
-  .sub-btn:hover { background: var(--teal-deep); }
-  .err { font-size: 13px; color: #C0392B; margin-top: 10px; text-align: center; display: none; }
-  .res-header { margin-bottom: 2rem; }
-  .res-title { font-family: 'DM Serif Display', serif; font-size: clamp(24px, 4vw, 34px); font-weight: 400; color: var(--ink); line-height: 1.25; margin-bottom: 0.75rem; }
-  .res-sub { font-size: 16px; color: var(--ink-mid); line-height: 1.7; }
-  .map-wrap { background: var(--white); border-radius: var(--radius); border: 1px solid var(--sand-mid); padding: 1.5rem; margin-bottom: 1.5rem; }
-  .map-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1rem; }
-  .map-inner { display: flex; gap: 10px; align-items: center; }
-  .axis-y { font-size: 11px; color: var(--ink-light); writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); white-space: nowrap; flex-shrink: 0; letter-spacing: 0.03em; }
-  .canvas-outer { flex: 1; display: flex; flex-direction: column; align-items: stretch; }
-  .sq { position: relative; width: 100%; padding-bottom: 100%; }
-  .sq canvas { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
-  .axis-x { font-size: 11px; color: var(--ink-light); text-align: center; margin-top: 8px; letter-spacing: 0.03em; }
-  .zc { border-radius: var(--radius); padding: 1.5rem; border: 1px solid transparent; margin-bottom: 1.25rem; }
-  .zc-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-  .zc-headline { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; line-height: 1.4; margin-bottom: 14px; }
-  .zc-body p { font-size: 14px; line-height: 1.8; margin-bottom: 12px; }
-  .zc-body p:last-child { margin-bottom: 0; }
-  .zc-body ul { margin: 8px 0 12px 0; padding: 0; list-style: none; }
-  .zc-body ul li { font-size: 14px; line-height: 1.7; padding: 4px 0 4px 18px; position: relative; }
-  .zc-body ul li::before { content: ""; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.4; }
-  .zc-divider { height: 1px; background: rgba(0,0,0,0.08); margin: 16px 0; }
-  .zc-move-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-  .zc-move { font-size: 14px; line-height: 1.65; font-style: italic; }
-  .bridge { background: var(--teal-light); border-radius: var(--radius); border: 2px solid var(--teal-border); padding: 1.5rem; margin-bottom: 1.25rem; }
-  .bridge-title { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; color: var(--teal-deep); margin-bottom: 8px; }
-  .bridge-body { font-size: 14px; color: var(--teal-dark); line-height: 1.7; margin-bottom: 1.25rem; }
-  .bridge-btn { display: inline-block; padding: 13px 24px; background: var(--teal-dark); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.15s ease; }
-  .bridge-btn:hover { background: var(--teal-deep); }
-  .retake { display: block; width: 100%; padding: 13px; text-align: center; background: var(--white); border: 1px solid var(--sand-mid); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: background 0.15s ease; }
-  .retake:hover { background: var(--sand); }
-  @media (max-width: 480px) { .rb { width: 27px; height: 27px; font-size: 11px; } .q-btns { gap: 3px; } .scale-nums { gap: 3px; } .scale-num { width: 24px; height: 24px; } }
+/* Thoughtly brand, single light theme by design. One column; one question per screen; results replace the quiz. */
+:root {
+  --teal-light:#E8F5F3; --teal-dark:#0F6E56; --teal-deep:#085041; --teal-border:#9FE1CB;
+  --blue:#185FA5; --blue-light:#EBF3FB; --blue-border:#B5D4F4; --blue-dark:#0C447C;
+  --coral:#993C1D; --coral-light:#FAF0EB; --coral-border:#F5C4B3; --coral-dark:#712B13;
+  --sand:#F5F2ED; --sand-mid:#E8E4DC; --ink:#1A1A18; --ink-mid:#4A4A46; --ink-light:#8A8A84; --white:#FFFFFF;
+  --radius:12px; --radius-sm:8px;
+  --serif:'DM Serif Display', Georgia, serif; --sans:'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: light;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:var(--sans); background:var(--sand); color:var(--ink); }
+
+/* Sticky site header with Thoughtly logo + Beta badge */
+.site-header { position:sticky; top:0; z-index:200; background:var(--sand); border-bottom:1px solid var(--sand-mid); box-shadow:0 1px 16px rgba(26,25,23,0.06); padding:20px 24px; }
+.header-inner { display:flex; justify-content:center; align-items:center; gap:12px; }
+.header-logo { display:block; text-decoration:none; line-height:0; }
+.header-logo img { height:48px; width:auto; display:block; }
+@media (max-width:600px){ .header-logo img { height:36px; } }
+.beta-badge { font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--coral-dark); background:var(--coral-light); border:1px solid var(--coral-border); border-radius:999px; padding:3px 9px; line-height:1; }
+.beta-note { font-size:12px; color:var(--ink-light); margin-top:.75rem; font-style:italic; }
+
+.page { max-width:680px; margin:0 auto; padding-block:2rem 4rem; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+.brand { font-family:var(--serif); font-size:13px; letter-spacing:.15em; text-transform:uppercase; color:var(--teal-dark); margin-bottom:1rem; }
+.header { text-align:center; margin-bottom:2rem; padding-bottom:2rem; border-bottom:1px solid var(--sand-mid); }
+.quiz-title { font-family:var(--serif); font-size:clamp(28px,5vw,40px); font-weight:400; line-height:1.2; margin-bottom:.75rem; text-wrap:balance; }
+.quiz-sub { font-size:16px; color:var(--ink-mid); line-height:1.65; max-width:480px; margin:0 auto 1rem; }
+.quiz-meta { font-size:13px; color:var(--ink-light); letter-spacing:.04em; }
+.box { background:var(--white); border-radius:var(--radius); border:1px solid var(--sand-mid); padding:1.5rem; margin-bottom:1.25rem; }
+.eyebrow { font-size:10px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--teal-dark); margin-bottom:10px; }
+.box p.txt { font-size:15px; line-height:1.7; }
+.rules { list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:6px; }
+.rules li { font-size:14px; color:var(--ink-mid); line-height:1.6; padding-left:18px; position:relative; }
+.rules li::before { content:""; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--teal-dark); opacity:.5; }
+.sub-btn { width:100%; margin-top:1rem; padding:16px; background:var(--teal-dark); color:var(--white); border:none; border-radius:var(--radius); font:500 16px var(--sans); letter-spacing:.02em; cursor:pointer; transition:background .15s; }
+.sub-btn:hover { background:var(--teal-deep); }
+button:focus-visible, a:focus-visible { outline:3px solid var(--teal-border); outline-offset:3px; }
+
+/* question screen */
+.progress { display:flex; gap:5px; margin-bottom:1.5rem; }
+.progress span { flex:1; height:4px; border-radius:2px; background:var(--sand-mid); }
+.progress span.done { background:var(--teal-dark); }
+.progress span.now { background:var(--teal-border); }
+.q-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:.4rem; }
+.q-theme { font-family:var(--serif); font-size:clamp(30px,6vw,40px); line-height:1.1; }
+.q-count { font-size:13px; color:var(--ink-light); font-variant-numeric:tabular-nums; }
+.q-ask { font-size:15px; color:var(--ink-mid); margin-bottom:1.25rem; }
+.choices { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width:540px){ .choices { grid-template-columns:1fr; } }
+.choice { font:inherit; text-align:left; color:var(--ink); background:var(--white); border:1.5px solid var(--sand-mid); border-radius:var(--radius); padding:1.25rem; min-height:120px; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:border-color .12s, background .12s; }
+.choice:hover { border-color:var(--ink-light); }
+.choice.picked { border-color:var(--teal-dark); background:var(--teal-light); }
+.choice .tag { width:28px; height:28px; border-radius:var(--radius-sm); background:var(--sand); border:1px solid var(--sand-mid); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--ink-light); }
+.choice.picked .tag { background:var(--teal-dark); border-color:var(--teal-dark); color:var(--white); }
+.choice .ctext { font-size:15px; line-height:1.6; }
+.back { margin-top:1.25rem; background:none; border:none; font:14px var(--sans); color:var(--ink-mid); cursor:pointer; padding:6px 0; }
+.back:hover { color:var(--ink); }
+
+/* results */
+.res-header { margin-bottom:2rem; }
+.res-title { font-family:var(--serif); font-size:clamp(24px,4vw,34px); font-weight:400; line-height:1.25; margin-bottom:.75rem; text-wrap:balance; }
+.res-sub { font-size:16px; color:var(--ink-mid); line-height:1.7; }
+.map-inner { display:flex; gap:10px; align-items:center; }
+.axis-y { font-size:11px; color:var(--ink-light); writing-mode:vertical-rl; transform:rotate(180deg); white-space:nowrap; letter-spacing:.03em; }
+.canvas-outer { flex:1; min-width:0; }
+.sq { position:relative; width:100%; padding-bottom:100%; }
+.sq canvas { position:absolute; inset:0; width:100% !important; height:100% !important; }
+.axis-x { font-size:11px; color:var(--ink-light); text-align:center; margin-top:8px; letter-spacing:.03em; }
+.pull { display:flex; flex-direction:column; gap:12px; }
+.pull-top { display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+.pull-strength { font-family:var(--serif); font-size:20px; }
+.pull-count { font-size:13px; color:var(--ink-light); font-variant-numeric:tabular-nums; }
+.meter { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+.meter span { height:10px; border-radius:3px; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; }
+.chips span { font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid; }
+.chips .ss { color:var(--blue-dark); background:var(--blue-light); border-color:var(--blue-border); }
+.chips .sf { color:var(--coral-dark); background:var(--coral-light); border-color:var(--coral-border); }
+.legend { font-size:12px; color:var(--ink-light); }
+.legend b { font-weight:500; }
+.zc { border-radius:var(--radius); padding:1.5rem; border:1px solid; margin-bottom:1.25rem; }
+.zc-eyebrow { font-size:10px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
+.zc-headline { font-family:var(--serif); font-size:20px; font-weight:400; line-height:1.4; margin-bottom:14px; }
+.zc-body p { font-size:14px; line-height:1.8; margin-bottom:12px; }
+.zc-body p:last-child { margin-bottom:0; }
+.zc-body ul { margin:8px 0 12px; list-style:none; }
+.zc-body li { font-size:14px; line-height:1.7; padding:4px 0 4px 18px; position:relative; }
+.zc-body li::before { content:""; position:absolute; left:0; top:13px; width:6px; height:6px; border-radius:50%; background:currentColor; opacity:.4; }
+.zc-divider { height:1px; background:rgba(0,0,0,.08); margin:16px 0; }
+.zc-move-label { font-size:10px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; }
+.zc-move { font-size:14px; line-height:1.65; font-style:italic; }
+.zc.ss { background:var(--blue-light); border-color:var(--blue-border); color:var(--blue); }
+.zc.ss .zc-headline, .zc.ss .zc-move { color:var(--blue-dark); }
+.zc.sf { background:var(--coral-light); border-color:var(--coral-border); color:var(--coral); }
+.zc.sf .zc-headline, .zc.sf .zc-move { color:var(--coral-dark); }
+.note { font-size:14px; line-height:1.7; color:var(--ink-mid); font-style:italic; }
+.o2 { background:var(--white); border-left:3px solid var(--teal-dark); }
+.o2 p { font-size:15px; line-height:1.7; color:var(--ink-mid); }
+.o2 .reflect { font-family:var(--serif); font-size:22px; line-height:1.3; color:var(--teal-deep); margin-top:12px; }
+.bridge { background:var(--teal-light); border-radius:var(--radius); border:2px solid var(--teal-border); padding:1.5rem; margin-bottom:1.25rem; }
+.bridge-title { font-family:var(--serif); font-size:20px; color:var(--teal-deep); margin-bottom:8px; }
+.bridge-body { font-size:14px; color:var(--teal-dark); line-height:1.7; margin-bottom:1.25rem; }
+.bridge-btn { display:inline-block; padding:13px 24px; background:var(--teal-dark); color:var(--white); border-radius:var(--radius-sm); font:500 14px var(--sans); text-decoration:none; }
+.bridge-btn:hover { background:var(--teal-deep); }
+.retake { display:block; width:100%; padding:13px; background:var(--white); border:1px solid var(--sand-mid); border-radius:var(--radius-sm); font:14px var(--sans); color:var(--ink-mid); cursor:pointer; }
+.retake:hover { background:var(--sand); }
+@media (prefers-reduced-motion: reduce){ * { transition:none !important; } }
 </style>
-</head>
-<body>
+
 <header class="site-header">
   <div class="header-inner">
     <a class="header-logo" href="https://www.bethoughtly.com">
@@ -108,106 +122,38 @@
     <span class="beta-badge">Beta</span>
   </div>
 </header>
-<div class="page">
-  <div id="quiz">
-    <div class="header">
-      <h1 class="quiz-title">The Operating Alone Score</h1>
-      <p class="quiz-sub">Think of one situation in your life that is not going the way you want it to. Hold that situation in mind as you answer these 14 questions.</p>
-      <p class="quiz-meta">14 questions &nbsp;&nbsp;·&nbsp;&nbsp; about 2 minutes &nbsp;&nbsp;·&nbsp;&nbsp; instant results</p>
-      <p class="beta-note">This is a beta version we're testing. Your feedback helps us make it better.</p>
-    </div>
-    <div class="situation-box">
-      <p class="situation-eyebrow">Before you begin</p>
-      <p class="situation-text">Bring to mind one situation that is not going the way you want it to. A relationship. A team. A project. A conversation you keep avoiding. A person who keeps letting you down. Hold that situation in mind as you answer. There are no right answers. Just honest ones.</p>
-    </div>
-    <div class="scale-bar">
-      <div class="scale-end">1<span>Never true</span></div>
-      <div class="scale-nums">
-        <div class="scale-num">1</div><div class="scale-num">2</div><div class="scale-num">3</div>
-        <div class="scale-num">4</div><div class="scale-num">5</div><div class="scale-num">6</div>
-        <div class="scale-num">7</div>
-      </div>
-      <div class="scale-end" style="text-align:right">7<span>Always true</span></div>
-    </div>
-    <div class="ctx-block">
-      <p class="ctx-header">Thinking about this situation, rate how true each statement is for you right now</p>
-      <p class="sec-label">What others want</p>
-      <div id="qs-y"></div>
-    </div>
-    <div class="ctx-block">
-      <p class="ctx-header">Still thinking about this situation, rate how true each statement is for you right now</p>
-      <p class="sec-label">What I want</p>
-      <div id="qs-x"></div>
-    </div>
-    <button class="sub-btn" onclick="submitQ()">Find my dot</button>
-    <p class="err" id="err">Please answer all questions before continuing.</p>
-  </div>
-  <div id="results" style="display:none"></div>
-</div>
+
+<div class="page" id="app"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const QY = [
-  {id:'y1', text:'I am more focused on how others are feeling than on what I actually want.'},
-  {id:'y2', text:'I am giving more in this situation than I am getting back, and I don\'t think anyone has noticed.'},
-  {id:'y3', text:'I am staying quiet or holding back information because I do not want to upset anyone.'},
-  {id:'y4', text:'I am saying yes to things I do not want to do, because I do not want to disappoint anyone.'},
-  {id:'y5', text:'When someone is upset I find myself doing things to make them feel better even when it is not my place.'},
-  {id:'y6', text:'I am anticipating what this person needs before they\'ve even asked for it.'},
-  {id:'y7', text:'I am avoiding a conversation I know I need to have.'},
+const ITEMS = [
+  {theme:'Wants',      ss:'Right now, I’m more tuned in to what they want than to what I want.', sf:'Right now, I’m more tuned in to what I want than to what they want.'},
+  {theme:'Unspoken',   ss:'There’s something I need that I haven’t told them.', sf:'There’s something they want that I haven’t asked them about.'},
+  {theme:'Decisions',  ss:'I’m letting their choices decide what happens to me.', sf:'I’m deciding what should happen without asking what they think.'},
+  {theme:'Slips',      ss:'When they let me down, I cover for it or let it slide.', sf:'When they let me down, I step in and take over.'},
+  {theme:'Self-talk',  ss:'I keep telling myself, “I don’t want to make this harder for them.”', sf:'I keep telling myself, “If I don’t stay on top of this, it will fall apart.”'},
+  {theme:'Protection', ss:'Holding back keeps the peace and keeps me from being the bad guy/gal or disappointing others.', sf:'Staying in control keeps things from getting worse.'},
+  {theme:'Aftermath',  ss:'Afterward, I’m frustrated with myself for letting it go again.', sf:'Afterward, I’m frustrated that I had to step in again.'}
 ];
-const QX = [
-  {id:'x1', text:'I already know what needs to happen and I am moving on it.'},
-  {id:'x2', text:'I am trusting myself more than I am trusting others.'},
-  {id:'x3', text:'I am moving forward because I believe it\'s the right call, even if it\'s not what they wanted to hear.'},
-  {id:'x4', text:'Getting this right matters more right now than making sure everyone\'s on board with how we get there.'},
-  {id:'x5', text:'I am willing to do the harder thing myself so we get the result that matters.'},
-  {id:'x6', text:'I have already decided how this will go, regardless of what anyone else says.'},
-  {id:'x7', text:'I am protecting my plan more than I am listening to theirs.'},
-];
-function buildQs(qs, cid) {
-  const c = document.getElementById(cid);
-  qs.forEach(q => {
-    const d = document.createElement('div');
-    d.className = 'q-row';
-    d.innerHTML = `<span class="q-text">${q.text}</span>
-      <div class="q-btns">${[1,2,3,4,5,6,7].map(n =>
-        `<label><input type="radio" name="${q.id}" value="${n}" onchange="clearErr()"><span class="rb">${n}</span></label>`
-      ).join('')}</div>`;
-    c.appendChild(d);
-  });
-}
-buildQs(QY, 'qs-y');
-buildQs(QX, 'qs-x');
-function clearErr() { document.getElementById('err').style.display = 'none'; }
-function submitQ() {
-  let ok = true, xSum = 0, ySum = 0;
-  [...QY, ...QX].forEach(q => {
-    const v = document.querySelector(`input[name="${q.id}"]:checked`);
-    if (!v) { ok = false; return; }
-    const n = parseInt(v.value);
-    if (QX.find(qq => qq.id === q.id)) xSum += n;
-    else ySum += n;
-  });
-  if (!ok) { document.getElementById('err').style.display = 'block'; return; }
-  showResults(xSum, ySum);
-}
-const MAX = 49;
-const THRESHOLD = 57;
-const BAND = 8;
-function getZone(x, y) {
-  const gap = y - x;
-  if (x >= THRESHOLD && y >= THRESHOLD && Math.abs(gap) <= BAND) return 'o2';
-  if (gap > BAND) return 'sac';
-  if (gap < -BAND) return 'foc';
-  return y >= x ? 'sac' : 'foc';
-}
+
+// Dot position by winning count, on the 0-100 chart (x = What I want, y = What others want).
+const POS = {7:[15,85], 6:[22,78], 5:[30,70], 4:[40,60]};
+const BAND = 8; // O2 band = within 8 points of the diagonal, same as the original chart
+
 const COPY = {
-  sac: {
-    eyebrow: 'Self sacrificing zone',
-    bg: '#EBF3FB', border: '#B5D4F4',
-    eyebrowColor: '#185FA5', headlineColor: '#0C447C', bodyColor: '#185FA5',
-    headline: 'You do this because you care. That part is true and it is real and it matters.',
-    body: `
+  ss: {
+    zone:'Self sacrificing zone',
+    title:'In this situation, you are being pulled toward self sacrificing.',
+    sub:'Their wants are on the table. Yours mostly are not. You are keeping things moving by carrying more and asking for less.',
+    strength:{
+      strong:'This pull is running the situation right now. Almost everything on the table belongs to someone else.',
+      clear:'This pull shows up in most of how you are handling this, though not all of it.',
+      slight:'You are close to the line. Some of what you want is already on the table, and a small move would tip this toward partnership.'
+    },
+    moveName:'Self-Advocacy', moveDir:'right',
+    headline:'You do this because you care. That part is true and it is real and it matters.',
+    body:`
       <p>And here is what the research confirms. It works. Self sacrifice reduces conflict immediately. It keeps people connected. It makes you indispensable. Studies show it produces genuine positive outcomes in the short term. People feel supported. Things get done. You show up when others do not. You carry more. You volunteer. You help out. And you tell yourself, correctly, that this is the right thing to do.</p>
       <p>The problem is not the strategy. The problem is the long game.</p>
       <p>Research from the Journal of Occupational and Organizational Psychology shows that self sacrifice produces both positive and negative outcomes simultaneously. What starts as showing up for others gradually becomes tolerating dynamics that others would walk away from. Over time a predictable pattern emerges:</p>
@@ -218,17 +164,21 @@ const COPY = {
         <li>A quiet resentment builds, not because people are ungrateful, but because you stopped asking for what you need</li>
       </ul>
       <p>And the research is clear on where this ends. High levels of altruistic motivation combined with a diminished ability to say no is one of the strongest predictors of burnout.</p>
-      <p>You end up doing it alone. Not because you failed. Because the strategy worked exactly as it was designed to.</p>
-    `,
-    moveLabel: 'Your one move',
-    move: 'Next time someone makes a request, ask for time to think about it before saying yes. Allow yourself the space to think about what you want, what you have the capacity for, and how both your wants and their wants can be met.'
+      <p>You end up doing it alone. Not because you failed. Because the strategy worked exactly as it was designed to.</p>`,
+    move:'Next time someone makes a request, ask for time to think about it before saying yes. Allow yourself the space to think about what you want, what you have the capacity for, and how both your wants and their wants can be met.'
   },
-  foc: {
-    eyebrow: 'Self focusing zone',
-    bg: '#FAF0EB', border: '#F5C4B3',
-    eyebrowColor: '#993C1D', headlineColor: '#712B13', bodyColor: '#993C1D',
-    headline: 'You know what good looks like. You always have. And that is a genuine asset.',
-    body: `
+  sf: {
+    zone:'Self focusing zone',
+    title:'In this situation, you are being pulled toward self focusing.',
+    sub:'Your wants are on the table. Theirs mostly are not. You are keeping things moving by deciding, fixing, and holding the standard yourself.',
+    strength:{
+      strong:'This pull is running the situation right now. Almost everything on the table is yours.',
+      clear:'This pull shows up in most of how you are handling this, though not all of it.',
+      slight:'You are close to the line. Some of what they want is already on the table, and a small move would tip this toward partnership.'
+    },
+    moveName:'Consideration', moveDir:'up',
+    headline:'You know what good looks like. You always have. And that is a genuine asset.',
+    body:`
       <p>And here is what the research confirms. It works. High standards drive results. In high stakes situations, taking control, making the call, and driving toward the outcome is exactly the right strategy. Research confirms that leaders with high standards and strong conviction are more likely to be diligent, more ethical, and more engaged in their work. These are real strengths.</p>
       <p>The problem is not the standard. The problem is the long game.</p>
       <p>Research shows that over time self focusing creates a predictable pattern:</p>
@@ -239,157 +189,210 @@ const COPY = {
         <li>Self focusing is consistently cited as one of the top three reasons employees resign</li>
       </ul>
       <p>Research on perfectionism in leadership adds one more finding worth sitting with. When leaders impose their standards on others rather than creating conditions for others to rise to them, it reduces psychological safety, stifles creativity, and ultimately leads to the leader's own burnout.</p>
-      <p>You end up doing it alone. Not because your standards are wrong. Because the strategy of doing it yourself does not scale.</p>
-    `,
-    moveLabel: 'Your one move',
-    move: 'The next time you feel the urge to step in, ask one question instead. What do you think? Then allow the other person some space to connect their own dots.'
-  },
-  o2: {
-    eyebrow: 'O₂ zone',
-    bg: '#E8F5F0', border: '#9FE1CB',
-    eyebrowColor: '#0F6E56', headlineColor: '#085041', bodyColor: '#0F6E56',
-    headline: 'You have been here before. You may not have had a name for it but you have felt it.',
-    body: `
-      <p>That moment when something clicks. When everyone is in it together. When the work feels less like work and more like momentum.</p>
-      <p>And here is what the research confirms. That feeling is real and it is measurable.</p>
-      <p>The conditions for this state are specific. Research from the National Institutes of Health identifies them as:</p>
-      <ul>
-        <li>Trust between people who are genuinely in it together</li>
-        <li>A shared vision that everyone is walking toward</li>
-        <li>Psychological safety where all wants can be on the table</li>
-        <li>Mutual accountability where nobody is carrying it alone</li>
-      </ul>
-      <p>This is the O₂ zone. Not a negotiation where everyone gives a little. An expansion where everyone gets more than they came in with.</p>
-      <p>The only reason people do not live here more is that it requires something most of us were never taught. To hold what you want and what others want at the same time. Without collapsing into one or the other.</p>
-      <p>You know what it feels like now. Not just for you. For everyone in the room. That is the whole point. It was never just about you getting what you want or them getting what they want. It is about what becomes possible when nobody has to go it alone.</p>
-    `,
-    moveLabel: 'Your one move',
-    move: 'Notice which direction you get pulled when the stakes go up. That direction is your default. Knowing it is an advantage.'
+      <p>You end up doing it alone. Not because your standards are wrong. Because the strategy of doing it yourself does not scale.</p>`,
+    move:'The next time you feel the urge to step in, ask one question instead. What do you think? Then allow the other person some space to connect their own dots.'
   }
 };
-function zoneCard(zKey) {
-  const c = COPY[zKey];
-  return `<div class="zc" style="background:${c.bg};border-color:${c.border}">
-    <p class="zc-eyebrow" style="color:${c.eyebrowColor}">${c.eyebrow}</p>
-    <p class="zc-headline" style="color:${c.headlineColor}">${c.headline}</p>
-    <div class="zc-body" style="color:${c.bodyColor}">${c.body}</div>
-    <div class="zc-divider"></div>
-    <p class="zc-move-label" style="color:${c.eyebrowColor}">${c.moveLabel}</p>
-    <p class="zc-move" style="color:${c.headlineColor}">${c.move}</p>
-  </div>`;
+
+const app = document.getElementById('app');
+let state = fresh();
+let chart = null;
+function fresh(){ return { step:'intro', i:0, answers:Array(7).fill(null), order:ITEMS.map(()=>Math.random()<.5), bothWays:null }; }
+const go = s => { state.step = s; render(); window.scrollTo(0,0); };
+
+function render(){
+  if (chart) { chart.destroy(); chart = null; }
+  ({intro, q:question, check, result})[state.step]();
 }
-function showResults(xRaw, yRaw) {
-  document.getElementById('quiz').style.display = 'none';
-  const r = document.getElementById('results');
-  r.style.display = 'block';
-  const xPct = Math.round((xRaw / MAX) * 100);
-  const yPct = Math.round((yRaw / MAX) * 100);
-  const zone = getZone(xPct, yPct);
-  const headlines = {
-    sac: 'In this situation you are carrying more than your share.',
-    foc: 'In this situation you are taking control to ensure the outcome.',
-    o2:  'In this situation you are in all-in partnership.'
-  };
-  const subtexts = {
-    sac: 'Your focus on others is ahead of your focus on yourself. That gap is where the operating alone lives.',
-    foc: 'Your focus on yourself is ahead of your focus on others. That gap is where the operating alone lives.',
-    o2:  'Both wants are on the table. That is rare. And it is exactly as hard to stay here as it looks.'
-  };
-  r.innerHTML = `
-    <div class="res-header">
-      <h2 class="res-title">${headlines[zone]}</h2>
-      <p class="res-sub">${subtexts[zone]}</p>
+
+function intro(){
+  app.innerHTML = `
+    <div class="header">
+      <h1 class="quiz-title">The Operating Alone Score</h1>
+      <p class="quiz-sub">Which way are you being pulled? Seven quick choices show whose wants are on the table, and the one move that brings you toward partnership.</p>
+      <p class="quiz-meta">7 questions &nbsp;·&nbsp; about 1 minute &nbsp;·&nbsp; instant results</p>
+      <p class="beta-note">This is a beta version we're testing. Your feedback helps us make it better.</p>
     </div>
-    <div class="map-wrap">
-      <p class="map-eyebrow">Your dot on the model</p>
+    <div class="box">
+      <p class="eyebrow">Before you begin</p>
+      <p class="txt">Bring to mind one situation that is not going the way you want it to. A relationship. A team. A project. A conversation you keep avoiding. A person who keeps letting you down. Hold that situation in mind for every question.</p>
+      <ul class="rules">
+        <li>Each question shows two statements. Choose the one that is more true.</li>
+        <li>If both feel true, pick the one that is true more often.</li>
+        <li>If neither fits perfectly, pick the closer one.</li>
+      </ul>
+    </div>
+    <button class="sub-btn" id="start">I have my situation. Start.</button>`;
+  document.getElementById('start').onclick = () => { state.i = 0; go('q'); };
+}
+
+function question(){
+  const i = state.i, it = ITEMS[i];
+  const first = state.order[i] ? 'ss' : 'sf', second = first === 'ss' ? 'sf' : 'ss';
+  const picked = state.answers[i];
+  const card = (side, letter) => `<button class="choice ${picked===side?'picked':''}" data-side="${side}" id="choice-${letter}">
+      <span class="tag">${letter}</span><span class="ctext">${it[side]}</span></button>`;
+  app.innerHTML = `
+    <div class="progress" aria-hidden="true">${ITEMS.map((_,k)=>`<span class="${k<i?'done':k===i?'now':''}"></span>`).join('')}</div>
+    <div class="q-head"><div class="q-theme">${it.theme}</div><div class="q-count">${i+1} of 7</div></div>
+    <p class="q-ask">Thinking about your situation, which is more true right now?</p>
+    <div class="choices">${card(first,'A')}${card(second,'B')}</div>
+    <button class="back" id="back">← Back</button>`;
+  app.querySelectorAll('.choice').forEach(b => b.onclick = () => {
+    state.answers[i] = b.dataset.side;
+    b.classList.add('picked');
+    setTimeout(() => {
+      if (i < 6) { state.i++; go('q'); }
+      else go(tally().win === 4 ? 'check' : 'result');
+    }, 200);
+  });
+  document.getElementById('back').onclick = () => { if (i === 0) go('intro'); else { state.i--; go('q'); } };
+}
+
+function check(){
+  app.innerHTML = `
+    <div class="progress" aria-hidden="true">${ITEMS.map(()=>'<span class="done"></span>').join('')}</div>
+    <div class="q-head"><div class="q-theme">One more</div></div>
+    <p class="q-ask">Your answers were close. Which is closer to true in this situation?</p>
+    <div class="choices">
+      <button class="choice" id="both-a"><span class="tag">A</span><span class="ctext">Both of us have said what we want, and we’re working it out together.</span></button>
+      <button class="choice" id="both-b"><span class="tag">B</span><span class="ctext">Neither of us has really said what we want. I’m just getting through it.</span></button>
+    </div>
+    <button class="back" id="back">← Back</button>`;
+  document.getElementById('both-a').onclick = () => { state.bothWays = false; go('result'); };
+  document.getElementById('both-b').onclick = () => { state.bothWays = true; go('result'); };
+  document.getElementById('back').onclick = () => { state.i = 6; go('q'); };
+}
+
+function tally(){
+  const ss = state.answers.filter(a => a === 'ss').length, sf = 7 - ss;
+  return { ss, sf, side: ss > sf ? 'ss' : 'sf', win: Math.max(ss, sf) };
+}
+
+function result(){
+  const t = tally(), c = COPY[t.side];
+  const level = t.win >= 6 ? 'strong' : t.win === 5 ? 'clear' : 'slight';
+  const label = { strong:'Strong pull', clear:'Clear pull', slight:'Slight pull' }[level];
+  const [x, y] = t.side === 'ss' ? POS[t.win] : [POS[t.win][1], POS[t.win][0]];
+  const meter = Array.from({length:7}, (_,k) => {
+    const isWin = k < t.win;
+    const col = (isWin ? t.side : (t.side==='ss'?'sf':'ss')) === 'ss' ? 'var(--blue)' : 'var(--coral)';
+    return `<span style="background:${col};opacity:${isWin?1:.35}"></span>`;
+  }).join('');
+  const chips = ITEMS.map((it,k) => `<span class="${state.answers[k]}">${it.theme}</span>`).join('');
+
+  app.innerHTML = `
+    <div class="res-header">
+      <h2 class="res-title">${c.title}</h2>
+      <p class="res-sub">${c.sub} ${c.strength[level]}</p>
+    </div>
+
+    <div class="box">
+      <p class="eyebrow" style="color:var(--ink-light)">Your dot on the model</p>
       <div class="map-inner">
         <div class="axis-y">What others want</div>
         <div class="canvas-outer">
-          <div class="sq"><canvas id="mapChart" role="img" aria-label="Thoughtly model. Zone: ${COPY[zone].eyebrow}."></canvas></div>
+          <div class="sq"><canvas id="mapChart" role="img" aria-label="Thoughtly model. Your dot is in the ${c.zone}, with an arrow pointing ${c.moveDir} toward the O2 zone, labeled ${c.moveName}."></canvas></div>
           <p class="axis-x">What I want</p>
         </div>
       </div>
     </div>
-    ${zoneCard(zone)}
+
+    <div class="box pull">
+      <div class="pull-top">
+        <span class="pull-strength">${label}</span>
+        <span class="pull-count">${t.win} of 7 choices toward ${t.side==='ss'?'self sacrificing':'self focusing'}</span>
+      </div>
+      <div class="meter" aria-hidden="true">${meter}</div>
+      <div class="chips">${chips}</div>
+      <p class="legend"><b style="color:var(--blue)">Blue</b> = self sacrificing choice &nbsp;·&nbsp; <b style="color:var(--coral)">Coral</b> = self focusing choice</p>
+      ${state.bothWays ? `<p class="note">Your pull is slight, but that may be because not much of anyone’s wants are on the table. The first move is the same: put one want on the table, yours or theirs.</p>` : ''}
+    </div>
+
+    <div class="zc ${t.side}">
+      <p class="zc-eyebrow">${c.zone}</p>
+      <p class="zc-headline">${c.headline}</p>
+      <div class="zc-body">${c.body}</div>
+    </div>
+
+    <div class="box o2">
+      <p class="eyebrow">Where the arrow points</p>
+      <p>The goal is not to swing to the other side. It is to get both sets of wants on the table. That is the O₂ zone: All In Partnership.</p>
+    </div>
+
     <div class="bridge">
       <p class="bridge-title">This is your dot. Want to know what is driving it?</p>
       <p class="bridge-body">The full ACE Assessment goes 138 questions deep. It maps exactly where you overfunction, where you underadvocate, and the specific traits keeping you out of the O₂ zone. You get a full breakdown on a 1:1 Zoom call.</p>
-      <a href="https://ace.bethoughtly.com/" class="bridge-btn">Take the full ACE Assessment ↗</a>
+      <a href="https://ace.bethoughtly.com/" target="_blank" rel="noopener" class="bridge-btn">Take the full ACE Assessment ↗</a>
     </div>
-    <button class="retake" onclick="retake()">Retake the quiz</button>`;
-  setTimeout(() => drawMap(xPct, yPct, zone), 80);
+    <button class="retake" id="retake">Retake the quiz</button>`;
+
+  document.getElementById('retake').onclick = () => { state = fresh(); go('intro'); };
+  setTimeout(() => drawMap(x, y, t.side), 60);
 }
-function drawMap(xPct, yPct, zone) {
-  const dotColors = { sac: '#185FA5', foc: '#993C1D', o2: '#0F6E56' };
-  const gc = 'rgba(0,0,0,0.06)';
-  const lc = 'rgba(0,0,0,0.28)';
-  const sacF = 'rgba(24,95,165,0.10)';   // self-sacrificing (blue, matches its card + dot)
-  const focF = 'rgba(153,60,29,0.10)';   // self-focusing (coral, matches its card + dot)
-  const o2F  = 'rgba(15,110,86,0.16)';   // O2 zone (teal, matches its card + dot)
-  const o2Stroke = 'rgba(15,110,86,0.5)';
-  const T = THRESHOLD;
+
+function drawMap(xPct, yPct, side){
   const B = BAND;
-  const zp = {
-    id: 'z',
-    beforeDatasetsDraw(chart) {
-      const { ctx, chartArea: { left, top, right, bottom, width, height } } = chart;
+  const dotColor = side === 'ss' ? '#185FA5' : '#993C1D';
+  const arrowColor = '#0F6E56';
+  const lc = 'rgba(0,0,0,0.38)';
+  // Arrow runs from the dot to the edge of the O2 band: right for self sacrificing, up for self focusing.
+  const end = side === 'ss' ? [yPct - B, yPct] : [xPct, xPct - B];
+
+  const zones = {
+    id:'zones',
+    beforeDatasetsDraw(ch){
+      const { ctx, chartArea:{ left, top, right, bottom, width, height } } = ch;
+      const tx = v => left + (v/100)*width, ty = v => bottom - (v/100)*height;
       ctx.save();
-      const tx = v => left + (v / 100) * width;
-      const ty = v => bottom - ((v / 100) * height);
-      // Base split matches getZone: above the y = x diagonal is self-sacrificing,
-      // below it is self-focusing. There is no tolerance band off the O2 threshold.
-      ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(left, top); ctx.lineTo(right, top); ctx.closePath(); ctx.fillStyle = sacF; ctx.fill();
-      ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(right, bottom); ctx.lineTo(right, top); ctx.closePath(); ctx.fillStyle = focF; ctx.fill();
-      // O2 zone: only where getZone returns 'o2' — both axes >= THRESHOLD and gap within BAND.
-      ctx.beginPath();
-      ctx.moveTo(tx(T), ty(T));
-      ctx.lineTo(tx(T + B), ty(T));
-      ctx.lineTo(tx(100), ty(100 - B));
-      ctx.lineTo(tx(100), ty(100));
-      ctx.lineTo(tx(100 - B), ty(100));
-      ctx.lineTo(tx(T), ty(T + B));
-      ctx.closePath();
-      ctx.fillStyle = o2F; ctx.fill();
-      ctx.strokeStyle = o2Stroke; ctx.lineWidth = 1.25; ctx.stroke();
-      // y = x divider between the two zones
-      ctx.setLineDash([3, 4]);
-      ctx.strokeStyle = 'rgba(0,0,0,0.12)';
-      ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(right, top); ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.font = '500 11px DM Sans, sans-serif'; ctx.fillStyle = lc;
-      ctx.textAlign = 'left'; ctx.fillText('Self sacrificing', left + 8, top + 16);
-      ctx.textAlign = 'right'; ctx.fillText('Self focusing', right - 8, bottom - 8);
-      ctx.save();
-      ctx.translate(tx(80), ty(80)); ctx.rotate(-Math.atan(1));
-      ctx.fillStyle = o2Stroke; ctx.textAlign = 'center'; ctx.fillText('O₂ zone', 0, 0);
+      // Self sacrificing (top-left), self focusing (bottom-right), O2 band (diagonal)
+      ctx.beginPath(); ctx.moveTo(left, ty(B)); ctx.lineTo(tx(100-B), top); ctx.lineTo(left, top); ctx.closePath();
+      ctx.fillStyle = 'rgba(24,95,165,0.10)'; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(tx(B), bottom); ctx.lineTo(right, ty(100-B)); ctx.lineTo(right, bottom); ctx.closePath();
+      ctx.fillStyle = 'rgba(153,60,29,0.10)'; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(left, ty(B)); ctx.lineTo(tx(100-B), top); ctx.lineTo(right, top); ctx.lineTo(right, ty(100-B)); ctx.lineTo(tx(B), bottom); ctx.lineTo(left, bottom); ctx.closePath();
+      ctx.fillStyle = 'rgba(74,175,160,0.20)'; ctx.fill();
+
+      ctx.font = '500 11px "DM Sans", sans-serif';
+      ctx.fillStyle = '#185FA5'; ctx.textAlign = 'left'; ctx.fillText('Self sacrificing', left + 8, top + 16);
+      ctx.fillStyle = '#993C1D'; ctx.textAlign = 'right'; ctx.fillText('Self focusing', right - 8, bottom - 8);
+      ctx.save(); ctx.translate(tx(66), ty(66)); ctx.rotate(-Math.PI/4);
+      ctx.fillStyle = '#0F6E56'; ctx.textAlign = 'center'; ctx.fillText('O₂ zone · All-In Partnership', 0, 4);
       ctx.restore();
+
+      // Move arrow
+      const x0 = tx(xPct), y0 = ty(yPct), x1 = tx(end[0]), y1 = ty(end[1]);
+      ctx.strokeStyle = arrowColor; ctx.fillStyle = arrowColor; ctx.lineWidth = 2.5; ctx.setLineDash([6,4]);
+      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke(); ctx.setLineDash([]);
+      const ang = Math.atan2(y1 - y0, x1 - x0), h = 10;
+      ctx.beginPath(); ctx.moveTo(x1, y1);
+      ctx.lineTo(x1 - h*Math.cos(ang - 0.45), y1 - h*Math.sin(ang - 0.45));
+      ctx.lineTo(x1 - h*Math.cos(ang + 0.45), y1 - h*Math.sin(ang + 0.45));
+      ctx.closePath(); ctx.fill();
+      ctx.font = '600 12px "DM Sans", sans-serif';
+      if (side === 'ss') { ctx.textAlign = 'center'; ctx.fillText(COPY.ss.moveName + ' →', (x0 + x1)/2 + 6, y0 - 14); }
+      else { ctx.save(); ctx.translate(x0 - 14, (y0 + y1)/2); ctx.rotate(-Math.PI/2); ctx.textAlign = 'center'; ctx.fillText(COPY.sf.moveName + ' →', 0, 0); ctx.restore(); }
       ctx.restore();
     }
   };
-  new Chart(document.getElementById('mapChart'), {
-    type: 'scatter', plugins: [zp],
-    data: { datasets: [{ data: [{ x: xPct, y: yPct }], backgroundColor: dotColors[zone], borderColor: '#fff', borderWidth: 2.5, pointRadius: 12, pointHoverRadius: 14 }] },
-    options: {
-      responsive: true, maintainAspectRatio: true, aspectRatio: 1,
-      animation: { duration: 900, easing: 'easeOutQuart' },
-      scales: {
-        x: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } },
-        y: { min: 0, max: 100, grid: { color: gc }, ticks: { color: lc, callback: v => v + '%', maxTicksLimit: 6 }, border: { display: false } }
+
+  chart = new Chart(document.getElementById('mapChart'), {
+    type:'scatter', plugins:[zones],
+    data:{ datasets:[{ data:[{x:xPct, y:yPct}], backgroundColor:dotColor, borderColor:'#fff', borderWidth:2.5, pointRadius:12, pointHoverRadius:12 }] },
+    options:{
+      responsive:true, maintainAspectRatio:true, aspectRatio:1,
+      animation:{ duration:900, easing:'easeOutQuart' },
+      scales:{
+        x:{ min:0, max:100, grid:{ color:'rgba(0,0,0,0.05)' }, ticks:{ display:false }, border:{ display:false } },
+        y:{ min:0, max:100, grid:{ color:'rgba(0,0,0,0.05)' }, ticks:{ display:false }, border:{ display:false } }
       },
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `Advocacy: ${c.parsed.x}%  ·  Consideration: ${c.parsed.y}%` } } }
+      plugins:{ legend:{ display:false }, tooltip:{ enabled:false } }
     }
   });
 }
-function retake() {
-  document.getElementById('results').style.display = 'none';
-  document.getElementById('results').innerHTML = '';
-  document.getElementById('quiz').style.display = 'block';
-  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
-  document.getElementById('err').style.display = 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+
+render();
 </script>
 <script src="https://thoughtly-agent.onrender.com/widget.js" defer></script>
-</body>
-</html>
+
+</body></html>
